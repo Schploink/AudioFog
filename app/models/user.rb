@@ -1,11 +1,11 @@
 class User < ApplicationRecord
-  vaildates :password_digest, presence: true
+  validates :password_digest, presence: true
   validates :username, :email, :session_token, presence: true, uniqueness: true
   validates :password, length: {minimum: 6}, allow_nil: true
   before_validation :ensure_session_token
 
   attr_reader :password 
-  
+
   def generate_session_token
     SecureRandom::base64
   end
