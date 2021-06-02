@@ -1,5 +1,7 @@
 class Api::UsersController < ApplicationController
 
+
+
   def new
     @user = User.new
   end
@@ -9,10 +11,10 @@ class Api::UsersController < ApplicationController
 
     if @user.save
       login(@user)
-      # redirect_to --sounds url?
+      render :show
     else
       flash.now[:errors] = @user.errors.full_messages
-      render :new
+      # render :new
     end
   end
 

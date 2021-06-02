@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
 
+  skip_before_action :verify_authenticity_token
+
   def current_user
     @current_user ||= User.find_by(session_token: session[:session_token])
   end
@@ -13,6 +15,12 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-    redirect_to root_url if logged_in?
+    redirect_to root_url if !logged_in?
+  end
+
+  def logout
+    current_user.reset_session_token if logged_in?
+    session[:session_token] = nil
+    @current_user = nil
   end
 end
