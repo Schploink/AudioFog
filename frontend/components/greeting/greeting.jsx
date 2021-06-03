@@ -12,7 +12,7 @@ const Greeting = ({ currentUser, logout}) => {
   const personalGreeting = () => (
     <div className="greeting">
       <div>Howdy, {currentUser.username}</div>
-      <button class="logout" onClick={logout}>Log Out</button>
+      <button className="logout" onClick={logout}>Log Out</button>
     </div>
   )
 

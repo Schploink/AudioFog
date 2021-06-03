@@ -207,10 +207,10 @@ var RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 var LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
 var RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 
-var receiveCurrentUser = function receiveCurrentUser(user) {
+var receiveCurrentUser = function receiveCurrentUser(currentUser) {
   return {
     type: RECEIVE_CURRENT_USER,
-    user: user
+    currentUser: currentUser
   };
 };
 
@@ -231,6 +231,8 @@ var signup = function signup(user) {
   return function (dispatch) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__.signup(user).then(function (user) {
       return dispatch(receiveCurrentUser(user));
+    }, function (err) {
+      return dispatch(receiveErrors(err.responseJSON));
     });
   };
 };
@@ -247,8 +249,6 @@ var logout = function logout() {
   return function (dispatch) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__.logout().then(function (user) {
       return dispatch(logoutCurrentUser());
-    }, function (err) {
-      return dispatch(receiveErrors(err.responseJSON));
     });
   };
 };
@@ -325,7 +325,7 @@ var Greeting = function Greeting(_ref) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "greeting"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Howdy, ", currentUser.username), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-      "class": "logout",
+      className: "logout",
       onClick: logout
     }, "Log Out"));
   };
@@ -494,10 +494,12 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      username: "",
+      username: null,
+      email: "",
       password: ""
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.processUser = _this.processUser.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -514,8 +516,21 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      var user = Object.assign({}, this.state);
-      this.props.processForm(user);
+      var email = this.state.email;
+      var emailArray = email.split('@');
+      var username = emailArray[0];
+      this.setState({
+        username: username
+      }, this.processUser);
+    }
+  }, {
+    key: "processUser",
+    value: function processUser() {
+      var _this3 = this;
+
+      this.props.processForm(this.state).then(function () {
+        return _this3.props.history.push('/UserProfile');
+      });
     }
   }, {
     key: "render",
@@ -527,10 +542,10 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
         className: "login-form-box"
       }, "Step into Audiofog", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), "Please ", this.props.formType, "!", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "login-form"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "Username:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "Email:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
-        value: this.state.username,
-        onChange: this.update('username'),
+        value: this.state.email,
+        onChange: this.update('email'),
         className: "login-input"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "Password:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "password",
@@ -546,7 +561,27 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return SessionForm;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component); //     this.handleSubmit = this.handleSubmit.bind(this);
+//   }
+//   componentDidUpdate() {
+//     if (this.state.username) {
+//       this.props.createNewUser(this.state)
+//         .then(() => this.props.history.push('/UserProfile'));
+//     }
+//   }
+//   handleInput(type) {
+//     return (e) => {
+//       this.setState({ [type]: e.target.value })
+//     }
+//   }
+//   handleSubmit(e) {
+//     e.preventDefault();
+//     const email = this.state.email;
+//     const emailArray = email.split('@');
+//     const username = emailArray[0];
+//     this.setState({ username: username });
+//   }
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SessionForm);
 
@@ -713,21 +748,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
 
+var voidUser = Object.freeze({
+  id: null
+});
 
 var sessionReducer = function sessionReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
-  var newState = Object.assign({}, state);
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_CURRENT_USER:
-      newState[id] = action.currentUser.id;
-      return newState;
+      return Object.assign({}, state, {
+        id: action.currentUser.id
+      });
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.LOGOUT_CURRENT_USER:
-      newState[id] = null;
-      return newState;
+      return voidUser;
 
     default:
       return state;
