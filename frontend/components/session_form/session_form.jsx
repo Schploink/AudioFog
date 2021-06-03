@@ -1,3 +1,5 @@
+import React from "react"
+
 class SessionForm extends React.Component {
   constructor(props) {
     super(props);
@@ -5,6 +7,8 @@ class SessionForm extends React.Component {
       username: "",
       password: ""
     };
+
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   update(field) {
@@ -25,8 +29,7 @@ class SessionForm extends React.Component {
         <form onSubmit={this.handleSubmit} className="login-form-box">
           Step into Audiofog
           <br />
-          Please {this.props.formType}
-          {this.renderErrors()}
+          Please {this.props.formType}!
           <div className="login-form">
             <br />
             <label>Username:
@@ -52,3 +55,5 @@ class SessionForm extends React.Component {
     );
   }
 }
+
+export default SessionForm
