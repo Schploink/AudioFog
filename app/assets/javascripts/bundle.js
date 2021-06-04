@@ -561,27 +561,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return SessionForm;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component); //     this.handleSubmit = this.handleSubmit.bind(this);
-//   }
-//   componentDidUpdate() {
-//     if (this.state.username) {
-//       this.props.createNewUser(this.state)
-//         .then(() => this.props.history.push('/UserProfile'));
-//     }
-//   }
-//   handleInput(type) {
-//     return (e) => {
-//       this.setState({ [type]: e.target.value })
-//     }
-//   }
-//   handleSubmit(e) {
-//     e.preventDefault();
-//     const email = this.state.email;
-//     const emailArray = email.split('@');
-//     const username = emailArray[0];
-//     this.setState({ username: username });
-//   }
-
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SessionForm);
 
