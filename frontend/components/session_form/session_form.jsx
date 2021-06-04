@@ -11,6 +11,7 @@ class SessionForm extends React.Component {
     
     this.handleSubmit = this.handleSubmit.bind(this)
     this.processUser = this.processUser.bind(this)
+    this.demoUser = this.demoUser.bind(this)
   }
   
   update(field) {
@@ -39,14 +40,15 @@ class SessionForm extends React.Component {
       password: "secretdemo",
       username: "Wonderful Person"
     })
-    this.props.processForm(demoUser)
+    this.props.processDemo(demoUser)
   }
+
   render() {
     return (
       <div className="login-form-container">
       <form onSubmit={this.handleSubmit} className="login-form-box">
         Step into Audiofog
-        <button className="demo-user" onClick={this.demoUser}>
+        <button className="demo-user" onClick={this.demoUser}> 
           Continue With Demo User
         </button>
         <br />

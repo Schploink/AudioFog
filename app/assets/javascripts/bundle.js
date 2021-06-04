@@ -436,6 +436,9 @@ var mDTP = function mDTP(dispatch, ownProps) {
   return {
     processForm: function processForm(user) {
       return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.login)(user));
+    },
+    processDemo: function processDemo(user) {
+      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.login)(user));
     }
   };
 }; // export default connect(mSTP, mDTP)(LoginForm);
@@ -501,6 +504,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.processUser = _this.processUser.bind(_assertThisInitialized(_this));
+    _this.demoUser = _this.demoUser.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -542,7 +546,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
         password: "secretdemo",
         username: "Wonderful Person"
       });
-      this.props.processForm(demoUser);
+      this.props.processDemo(demoUser);
     }
   }, {
     key: "render",
