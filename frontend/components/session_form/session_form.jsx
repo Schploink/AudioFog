@@ -30,7 +30,8 @@ class SessionForm extends React.Component {
     
   processUser() {
     this.props.processForm(this.state)
-      .then(() => this.props.history.push('/UserProfile'));
+      .then(() => this.props.history.push('/UserProfile'))
+        .then(this.props.closeModal);
   }
     
   demoUser(e) {
@@ -41,10 +42,20 @@ class SessionForm extends React.Component {
       username: "Wonderful Person"
     })
     this.props.processDemo(demoUser)
+      .then(this.props.closeModal())
+  }
+
+  displayErrors() {
+    return(
+      <ul>
+        
+      </ul>
+    )
   }
 
   render() {
-    return (
+
+    const modalSignup = (
       <div className="login-form-container">
       <form onSubmit={this.handleSubmit} className="login-form-box">
         Step into Audiofog
@@ -76,6 +87,52 @@ class SessionForm extends React.Component {
       </form>
     </div>
   );
+
+  const modalLogin = (
+    <div className="login-form-container">
+      <form onSubmit={this.handleSubmit} className="login-form-box">
+        Step into Audiofog
+        <button className="demo-user" onClick={this.demoUser}>
+          Continue With Demo User
+        </button>
+        <br />
+        Please {this.props.formType}!
+        <div className="login-form">
+          <br />
+          <label>Email:
+            <input type="text"
+              value={this.state.email}
+              onChange={this.update('email')}
+              className="login-input"
+            />
+          </label>
+          <br />
+          <label>Password:
+            <input type="password"
+              value={this.state.password}
+              onChange={this.update('password')}
+              className="login-input"
+            />
+          </label>
+          <br />
+          <input className="session-submit" type="submit" value={this.props.formType} />
+        </div>
+      </form>
+    </div>
+  )
+  let modal;
+  if (this.props.formType === 'signup') {
+    modal = modalSignup
+  } else {
+    modal = modalLogin
+  }
+
+  return (
+    <div>
+      <h1>Hellooooo</h1>
+      {modal}
+    </div>
+  )
   }
 }
 

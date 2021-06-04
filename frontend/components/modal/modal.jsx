@@ -8,9 +8,11 @@ function Modal({ modal, closeModal }) {
   if (!modal) {
     return null;
   }
+  console.log("hello")
   let component;
   switch (modal) {
     case 'login':
+      
       component = <LoginFormContainer />;
       break;
     case 'signup':
