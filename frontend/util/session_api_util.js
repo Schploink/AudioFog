@@ -9,7 +9,7 @@ export const signup = (user) => (
 export const login = (user) => (
   $.ajax({
     method: 'POST',
-    url: '/api/users',
+    url: '/api/session',
     data: {user}
   })
 )

@@ -423,7 +423,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
+ // import LoginForm from './login_form';
 
 var mSTP = function mSTP(state, ownProps) {
   return {
@@ -438,7 +438,8 @@ var mDTP = function mDTP(dispatch, ownProps) {
       return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.login)(user));
     }
   };
-};
+}; // export default connect(mSTP, mDTP)(LoginForm);
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_session_form__WEBPACK_IMPORTED_MODULE_3__.default));
 
@@ -844,7 +845,7 @@ var signup = function signup(user) {
 var login = function login(user) {
   return $.ajax({
     method: 'POST',
-    url: '/api/users',
+    url: '/api/session',
     data: {
       user: user
     }

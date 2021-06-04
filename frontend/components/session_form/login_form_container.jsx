@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { login } from '../../actions/session_actions';
 import SessionForm from './session_form';
+// import LoginForm from './login_form';
 
 
 const mSTP = (state, ownProps) => ({
@@ -16,4 +17,5 @@ const mDTP = (dispatch, ownProps) => ({
 })
 
 
+// export default connect(mSTP, mDTP)(LoginForm);
 export default connect(mSTP, mDTP)(SessionForm);
