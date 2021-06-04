@@ -32,11 +32,23 @@ class SessionForm extends React.Component {
       .then(() => this.props.history.push('/UserProfile'));
   }
     
+  demoUser(e) {
+    e.preventDefault();
+    const demoUser = Object.assign({
+      email: "demolovato@they.com",
+      password: "secretdemo",
+      username: "Wonderful Person"
+    })
+    this.props.processForm(demoUser)
+  }
   render() {
     return (
       <div className="login-form-container">
       <form onSubmit={this.handleSubmit} className="login-form-box">
         Step into Audiofog
+        <button className="demo-user" onClick={this.demoUser}>
+          Continue With Demo User
+        </button>
         <br />
         Please {this.props.formType}!
         <div className="login-form">
