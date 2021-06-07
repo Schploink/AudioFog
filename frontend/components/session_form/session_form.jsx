@@ -12,6 +12,7 @@ class SessionForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.processUser = this.processUser.bind(this)
     this.demoUser = this.demoUser.bind(this)
+    this.displayErrors = this.displayErrors.bind(this)
   }
   
   update(field) {
@@ -46,9 +47,11 @@ class SessionForm extends React.Component {
   }
 
   displayErrors() {
-    return(
-      <ul>
-        
+    return (
+      <ul className="render-errors">
+        {this.props.errors.map((error, idx) => {
+          return <li key={idx}>{error}</li>
+        })}
       </ul>
     )
   }
@@ -129,7 +132,6 @@ class SessionForm extends React.Component {
 
   return (
     <div>
-      <h1>Hellooooo</h1>
       {modal}
     </div>
   )

@@ -347,15 +347,19 @@ var Greeting = function Greeting(_ref) {
   var sessionLinks = function sessionLinks() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("nav", {
       className: "signup-login"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+      id: "mainLogo",
+      src: "/Users/schploink/Desktop/AppAcademy/FullStackProject/AF_logo_files/1/AFlogo1_horz_black.png",
+      alt: "Audiofog logo"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       onClick: function onClick() {
         return openModal('login');
       }
-    }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    }, "Sign in"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       onClick: function onClick() {
         return openModal('signup');
       }
-    }, "Signup"));
+    }, "Create account"));
   };
 
   var personalGreeting = function personalGreeting() {
@@ -631,6 +635,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.processUser = _this.processUser.bind(_assertThisInitialized(_this));
     _this.demoUser = _this.demoUser.bind(_assertThisInitialized(_this));
+    _this.displayErrors = _this.displayErrors.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -677,7 +682,13 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "displayErrors",
     value: function displayErrors() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", null);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+        className: "render-errors"
+      }, this.props.errors.map(function (error, idx) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", {
+          key: idx
+        }, error);
+      }));
     }
   }, {
     key: "render",
@@ -740,7 +751,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
         modal = modalLogin;
       }
 
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Hellooooo"), modal);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, modal);
     }
   }]);
 

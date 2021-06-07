@@ -4,6 +4,7 @@ class User < ApplicationRecord
   validates :password_digest, presence: true
   validates :username, :email, :session_token, presence: true, uniqueness: true
   validates :password, length: {minimum: 6}, allow_nil: true
+  # validates_format_of :email, with: URI::MailTo::EMAIL_REGEXP
   before_validation :ensure_session_token
 
   attr_reader :password 

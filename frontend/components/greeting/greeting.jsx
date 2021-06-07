@@ -4,8 +4,9 @@ import {Link} from 'react-router-dom'
 const Greeting = ({ currentUser, logout, openModal}) => {
   const sessionLinks = () => (
     <nav className="signup-login">
-      <button onClick={() => openModal('login')}>Login</button>
-      <button onClick={() => openModal('signup')}>Signup</button>
+      <img id="mainLogo" src="/Users/schploink/Desktop/AppAcademy/FullStackProject/AF_logo_files/1/AFlogo1_horz_black.png" alt="Audiofog logo" />
+      <button onClick={() => openModal('login')}>Sign in</button>
+      <button onClick={() => openModal('signup')}>Create account</button>
     </nav>
   )
 
