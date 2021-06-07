@@ -68,6 +68,7 @@ class SessionForm extends React.Component {
       <form onSubmit={this.handleSubmit} className="login-form-box">
         <br />
         Please {this.props.formType}!
+        {this.displayErrors()}
         <div className="login-form">
           <br />
           <label>Email:
@@ -101,6 +102,7 @@ class SessionForm extends React.Component {
       <form onSubmit={this.handleSubmit} className="login-form-box">
         <br />
         Please {this.props.formType}!
+        {this.displayErrors()}
         <div className="login-form">
           <br />
           <label>Username:

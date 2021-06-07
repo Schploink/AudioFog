@@ -6,9 +6,9 @@ import SessionForm from './session_form';
 // import LoginForm from './login_form';
 
 
-const mSTP = (state, ownProps) => ({
+const mSTP = ({errors}) => ({
 
-    errors: state.errors,
+    errors: errors.session,
     formType: 'login',
 })
 

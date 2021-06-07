@@ -547,9 +547,10 @@ __webpack_require__.r(__webpack_exports__);
 
  // import LoginForm from './login_form';
 
-var mSTP = function mSTP(state, ownProps) {
+var mSTP = function mSTP(_ref) {
+  var errors = _ref.errors;
   return {
-    errors: state.errors,
+    errors: errors.session,
     formType: 'login'
   };
 };
@@ -698,7 +699,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       }, "Continue With Demo User"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         onSubmit: this.handleSubmit,
         className: "login-form-box"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), "Please ", this.props.formType, "!", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), "Please ", this.props.formType, "!", this.displayErrors(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "login-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "Email:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
@@ -722,7 +723,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       }, "Continue With Demo User"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         onSubmit: this.handleSubmit,
         className: "login-form-box"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), "Please ", this.props.formType, "!", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), "Please ", this.props.formType, "!", this.displayErrors(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "login-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", null, "Username:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
@@ -779,9 +780,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var mSTP = function mSTP(state, ownProps) {
+var mSTP = function mSTP(_ref) {
+  var errors = _ref.errors;
   return {
-    errors: state.errors,
+    errors: errors.session,
     formType: 'signup'
   };
 };
@@ -899,7 +901,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var sessionErrorsReducer = function sessionErrorsReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
 
@@ -908,8 +910,7 @@ var sessionErrorsReducer = function sessionErrorsReducer() {
       return action.errors;
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_CURRENT_USER:
-      action.errors = [];
-      return action.errors;
+      return [];
 
     default:
       return state;
