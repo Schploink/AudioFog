@@ -58,17 +58,14 @@ class SessionForm extends React.Component {
 
   render() {
 
-    if (this.props.errors) {
-      this.displayErrors
-    }
-
+    
     const modalSignup = (
       <div className="login-form-container">
-      <form onSubmit={this.handleSubmit} className="login-form-box">
-        Step into Audiofog
+        <h2>Step into Audiofog</h2>
         <button className="demo-user" onClick={this.demoUser}> 
           Continue With Demo User
         </button>
+      <form onSubmit={this.handleSubmit} className="login-form-box">
         <br />
         Please {this.props.formType}!
         <div className="login-form">
@@ -78,7 +75,7 @@ class SessionForm extends React.Component {
               value={this.state.email}
               onChange={this.update('email')}
               className="login-input"
-            />
+              />
           </label>
           <br />
           <label>Password:
@@ -86,7 +83,7 @@ class SessionForm extends React.Component {
               value={this.state.password}
               onChange={this.update('password')}
               className="login-input"
-            />
+              />
           </label>
           <br />
             <button className="session-submit" type="submit">{this.props.formType}</button>
@@ -94,24 +91,24 @@ class SessionForm extends React.Component {
       </form>
     </div>
   );
-
+  
   const modalLogin = (
     <div className="login-form-container">
-      <form onSubmit={this.handleSubmit} className="login-form-box">
-        Step into Audiofog
+        <h2>Step into Audiofog</h2>
         <button className="demo-user" onClick={this.demoUser}>
           Continue With Demo User
         </button>
+      <form onSubmit={this.handleSubmit} className="login-form-box">
         <br />
         Please {this.props.formType}!
         <div className="login-form">
           <br />
-          <label>Email:
+          <label>Username:
             <input type="text"
               value={this.state.email}
               onChange={this.update('email')}
               className="login-input"
-            />
+              />
           </label>
           <br />
           <label>Password:
