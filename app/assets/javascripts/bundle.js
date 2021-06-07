@@ -261,8 +261,8 @@ var signup = function signup(user) {
   return function (dispatch) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__.signup(user).then(function (user) {
       return dispatch(receiveCurrentUser(user));
-    }, function (err) {
-      return dispatch(receiveErrors(err.responseJSON));
+    }, function (error) {
+      return dispatch(receiveErrors(error.responseJSON));
     });
   };
 };
@@ -270,8 +270,8 @@ var login = function login(user) {
   return function (dispatch) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__.login(user).then(function (user) {
       return dispatch(receiveCurrentUser(user));
-    }, function (err) {
-      return dispatch(receiveErrors(err.responseJSON));
+    }, function (error) {
+      return dispatch(receiveErrors(error.responseJSON));
     });
   };
 };
@@ -662,11 +662,8 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "processUser",
     value: function processUser() {
-      var _this3 = this;
-
-      this.props.processForm(this.state).then(function () {
-        return _this3.props.history.push('/UserProfile');
-      }).then(this.props.closeModal);
+      this.props.processForm(this.state) // .then(() => this.props.history.push('/UserProfile'))
+      .then(this.props.closeModal);
     }
   }, {
     key: "demoUser",
@@ -693,6 +690,10 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      if (this.props.errors) {
+        this.displayErrors;
+      }
+
       var modalSignup = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "login-form-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
@@ -713,11 +714,10 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
         value: this.state.password,
         onChange: this.update('password'),
         className: "login-input"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "session-submit",
-        type: "submit",
-        value: this.props.formType
-      }))));
+        type: "submit"
+      }, this.props.formType))));
       var modalLogin = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "login-form-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
@@ -738,11 +738,10 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
         value: this.state.password,
         onChange: this.update('password'),
         className: "login-input"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "session-submit",
-        type: "submit",
-        value: this.props.formType
-      }))));
+        type: "submit"
+      }, this.props.formType))));
       var modal;
 
       if (this.props.formType === 'signup') {
@@ -795,6 +794,9 @@ var mDTP = function mDTP(dispatch, ownProps) {
   return {
     processForm: function processForm(user) {
       return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__.signup)(user));
+    },
+    processDemo: function processDemo(user) {
+      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__.login)(user));
     },
     otherForm: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
       onClick: function onClick() {

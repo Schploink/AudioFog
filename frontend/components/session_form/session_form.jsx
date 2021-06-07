@@ -31,7 +31,7 @@ class SessionForm extends React.Component {
     
   processUser() {
     this.props.processForm(this.state)
-      .then(() => this.props.history.push('/UserProfile'))
+      // .then(() => this.props.history.push('/UserProfile'))
         .then(this.props.closeModal);
   }
     
@@ -57,6 +57,10 @@ class SessionForm extends React.Component {
   }
 
   render() {
+
+    if (this.props.errors) {
+      this.displayErrors
+    }
 
     const modalSignup = (
       <div className="login-form-container">
@@ -85,7 +89,7 @@ class SessionForm extends React.Component {
             />
           </label>
           <br />
-          <input className="session-submit" type="submit" value={this.props.formType} />
+            <button className="session-submit" type="submit">{this.props.formType}</button>
         </div>
       </form>
     </div>
@@ -118,7 +122,7 @@ class SessionForm extends React.Component {
             />
           </label>
           <br />
-          <input className="session-submit" type="submit" value={this.props.formType} />
+          <button className="session-submit" type="submit">{this.props.formType}</button>
         </div>
       </form>
     </div>
