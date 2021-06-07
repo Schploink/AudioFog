@@ -227,6 +227,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "RECEIVE_CURRENT_USER": () => (/* binding */ RECEIVE_CURRENT_USER),
 /* harmony export */   "LOGOUT_CURRENT_USER": () => (/* binding */ LOGOUT_CURRENT_USER),
 /* harmony export */   "RECEIVE_SESSION_ERRORS": () => (/* binding */ RECEIVE_SESSION_ERRORS),
+/* harmony export */   "RESET_SESSION_ERRORS": () => (/* binding */ RESET_SESSION_ERRORS),
+/* harmony export */   "resetSessionErrors": () => (/* binding */ resetSessionErrors),
 /* harmony export */   "signup": () => (/* binding */ signup),
 /* harmony export */   "login": () => (/* binding */ login),
 /* harmony export */   "logout": () => (/* binding */ logout)
@@ -236,6 +238,7 @@ __webpack_require__.r(__webpack_exports__);
 var RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 var LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
 var RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
+var RESET_SESSION_ERRORS = "RESET_SESSION_ERRORS";
 
 var receiveCurrentUser = function receiveCurrentUser(currentUser) {
   return {
@@ -257,6 +260,11 @@ var receiveErrors = function receiveErrors(errors) {
   };
 };
 
+var resetSessionErrors = function resetSessionErrors() {
+  return {
+    type: RESET_SESSION_ERRORS
+  };
+};
 var signup = function signup(user) {
   return function (dispatch) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__.signup(user).then(function (user) {
@@ -435,6 +443,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _session_form_login_form_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../session_form/login_form_container */ "./frontend/components/session_form/login_form_container.jsx");
 /* harmony import */ var _session_form_signup_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../session_form/signup_form_container */ "./frontend/components/session_form/signup_form_container.jsx");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+
 
 
 
@@ -443,7 +453,8 @@ __webpack_require__.r(__webpack_exports__);
 
 function Modal(_ref) {
   var modal = _ref.modal,
-      closeModal = _ref.closeModal;
+      closeModal = _ref.closeModal,
+      resetSessionErrors = _ref.resetSessionErrors;
 
   if (!modal) {
     return null;
@@ -465,9 +476,13 @@ function Modal(_ref) {
       return null;
   }
 
+  function handleModal() {
+    closeModal(), resetSessionErrors();
+  }
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "modal-background",
-    onClick: closeModal
+    onClick: handleModal
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "modal-child",
     onClick: function onClick(e) {
@@ -486,6 +501,9 @@ var mDTP = function mDTP(dispatch) {
   return {
     closeModal: function closeModal() {
       return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__.closeModal)());
+    },
+    resetSessionErrors: function resetSessionErrors() {
+      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_5__.resetSessionErrors)());
     }
   };
 };
@@ -570,6 +588,9 @@ var mDTP = function mDTP(dispatch, ownProps) {
     }, "Signup"),
     closeModal: function closeModal() {
       return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__.closeModal)());
+    },
+    resetSessionErrors: function resetSessionErrors() {
+      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__.resetSessionErrors)());
     }
   };
 }; // export default connect(mSTP, mDTP)(LoginForm);
@@ -803,6 +824,9 @@ var mDTP = function mDTP(dispatch, ownProps) {
     }, "Signup"),
     closeModal: function closeModal() {
       return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__.closeModal)());
+    },
+    resetSessionErrors: function resetSessionErrors() {
+      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__.resetSessionErrors)());
     }
   };
 };
@@ -910,6 +934,9 @@ var sessionErrorsReducer = function sessionErrorsReducer() {
       return action.errors;
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_CURRENT_USER:
+      return [];
+
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.RESET_SESSION_ERRORS:
       return [];
 
     default:

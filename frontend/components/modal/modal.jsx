@@ -3,8 +3,9 @@ import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import LoginFormContainer from '../session_form/login_form_container';
 import SignupFormContainer from '../session_form/signup_form_container';
+import {resetSessionErrors} from '../../actions/session_actions'
 
-function Modal({ modal, closeModal }) {
+function Modal({ modal, closeModal, resetSessionErrors }) {
   if (!modal) {
     return null;
   }
@@ -21,8 +22,14 @@ function Modal({ modal, closeModal }) {
     default:
       return null;
   }
+
+  function handleModal () {
+    closeModal(),
+    resetSessionErrors()
+  }
+
   return (
-    <div className="modal-background" onClick={closeModal}>
+    <div className="modal-background" onClick={handleModal}>
       <div className="modal-child" onClick={e => e.stopPropagation()}>
         {component}
       </div>
@@ -39,7 +46,8 @@ const mSTP = state => {
 
 const mDTP = dispatch => {
   return {
-    closeModal: () => dispatch(closeModal())
+    closeModal: () => dispatch(closeModal()),
+    resetSessionErrors: () => dispatch(resetSessionErrors())
   };
 };
 
