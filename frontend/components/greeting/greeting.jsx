@@ -33,9 +33,27 @@ const Greeting = ({ currentUser, logout, openModal}) => {
         <div className="sounds-container">
           Sounds here
         </div>
-        
+        <button className="trending-button">Explore trending playlists</button>
       </div>
-
+      <div className="mobile-app-container">
+        <p className="mobile-header">Never stop listening</p>
+        <p className="mobile-text">AudioFog is available on Web, iOS, Android, Sonos, Chromecast, and Xbox One</p>
+      </div>
+      <div className="creators-container">
+        <p className="creators-header">Calling all creators</p>
+        <p className="creators-text">Get on AudioFog to connect with fans, share your sounds, and murk in fog. Whatcha waitin' for, hmmmm?</p>
+        <button onClick={() => openModal('signup')} className="find-out">Find out more</button>
+      </div>
+      <div className="join-container">
+        <p className="join-header">Thanks for listening. Now join in.</p>
+        <p className="join-text">Save tracks, follow artists and build playlists. All for free.</p>
+        <button onClick={() => openModal('signup')} className="bottom-create-button">Create account</button>
+      </div>
+      <footer className="footer">
+        <ul className="footer-links">
+          <li><a href=""> LinkedIn </a></li>
+        </ul>
+      </footer>
     </div>
   )
 

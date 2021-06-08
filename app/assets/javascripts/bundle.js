@@ -311,7 +311,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "updateSound": () => (/* binding */ updateSound),
 /* harmony export */   "destroySound": () => (/* binding */ destroySound)
 /* harmony export */ });
-Object(function webpackMissingModule() { var e = new Error("Cannot find module '../util.sound_api_util.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _util_sound_api_util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/sound_api_util.js */ "./frontend/util/sound_api_util.js");
 
 var RECEIVE_ALL_SOUNDS = 'RECEIVE_ALL_SOUNDS';
 var RECEIVE_SOUND = 'RECEIVE_SOUND';
@@ -340,35 +340,35 @@ var removeSound = function removeSound(soundId) {
 
 var fetchAllSounds = function fetchAllSounds() {
   return function (dispatch) {
-    return Object(function webpackMissingModule() { var e = new Error("Cannot find module '../util.sound_api_util.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())().then(function (sounds) {
+    return _util_sound_api_util_js__WEBPACK_IMPORTED_MODULE_0__.fetchAllSounds().then(function (sounds) {
       return dispatch(receiveAllSounds(sounds));
     });
   };
 };
 var fetchSound = function fetchSound(soundId) {
   return function (dispatch) {
-    return Object(function webpackMissingModule() { var e = new Error("Cannot find module '../util.sound_api_util.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(soundId).then(function (sound) {
+    return _util_sound_api_util_js__WEBPACK_IMPORTED_MODULE_0__.fetchSound(soundId).then(function (sound) {
       return dispatch(receiveSound(sound));
     });
   };
 };
 var createSound = function createSound(sound) {
   return function (dispatch) {
-    return Object(function webpackMissingModule() { var e = new Error("Cannot find module '../util.sound_api_util.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(sound).then(function (sound) {
+    return _util_sound_api_util_js__WEBPACK_IMPORTED_MODULE_0__.createSound(sound).then(function (sound) {
       return dispatch(receiveSound(sound));
     });
   };
 };
 var updateSound = function updateSound(sound) {
   return function (dispatch) {
-    return Object(function webpackMissingModule() { var e = new Error("Cannot find module '../util.sound_api_util.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(sound).then(function (sound) {
+    return _util_sound_api_util_js__WEBPACK_IMPORTED_MODULE_0__.updateSound(sound).then(function (sound) {
       return dispatch(receiveSound(sound));
     });
   };
 };
 var destroySound = function destroySound(soundId) {
   return function (dispatch) {
-    return Object(function webpackMissingModule() { var e = new Error("Cannot find module '../util.sound_api_util.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(soundId).then(function () {
+    return _util_sound_api_util_js__WEBPACK_IMPORTED_MODULE_0__.destroySound(soundId).then(function () {
       return dispatch(removeSound(soundId));
     });
   };
@@ -473,7 +473,43 @@ var Greeting = function Greeting(_ref) {
       className: "trending-text"
     }, "Hear what's creeping in AudioFog"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "sounds-container"
-    }, "Sounds here")));
+    }, "Sounds here"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      className: "trending-button"
+    }, "Explore trending playlists")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "mobile-app-container"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+      className: "mobile-header"
+    }, "Never stop listening"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+      className: "mobile-text"
+    }, "AudioFog is available on Web, iOS, Android, Sonos, Chromecast, and Xbox One")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "creators-container"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+      className: "creators-header"
+    }, "Calling all creators"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+      className: "creators-text"
+    }, "Get on AudioFog to connect with fans, share your sounds, and murk in fog. Whatcha waitin' for, hmmmm?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      onClick: function onClick() {
+        return openModal('signup');
+      },
+      className: "find-out"
+    }, "Find out more")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "join-container"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+      className: "join-header"
+    }, "Thanks for listening. Now join in."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+      className: "join-text"
+    }, "Save tracks, follow artists and build playlists. All for free."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      onClick: function onClick() {
+        return openModal('signup');
+      },
+      className: "bottom-create-button"
+    }, "Create account")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("footer", {
+      className: "footer"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+      className: "footer-links"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+      href: ""
+    }, " LinkedIn ")))));
   };
 
   var personalGreeting = function personalGreeting() {
@@ -1357,6 +1393,63 @@ var logout = function logout() {
   return $.ajax({
     method: 'DELETE',
     url: '/api/session'
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/sound_api_util.js":
+/*!*****************************************!*\
+  !*** ./frontend/util/sound_api_util.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "fetchSounds": () => (/* binding */ fetchSounds),
+/* harmony export */   "fetchSound": () => (/* binding */ fetchSound),
+/* harmony export */   "createSound": () => (/* binding */ createSound),
+/* harmony export */   "updateSound": () => (/* binding */ updateSound),
+/* harmony export */   "destroySound": () => (/* binding */ destroySound)
+/* harmony export */ });
+var fetchSounds = function fetchSounds() {
+  return $.ajax({
+    method: "GET",
+    url: "/api/sounds",
+    error: function error(err) {
+      return console.log(err);
+    }
+  });
+};
+var fetchSound = function fetchSound(soundId) {
+  return $.ajax({
+    url: "api/sounds/".concat(soundId),
+    method: "GET"
+  });
+};
+var createSound = function createSound(sound) {
+  return $.ajax({
+    url: "api/sounds",
+    method: 'POST',
+    data: {
+      sound: sound
+    }
+  });
+};
+var updateSound = function updateSound(sound) {
+  return $.ajax({
+    url: "api/sounds",
+    method: 'PATCH',
+    data: {
+      sound: sound
+    }
+  });
+};
+var destroySound = function destroySound(soundId) {
+  return $.ajax({
+    url: "api/sounds/".concat(soundId),
+    method: 'DELETE'
   });
 };
 
