@@ -1,11 +1,5 @@
 import React from 'react'
-import {
-  Route,
-  Redirect,
-  Switch,
-  Link,
-  HashRouter
-} from 'react-router-dom'
+import { AuthRoute, ProtectedRoute} from '../util/route_util'
 import GreetingContainer from "./greeting/greeting_container"
 import Modal from "./modal/modal"
 import LoginFormContainer from './session_form/login_form_container'
@@ -15,11 +9,8 @@ const App = () => {
   return (
     <div>
       <Modal />
-      <header>
-      <GreetingContainer />
-      </header>
-
-      <Redirect from="*" to="/" />
+      <GreetingContainer />      
+      <AuthRoute exact path="/" component={GreetingContainer} />
     </div>
   )
 }
