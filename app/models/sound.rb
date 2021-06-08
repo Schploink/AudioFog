@@ -5,5 +5,6 @@ class Sound < ApplicationRecord
   foreign_key: :uploader_id,
   class_name: :User
 
-
+  has_one_attached :photo
+  has_one_attached :sound
 end
