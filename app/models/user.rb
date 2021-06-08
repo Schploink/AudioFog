@@ -9,6 +9,10 @@ class User < ApplicationRecord
 
   attr_reader :password 
 
+  has_many :sounds,
+  foreign_key: :uploader_id,
+  class_name: :Sound
+
   def generate_session_token
     SecureRandom::base64
   end

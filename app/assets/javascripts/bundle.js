@@ -293,6 +293,89 @@ var logout = function logout() {
 
 /***/ }),
 
+/***/ "./frontend/actions/sound_actions.js":
+/*!*******************************************!*\
+  !*** ./frontend/actions/sound_actions.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RECEIVE_ALL_SOUNDS": () => (/* binding */ RECEIVE_ALL_SOUNDS),
+/* harmony export */   "RECEIVE_SOUND": () => (/* binding */ RECEIVE_SOUND),
+/* harmony export */   "REMOVE_SOUND": () => (/* binding */ REMOVE_SOUND),
+/* harmony export */   "fetchAllSounds": () => (/* binding */ fetchAllSounds),
+/* harmony export */   "fetchSound": () => (/* binding */ fetchSound),
+/* harmony export */   "createSound": () => (/* binding */ createSound),
+/* harmony export */   "updateSound": () => (/* binding */ updateSound),
+/* harmony export */   "destroySound": () => (/* binding */ destroySound)
+/* harmony export */ });
+Object(function webpackMissingModule() { var e = new Error("Cannot find module '../util.sound_api_util.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+
+var RECEIVE_ALL_SOUNDS = 'RECEIVE_ALL_SOUNDS';
+var RECEIVE_SOUND = 'RECEIVE_SOUND';
+var REMOVE_SOUND = 'REMOVE_SOUND';
+
+var receiveAllSounds = function receiveAllSounds(sounds) {
+  return {
+    type: RECEIVE_ALL_SOUNDS,
+    sounds: sounds
+  };
+};
+
+var receiveSound = function receiveSound(sound) {
+  return {
+    type: RECEIVE_SOUND,
+    sound: sound
+  };
+};
+
+var removeSound = function removeSound(soundId) {
+  return {
+    type: REMOVE_SOUND,
+    soundId: soundId
+  };
+};
+
+var fetchAllSounds = function fetchAllSounds() {
+  return function (dispatch) {
+    return Object(function webpackMissingModule() { var e = new Error("Cannot find module '../util.sound_api_util.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())().then(function (sounds) {
+      return dispatch(receiveAllSounds(sounds));
+    });
+  };
+};
+var fetchSound = function fetchSound(soundId) {
+  return function (dispatch) {
+    return Object(function webpackMissingModule() { var e = new Error("Cannot find module '../util.sound_api_util.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(soundId).then(function (sound) {
+      return dispatch(receiveSound(sound));
+    });
+  };
+};
+var createSound = function createSound(sound) {
+  return function (dispatch) {
+    return Object(function webpackMissingModule() { var e = new Error("Cannot find module '../util.sound_api_util.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(sound).then(function (sound) {
+      return dispatch(receiveSound(sound));
+    });
+  };
+};
+var updateSound = function updateSound(sound) {
+  return function (dispatch) {
+    return Object(function webpackMissingModule() { var e = new Error("Cannot find module '../util.sound_api_util.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(sound).then(function (sound) {
+      return dispatch(receiveSound(sound));
+    });
+  };
+};
+var destroySound = function destroySound(soundId) {
+  return function (dispatch) {
+    return Object(function webpackMissingModule() { var e = new Error("Cannot find module '../util.sound_api_util.js'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())(soundId).then(function () {
+      return dispatch(removeSound(soundId));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/components/App.jsx":
 /*!*************************************!*\
   !*** ./frontend/components/App.jsx ***!
@@ -354,21 +437,43 @@ var Greeting = function Greeting(_ref) {
       openModal = _ref.openModal;
 
   var sessionLinks = function sessionLinks() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("nav", {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "splash"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "splash-nav"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("nav", {
       className: "signup-login"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
       id: "mainLogo",
       src: "/Users/schploink/Desktop/AppAcademy/FullStackProject/AF_logo_files/1/AFlogo1_horz_black.png",
       alt: "Audiofog logo"
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      className: "signin-button",
       onClick: function onClick() {
         return openModal('login');
       }
     }, "Sign in"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      className: "create-button",
       onClick: function onClick() {
         return openModal('signup');
       }
-    }, "Create account"));
+    }, "Create account"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      className: "creators-button"
+    }, "For Creators")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "main-image-text"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+      className: "image-text-header"
+    }, "What's next in music poured out of AudioFog"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+      className: "image-text"
+    }, "Upload your first sound and begin your journey into the fog. AudioFog gives you space to create, find your fans, and connect with other artists."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      className: "uploading-button"
+    }, "Start uploading today"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "trending-container"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+      className: "trending-text"
+    }, "Hear what's creeping in AudioFog"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "sounds-container"
+    }, "Sounds here")));
   };
 
   var personalGreeting = function personalGreeting() {
@@ -847,12 +952,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
+/* harmony import */ var _sounds_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sounds_reducer */ "./frontend/reducers/sounds_reducer.js");
 
 
-var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_1__.combineReducers)({
-  users: _users_reducer__WEBPACK_IMPORTED_MODULE_0__.default
+
+var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
+  users: _users_reducer__WEBPACK_IMPORTED_MODULE_0__.default,
+  sounds: _sounds_reducer__WEBPACK_IMPORTED_MODULE_1__.default
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (entitiesReducer);
 
@@ -986,6 +1094,48 @@ var sessionReducer = function sessionReducer() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (sessionReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/sounds_reducer.js":
+/*!*********************************************!*\
+  !*** ./frontend/reducers/sounds_reducer.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_sound_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/sound_actions */ "./frontend/actions/sound_actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var soundsReducer = function soundsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_sound_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ALL_SOUNDS:
+      return Object.assign({}, state, action.tracks);
+
+    case _actions_sound_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_SOUND:
+      return Object.assign({}, state, _defineProperty({}, action.sound.id, action.sound));
+
+    case _actions_sound_actions__WEBPACK_IMPORTED_MODULE_0__.REMOVE_SOUND:
+      var nextState = Object.assign({}, state);
+      delete nextState[action.soundId];
+      return nextState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (soundsReducer);
 
 /***/ }),
 
