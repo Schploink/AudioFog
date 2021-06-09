@@ -14,6 +14,7 @@
     align-items: center;
     height: 450px;
     width: 70%;
+    border-top: solid #ff6708 4px;
     background-image: url(https://a-v2.sndcdn.com/assets/images/hp_image_creator_slide-db400e2f.jpg);
     background-repeat: no-repeat;
     background-position: center;
@@ -30,6 +31,8 @@
     position: absolute;
     top: 10px;
     left: 10px;
+    height: 55px;
+    width: 100px;
 }
 
 .main-image-text {

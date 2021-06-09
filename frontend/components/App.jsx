@@ -9,8 +9,8 @@ const App = () => {
   return (
     <div>
       <Modal />
-      {/* <GreetingContainer />       */}
-      <AuthRoute exact path="/" component={GreetingContainer} />
+      <GreetingContainer />      
+      {/* <AuthRoute exact path="/" component={GreetingContainer} /> */}
       
     </div>
   )

@@ -5,7 +5,7 @@ const Greeting = ({ currentUser, logout, openModal}) => {
   const sessionLinks = () => (
     <div className="splash">
       <div className="splash-nav">
-        <img className="main-logo" src="AFlogo1_vert_black.png" alt="Audiofog logo" />
+        <img className="main-logo" src={window.audioFogLogo} alt="Audiofog logo" />
         <nav className="signup-login">
           <button 
             className="signin-button"
