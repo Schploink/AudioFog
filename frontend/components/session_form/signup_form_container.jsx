@@ -14,11 +14,6 @@ const mSTP = ({ errors }) => ({
 const mDTP = (dispatch, ownProps) => ({
   processForm: (user) => dispatch(signup(user)),
   processDemo: (user) => dispatch(login(user)),
-  otherForm: (
-    <button onClick={() => dispatch(openModal('login'))}>
-      Signup
-    </button>
-  ),
   closeModal: () => dispatch(closeModal()),
   resetSessionErrors: () => dispatch(resetSessionErrors())
 })

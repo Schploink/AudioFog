@@ -9,7 +9,7 @@ const App = () => {
   return (
     <div>
       <Modal />
-      <GreetingContainer />      
+      {/* <GreetingContainer />       */}
       <AuthRoute exact path="/" component={GreetingContainer} />
       
     </div>

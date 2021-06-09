@@ -20,7 +20,7 @@ const removeSound = (soundId) => ({
 });
 
 export const fetchAllSounds = () => dispatch => (
-  SoundApiUtil.fetchAllSounds()
+  SoundApiUtil.fetchSounds()
     .then(sounds => dispatch(receiveAllSounds(sounds)))
 );
 
