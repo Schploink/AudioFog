@@ -1,25 +1,26 @@
 # AudioFog
 
+
+
 ## Presenting: Audiofog
 
 [AudioFog](https://audiofog.herokuapp.com/#/) is a project to clone the SoundCloud website with Ruby on Rails as the backend, React/Redux as the frontend, and postgreSQL as the database. The aim was to create a website with workable features similar to SoundCloud in user authentication, uploadable sounds, audio playback, the ability to leave comments, and general styling similarities.
 
-Things you may want to cover:
+## Features
 
-* Ruby version
+### User Authentication
 
-* System dependencies
+  * Users can create a secure account and login
+  * A demo user is available to experience the website and features
 
-* Configuration
+### Sound uploading and playback
 
-* Database creation
+  * Users can create/upload, edit, or delete/destroy sounds
+  * Sounds are able to playback through a playback bar regardless of where they are on the site
+  * The playback bar will allow for tracking when clicked on the playbar or on the player in the show page for the sound
+  * A volume control for the playback bar
 
-* Database initialization
+### Sound and User show page
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  * A show page for each unique user and sound
+  * Ability for users to leave comments on uploaded sounds
