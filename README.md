@@ -1,6 +1,6 @@
 # AudioFog
 
-
+![alt text](https://github.com/Schploink/AudioFog/blob/main/app/assets/images/AFlogo1_vert_white.png "AudioFog logo white")
 
 ## Presenting: Audiofog
 
