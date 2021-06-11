@@ -13,7 +13,7 @@
     position: relative;
     align-items: center;
     height: 450px;
-    width: 70%;
+    width: 65%;
     border-top: solid #ff6708 4px;
     background-image: url(https://a-v2.sndcdn.com/assets/images/hp_image_creator_slide-db400e2f.jpg);
     background-repeat: no-repeat;
@@ -46,17 +46,6 @@
   
 }
 
-// .right-session-buttons {
-//     padding: 9px 10px 8px;
-//     // position: absolute;
-//     display: block;
-//     color: #fff;
-//     top: 8px;
-//     right: 30px;
-//     justify-content: space-between;
-//     float: right;
-// }
-
 .signin-button:hover, 
 .create-button:hover,
 .creators-button:hover, 
@@ -88,6 +77,8 @@
     padding: 2px 15px;
     color: #fff;
     background: transparent;
+    margin-left: 10px;
+    line-height: 26px;
 }
 
 .image-text-header {
@@ -104,6 +95,9 @@
     font-size: 20px;
     line-height: 24px;
     opacity: 85%;
+    margin-left: 150px;
+    margin-right: 150px;
+    margin-top: 15px
 }
 
 .uploading-button {
@@ -113,5 +107,6 @@
     padding: 14px 15px 14px 15px; 
     font-size: 18px;
     margin-left: 20px;
+    margin-top: 50px;;
 }
 
