@@ -1,4 +1,5 @@
 import React from 'react'
+import FrontPageSongItem from './frontpage_song_item'
 import {Link} from 'react-router-dom'
 
 const Greeting = ({ currentUser, logout, openModal}) => {
@@ -92,7 +93,8 @@ const Greeting = ({ currentUser, logout, openModal}) => {
     </div>
   )
 
-  return currentUser ? personalGreeting() : sessionLinks()
+  return currentUser ? personalGreeting() : sessionLinks() 
 }
+
 
 export default Greeting

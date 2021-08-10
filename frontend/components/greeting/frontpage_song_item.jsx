@@ -2,29 +2,23 @@ import React from 'react';
 
 class FrontPageSongItem extends React.Component {
     render() {
-        let currentTrack = this.props.track;
+        let currentSound = this.props.sound;
 
-        let currentCover;
-        if ((this.props.idx + 1) % 6 === 0) {
-            currentCover = (<img className="homepageCoverArtLast"
+        let currentCover = (<img className="front-page-item-art"
                     onClick={() => this.props.openModal('login')} 
-                    src={currentTrack.imageURL} />)
-        } else {
-            currentCover = (<img className="homepageCoverArt"
-                    onClick={() => this.props.openModal('login')} 
-                    src={currentTrack.imageURL} />)
-        }
+                    src={currentSound.imageURL} />)
+        
         
         return (
-            <div className="homepageIndexItem">
+            <div className="front-page-song-item">
                 {currentCover}
 
                 <div onClick={() => this.props.openModal('login')}>
-                    <p className="homepageTrackText">{currentTrack.title}</p>
+                    <p className="front-page-sound-title">{currentSound.title}</p>
                 </div>
 
                 <div onClick={() => this.props.openModal('login')}>
-                    <div className="homepageCreatorNameText">{currentTrack.creator}</div>
+                    <div className="front-page-artist-name">{currentSound.creator}</div>
                 </div>
             </div>
         )
