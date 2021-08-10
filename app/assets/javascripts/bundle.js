@@ -287,6 +287,8 @@ var logout = function logout() {
   return function (dispatch) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__.logout().then(function (user) {
       return dispatch(logoutCurrentUser());
+    }, function (err) {
+      return dispatch(receiveErrors(error.responseJSON));
     });
   };
 };
@@ -505,6 +507,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 /* harmony import */ var _greeting__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./greeting */ "./frontend/components/greeting/greeting.jsx");
+/* harmony import */ var _actions_sound_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/sound_actions */ "./frontend/actions/sound_actions.js");
+
 
 
 
@@ -512,7 +516,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var mSTP = function mSTP(state) {
   return {
-    currentUser: state.entities.users[state.session.id]
+    currentUser: state.entities.users[state.session.id],
+    sounds: Object.values(state.entities.sounds)
   };
 };
 
@@ -523,6 +528,9 @@ var mDTP = function mDTP(dispatch) {
     },
     openModal: function openModal(modal) {
       return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__.openModal)(modal));
+    },
+    fetchSounds: function fetchSounds() {
+      return dispatch((0,_actions_sound_actions__WEBPACK_IMPORTED_MODULE_4__.fetchAllSounds)());
     }
   };
 };
@@ -564,7 +572,6 @@ function Modal(_ref) {
     return null;
   }
 
-  console.log("hello");
   var component;
 
   switch (modal) {
