@@ -3,7 +3,7 @@ import { fetchSound } from '../../../actions/sound_actions';
 import { fetchUsers } from '../../../actions/user_actions'
 import SoundIndex from './sound_index'
 
-const mSTP = (state) => ({
+const mSTP = (state, ownProps) => ({
   currentUser: state.entities.users[state.session.id],
   sound: state.entities.sounds[ownProps.match.params.soundId]
 })
