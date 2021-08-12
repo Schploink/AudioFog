@@ -25,19 +25,19 @@ class NavBar extends React.Component {
 					</div>
 					<ul className='logged-in-nav'>
 						<li>
-							home
+							home/discover
 						</li>
 						<li>
-							discover
-						</li>
-						<li>
-							search
+							stream
 						</li>
 						<li>
 							upload
 						</li>
 						<li>
 							user profile
+						</li>
+						<li>
+							github, linkedin, angellist
 						</li>
             <li>
               logout

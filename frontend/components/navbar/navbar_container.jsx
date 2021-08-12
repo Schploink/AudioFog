@@ -6,7 +6,7 @@ import NavBar from './navbar';
 
 const mapStateToProps = (state, ownProps) => {
 	return {
-		user: state.session.currentUserId,
+		user: state.entities.users[state.session.id],
 	};
 };
 
