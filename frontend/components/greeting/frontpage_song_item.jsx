@@ -25,4 +25,4 @@ class FrontPageSongItem extends React.Component {
     }   
 }
 
-export default HomepageIndexItem;
+export default FrontPageSongItem;
