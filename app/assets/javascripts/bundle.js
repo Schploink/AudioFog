@@ -686,48 +686,28 @@ var NavBar = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(NavBar);
 
   function NavBar(props) {
-    var _this;
-
     _classCallCheck(this, NavBar);
 
-    _this = _super.call(this, props);
-    _this.getLinks = _this.getLinks.bind(_assertThisInitialized(_this));
-    return _this;
+    return _super.call(this, props);
   }
 
   _createClass(NavBar, [{
-    key: "shouldComponentUpdate",
-    value: function shouldComponentUpdate(nextProps) {
-      if (nextProps !== this.props) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-  }, {
-    key: "getLinks",
-    value: function getLinks() {
-      if (this.props.user) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "nav-title"
-        }, "Audiofog"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
-          className: "logged-in-nav"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "home/discover"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "stream"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "upload"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "user profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "github, linkedin, angellist"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-          className: "logout",
-          onClick: this.props.logout
-        }, "Log Out"))));
-      } else {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "nav-title"
-        }, "AudioFog");
-      }
-    }
-  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "navbar-container"
-      }, this.getLinks());
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "nav-title"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        className: "nav-logo",
+        src: window.audioFogLogo,
+        alt: "Audiofog logo"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
+        className: "logged-in-nav"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, " Home ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, " Stream ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", null, " Upload ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "user profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", null, " github "), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", null, " linkedin "), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", null, " angellist ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        className: "logout",
+        onClick: this.props.logout
+      }, "Log Out"))));
     }
   }]);
 
@@ -1273,7 +1253,7 @@ var soundsReducer = function soundsReducer() {
 
   switch (action.type) {
     case _actions_sound_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ALL_SOUNDS:
-      return Object.assign({}, state, action.tracks);
+      return Object.assign({}, state, action.sounds);
 
     case _actions_sound_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_SOUND:
       return Object.assign({}, state, _defineProperty({}, action.sound.id, action.sound));
