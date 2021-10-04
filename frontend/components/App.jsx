@@ -11,11 +11,9 @@ import SignupFormContainer from './session_form/signup_form_container'
 const App = () => {
   return (
     <div>
-      <Modal />
-      <GreetingContainer />      
-      <NavBar />
+      <Modal />     
+      <ProtectedRoute exact path="/discover" component={Discover} />
       <AuthRoute exact path="/" component={GreetingContainer} />
-      {/* <Discover /> */}
     </div>
   )
 }

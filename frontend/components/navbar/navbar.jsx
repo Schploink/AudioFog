@@ -40,7 +40,7 @@ class NavBar extends React.Component {
 							github, linkedin, angellist
 						</li>
             <li>
-              logout
+							<button className="logout" onClick={this.props.logout}>Log Out</button>
             </li>
 					</ul>
 				</>
