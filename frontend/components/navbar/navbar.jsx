@@ -17,7 +17,7 @@ class NavBar extends React.Component {
 	}
 
 	getLinks() {
-		if (this.props.loggedIn) {
+		if (this.props.user) {
 			return (
 				<>
 					<div className='nav-title'>
