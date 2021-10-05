@@ -17,13 +17,13 @@ class NavBar extends React.Component {
 					</div>
 					<ul className='logged-in-nav'>
 						<li>
-							<button> Home </button>
+							<a href=""> Home </a>
 						</li>
 						<li>
-							<button> Stream </button>
+							<a> Stream </a>
 						</li>
 						<li>
-							<button> Upload </button>
+							<a> Upload </a>
 						</li>
 						<li>
 							user profile
