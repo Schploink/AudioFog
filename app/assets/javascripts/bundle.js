@@ -294,7 +294,9 @@ var Discover = /*#__PURE__*/function (_React$Component) {
   _createClass(Discover, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Test"));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "discover-content"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Trending: New Sounds in AudioFog")));
     }
   }]);
 
@@ -697,16 +699,32 @@ var NavBar = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "navbar-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "navbar-contents"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "navbar-left"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "nav-title"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         className: "nav-logo",
         src: window.audioFogLogo,
         alt: "Audiofog logo"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("ul", {
-        className: "logged-in-nav"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-        href: ""
-      }, " Home ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", null, " Stream ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", null, " Upload ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, "user profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", null, " github "), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", null, " linkedin "), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", null, " angellist ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+        className: "nav-home"
+      }, " Home "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+        className: "nav-stream"
+      }, " Stream ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "navbar-right"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+        className: "nav-upload"
+      }, " Upload "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+        className: "nav-user"
+      }, " User Profile "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+        className: "nav-git"
+      }, " github "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+        className: "nav-linked"
+      }, " linkedin "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+        className: "nav-angel"
+      }, " angellist "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
         className: "logout",
         onClick: this.props.logout
       }, "Log Out"))));

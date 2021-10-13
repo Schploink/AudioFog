@@ -12,29 +12,23 @@ class NavBar extends React.Component {
 	render() {
 		return (
 				<div className="navbar-container">
-					<div className='nav-title'>
-						<img className="nav-logo" src={window.audioFogLogo} alt="Audiofog logo" />
+					<div className="navbar-contents">
+						<div className="navbar-left">
+							<div className='nav-title'>
+								<img className="nav-logo" src={window.audioFogLogo} alt="Audiofog logo" />
+							</div>
+									<a className='nav-home'> Home </a>
+									<a className='nav-stream'> Stream </a>
+						</div>
+						<div className="navbar-right">
+									<a className='nav-upload'> Upload </a>
+									<a className='nav-user'> User Profile </a>
+									<a className='nav-git'> github </a> 
+									<a className='nav-linked'> linkedin </a> 
+									<a className='nav-angel'> angellist </a> 
+									<a className="logout" onClick={this.props.logout}>Log Out</a>
+						</div>
 					</div>
-					<ul className='logged-in-nav'>
-						<li>
-							<a href=""> Home </a>
-						</li>
-						<li>
-							<a> Stream </a>
-						</li>
-						<li>
-							<a> Upload </a>
-						</li>
-						<li>
-							user profile
-						</li>
-						<li>
-							<a> github </a> <a> linkedin </a> <a> angellist </a> 
-						</li>
-            <li>
-							<button className="logout" onClick={this.props.logout}>Log Out</button>
-            </li>
-					</ul>
 				</div>
 		)}
 }

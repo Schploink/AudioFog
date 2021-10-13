@@ -11,7 +11,11 @@ class Discover extends React.Component {
       return (
         <>
           <Navbar />
-          <div>Test</div>
+          <div className='discover-content'>
+            <div>
+              Trending: New Sounds in AudioFog
+            </div>
+          </div>
         </>
       )
     }
