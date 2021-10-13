@@ -1,4 +1,5 @@
 import React from "react"
+import Navbar from "../navbar/navbar_container"
 
 class Discover extends React.Component {
     
@@ -8,7 +9,12 @@ class Discover extends React.Component {
 
     render () {
       return (
-        <div>Poop</div>
+        <>
+          <Navbar />
+          <div>Test</div>
+        </>
       )
     }
 }
+
+export default Discover

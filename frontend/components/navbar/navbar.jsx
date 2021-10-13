@@ -5,54 +5,38 @@ import { Link } from 'react-router-dom';
 class NavBar extends React.Component {
 	constructor(props) {
 		super(props);
-		this.getLinks = this.getLinks.bind(this);
 	}
 
-	shouldComponentUpdate(nextProps) {
-		if (nextProps !== this.props) {
-			return true;
-		} else {
-			return false;
-		}
-	}
 
-	getLinks() {
-		if (this.props.loggedIn) {
-			return (
-				<>
+
+	render() {
+		return (
+				<div className="navbar-container">
 					<div className='nav-title'>
-						Audiofog
+						<img className="nav-logo" src={window.audioFogLogo} alt="Audiofog logo" />
 					</div>
 					<ul className='logged-in-nav'>
 						<li>
-							home/discover
+							<a href=""> Home </a>
 						</li>
 						<li>
-							stream
+							<a> Stream </a>
 						</li>
 						<li>
-							upload
+							<a> Upload </a>
 						</li>
 						<li>
 							user profile
 						</li>
 						<li>
-							github, linkedin, angellist
+							<a> github </a> <a> linkedin </a> <a> angellist </a> 
 						</li>
             <li>
-              logout
+							<button className="logout" onClick={this.props.logout}>Log Out</button>
             </li>
 					</ul>
-				</>
-			);
-		} else {
-			return <div className='nav-title'>AudioFog</div>; 
-		}
-	}
-
-	render() {
-		return <div className='navbar-container'>{this.getLinks()}</div>;
-	}
+				</div>
+		)}
 }
 
 export default NavBar;

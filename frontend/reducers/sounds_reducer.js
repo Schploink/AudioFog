@@ -4,7 +4,7 @@ const soundsReducer = (state = {}, action) => {
   Object.freeze(state)
   switch (action.type) {
     case RECEIVE_ALL_SOUNDS:
-      return Object.assign({}, state, action.tracks)
+      return Object.assign({}, state, action.sounds)
     case RECEIVE_SOUND:
       return Object.assign({}, state, {[action.sound.id]: action.sound})
     case REMOVE_SOUND:
