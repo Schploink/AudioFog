@@ -13,16 +13,26 @@ class Player extends React.Component {
       isPlaying : false
     }
 
+    this.handlePlayPause = this.handlePlayPause.bind(this)
 	}
 
+  handlePlayPause() {
+    this.setState(prevState => ({
+      isPlaying: !prevState.isPlaying
+    }))
+    if (this.state.isPlaying) {
+      this.audio.pause()
+    } else {
+      this.audio.play()
+    }
+  }
 
 
 	render() {
 		return (
 				<div className="player-container">
-          <div>
           
-            <audio src="https://active-storage-audiofog-dev.s3.us-west-1.amazonaws.com/01+Body+Electric.mp3" preload="metadata">
+            <audio ref={(audio) => {this.audio = audio}} src="https://active-storage-audiofog-dev.s3.us-west-1.amazonaws.com/01+Body+Electric.mp3" preload="metadata">
 
             </audio>
 
@@ -30,8 +40,8 @@ class Player extends React.Component {
               <IoPlaySkipBack />
             </button>
 
-            <button className="play/pause">
-              { isPlaying ? <IoPause /> : <IoPlay />}
+            <button onClick={this.handlePlayPause} className="play/pause">
+              { this.state.isPlaying ? <IoPause /> : <IoPlay />}
             </button>
 
             <button className="next-track">
@@ -49,8 +59,6 @@ class Player extends React.Component {
             <div className="time-remaining">
               5:40
             </div>
-          
-          </div>
             {/* <audio controls>
               <source src="https://active-storage-audiofog-dev.s3.us-west-1.amazonaws.com/01+Body+Electric.mp3" type="audio/mpeg" />
             </audio> */}

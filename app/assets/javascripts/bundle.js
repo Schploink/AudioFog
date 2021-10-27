@@ -842,22 +842,44 @@ var Player = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       isPlaying: false
     };
+    _this.handlePlayPause = _this.handlePlayPause.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Player, [{
+    key: "handlePlayPause",
+    value: function handlePlayPause() {
+      this.setState(function (prevState) {
+        return {
+          isPlaying: !prevState.isPlaying
+        };
+      });
+
+      if (this.state.isPlaying) {
+        this.audio.pause();
+      } else {
+        this.audio.play();
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "player-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("audio", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("audio", {
+        ref: function ref(audio) {
+          _this2.audio = audio;
+        },
         src: "https://active-storage-audiofog-dev.s3.us-west-1.amazonaws.com/01+Body+Electric.mp3",
         preload: "metadata"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "previous-track"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_1__.IoPlaySkipBack, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        onClick: this.handlePlayPause,
         className: "play/pause"
-      }, isPlaying ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_1__.IoPause, null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_1__.IoPlay, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      }, this.state.isPlaying ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_1__.IoPause, null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_1__.IoPlay, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "next-track"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_1__.IoPlaySkipForward, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "current-time"
@@ -867,7 +889,7 @@ var Player = /*#__PURE__*/function (_React$Component) {
         type: "range"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "time-remaining"
-      }, "5:40")));
+      }, "5:40"));
     }
   }]);
 
