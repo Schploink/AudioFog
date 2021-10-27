@@ -17,11 +17,11 @@ class NavBar extends React.Component {
 							<div className='nav-title'>
 								<img className="nav-logo" src={window.audioFogLogo} alt="Audiofog logo" />
 							</div>
-									<a className='nav-home'> Home </a>
+									<Link to="/discover" className='nav-home'> Home </Link>
 									<a className='nav-stream'> Stream </a>
 						</div>
 						<div className="navbar-right">
-									<a className='nav-upload'> Upload </a>
+									<Link to="/upload" className='nav-upload'> Upload </Link>
 									<a className='nav-user'> User Profile </a>
 									<a className='nav-git'> github </a> 
 									<a className='nav-linked'> linkedin </a> 
