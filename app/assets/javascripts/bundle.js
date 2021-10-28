@@ -841,6 +841,7 @@ var Player = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       isPlaying: false,
+      currentTime: 0,
       duration: 0
     };
     _this.handlePlayPause = _this.handlePlayPause.bind(_assertThisInitialized(_this));
@@ -879,7 +880,25 @@ var Player = /*#__PURE__*/function (_React$Component) {
       this.audio.onplay = function () {
         _this2.currentTimeInterval = setInterval(function () {
           _this2.slider.value = _this2.audio.currentTime;
-        }, 500);
+
+          _this2.setState({
+            currentTime: _this2.audio.currentTime
+          });
+        }, 200);
+      };
+
+      this.audio.onpause = function () {
+        clearInterval(_this2.currentTimeInterval);
+      };
+
+      this.slider.onchange = function (e) {
+        clearInterval(_this2.currentTimeInterval);
+        _this2.audio.currentTime = e.target.value;
+        setInterval(function () {
+          _this2.setState({
+            currentTime: _this2.audio.currentTime
+          });
+        }, 200);
       };
     }
   }, {
@@ -912,7 +931,7 @@ var Player = /*#__PURE__*/function (_React$Component) {
         className: "next-track"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_1__.IoPlaySkipForward, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "current-time"
-      }, "0:00"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, normalizeTime(this.state.currentTime)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "progress-bar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         ref: function ref(slider) {

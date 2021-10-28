@@ -11,6 +11,7 @@ class Player extends React.Component {
 
     this.state = {
       isPlaying : false,
+      currentTime : 0,
       duration: 0
     }
 
@@ -40,7 +41,20 @@ class Player extends React.Component {
     this.audio.onplay = () => {
       this.currentTimeInterval = setInterval( () => {
         this.slider.value = this.audio.currentTime
-      }, 500)
+        this.setState({currentTime: this.audio.currentTime})
+      }, 200)
+    }
+
+    this.audio.onpause = () => {
+			clearInterval(this.currentTimeInterval);
+		};
+
+    this.slider.onchange = (e) => {
+      clearInterval(this.currentTimeInterval)
+      this.audio.currentTime = e.target.value
+      setInterval( () => {
+        this.setState({currentTime: this.audio.currentTime})
+      }, 200)
     }
   }
 
@@ -74,7 +88,7 @@ class Player extends React.Component {
             </button>
             
             <div className="current-time">
-              0:00
+              {normalizeTime(this.state.currentTime)}
             </div>
 
             <div className="progress-bar">
