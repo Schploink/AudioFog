@@ -840,7 +840,8 @@ var Player = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      isPlaying: false
+      isPlaying: false,
+      duration: 0
     };
     _this.handlePlayPause = _this.handlePlayPause.bind(_assertThisInitialized(_this));
     return _this;
@@ -862,15 +863,43 @@ var Player = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      this.slider.value = 0;
+      this.currentTimeInterval = null;
+
+      this.audio.onloadedmetadata = function () {
+        this.setState({
+          duration: this.audio.duration
+        });
+      }.bind(this);
+
+      this.audio.onplay = function () {
+        _this2.currentTimeInterval = setInterval(function () {
+          _this2.slider.value = _this2.audio.currentTime;
+        }, 500);
+      };
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
+
+      var normalizeTime = function normalizeTime(sec) {
+        var minutes = Math.floor(sec / 60);
+        var displayMinutes = minutes < 10 ? "0".concat(minutes) : "".concat(minutes);
+        var seconds = Math.floor(sec % 60);
+        var displaySeconds = seconds < 10 ? "0".concat(seconds) : "".concat(seconds);
+        return "".concat(displayMinutes, ":").concat(displaySeconds);
+      };
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "player-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("audio", {
         ref: function ref(audio) {
-          _this2.audio = audio;
+          _this3.audio = audio;
         },
         src: "https://active-storage-audiofog-dev.s3.us-west-1.amazonaws.com/01+Body+Electric.mp3",
         preload: "metadata"
@@ -886,10 +915,15 @@ var Player = /*#__PURE__*/function (_React$Component) {
       }, "0:00"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "progress-bar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
-        type: "range"
+        ref: function ref(slider) {
+          _this3.slider = slider;
+        },
+        type: "range",
+        min: "0",
+        max: this.state.duration
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "time-remaining"
-      }, "5:40"));
+      }, normalizeTime(this.state.duration)));
     }
   }]);
 

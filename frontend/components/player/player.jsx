@@ -10,7 +10,8 @@ class Player extends React.Component {
 		super(props);
 
     this.state = {
-      isPlaying : false
+      isPlaying : false,
+      duration: 0
     }
 
     this.handlePlayPause = this.handlePlayPause.bind(this)
@@ -27,8 +28,32 @@ class Player extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.slider.value = 0
+    this.currentTimeInterval = null
+    
+
+    this.audio.onloadedmetadata = function() {
+      this.setState({duration: this.audio.duration})
+    }.bind(this)
+
+    this.audio.onplay = () => {
+      this.currentTimeInterval = setInterval( () => {
+        this.slider.value = this.audio.currentTime
+      }, 500)
+    }
+  }
 
 	render() {
+    const normalizeTime = (sec) => {
+      const minutes = Math.floor(sec / 60)
+      const displayMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`
+      const seconds = Math.floor(sec % 60)
+      const displaySeconds = seconds < 10 ? `0${seconds}` : `${seconds}`
+
+      return `${displayMinutes}:${displaySeconds}`
+    }
+
 		return (
 				<div className="player-container">
           
@@ -53,11 +78,15 @@ class Player extends React.Component {
             </div>
 
             <div className="progress-bar">
-              <input type="range" />
+              <input 
+              ref={(slider) => {this.slider = slider}} 
+              type="range"
+              min="0"
+              max={this.state.duration} />
             </div>
 
             <div className="time-remaining">
-              5:40
+              {normalizeTime(this.state.duration)}
             </div>
             {/* <audio controls>
               <source src="https://active-storage-audiofog-dev.s3.us-west-1.amazonaws.com/01+Body+Electric.mp3" type="audio/mpeg" />
