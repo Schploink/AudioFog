@@ -506,6 +506,8 @@ var Greeting = function Greeting(_ref) {
       className: "trending-text"
     }, "Hear what's creeping in AudioFog"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "sounds-container"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+      src: sounds.photo
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       className: "trending-button"
     }, "Explore trending playlists")));

@@ -47,6 +47,7 @@ const Greeting = ({ currentUser, logout, openModal, fetchSounds, sounds}) => {
         <div className="sounds-container">
           {/* <FrontPageSongItem /> */}
         </div>
+        <img src={sounds.photo} />
         <button className="trending-button">
           Explore trending playlists
         </button>

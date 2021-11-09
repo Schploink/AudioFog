@@ -13,6 +13,8 @@ class User < ApplicationRecord
   foreign_key: :uploader_id,
   class_name: :Sound
 
+  has_one_attached :photo
+
   def generate_session_token
     SecureRandom::base64
   end
