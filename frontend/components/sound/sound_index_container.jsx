@@ -1,16 +1,19 @@
 import { connect } from 'react-redux';
-import { fetchSound } from '../../actions/sound_actions';
+import { fetchAllSounds } from '../../actions/sound_actions';
 import { fetchUsers } from '../../actions/user_actions'
 import SoundIndex from './sound_index'
+import { openModal } from '../../actions/modal_actions';
 
-const mSTP = (state) => ({
-  currentUser: state.entities.users[state.session.id],
-  sound: state.entities.sounds[ownProps.match.params.soundId]
+const mSTP = ({session, entities: { users }, entities}) => ({
+  currentUser: users[session.id],
+  sounds: Object.values(entities.sounds),
+  users: entities.users
 })
 
 const mDTP = dispatch => ({
-  fetchSound: soundId => dispatch(fetchSound(soundId)),
-  fetchUsers: () => dispatch(fetchUsers())
+  fetchSounds: () => dispatch(fetchAllSounds()),
+  fetchUsers: () => dispatch(fetchUsers()),
+  openModal: (modal) => dispatch(openModal(modal))
 })
 
 export default connect(mSTP, mDTP)(SoundIndex)

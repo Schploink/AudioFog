@@ -415,7 +415,7 @@ var FrontPageSongItem = /*#__PURE__*/function (_React$Component) {
         onClick: function onClick() {
           return _this.props.openModal('login');
         },
-        src: currentSound.imageURL
+        src: currentSound.photo
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "front-page-song-item"
@@ -425,13 +425,13 @@ var FrontPageSongItem = /*#__PURE__*/function (_React$Component) {
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
         className: "front-page-sound-title"
-      }, currentSound.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, currentSound.description)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         onClick: function onClick() {
           return _this.props.openModal('login');
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "front-page-artist-name"
-      }, currentSound.creator)));
+      }, currentSound.artist)));
     }
   }]);
 
@@ -462,7 +462,12 @@ __webpack_require__.r(__webpack_exports__);
 var Greeting = function Greeting(_ref) {
   var currentUser = _ref.currentUser,
       logout = _ref.logout,
-      openModal = _ref.openModal;
+      openModal = _ref.openModal,
+      fetchSounds = _ref.fetchSounds,
+      sounds = _ref.sounds;
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    fetchSounds;
+  });
 
   var sessionLinks = function sessionLinks() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -501,7 +506,7 @@ var Greeting = function Greeting(_ref) {
       className: "trending-text"
     }, "Hear what's creeping in AudioFog"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "sounds-container"
-    }, "Sounds here"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
       className: "trending-button"
     }, "Explore trending playlists")));
   };
@@ -845,25 +850,11 @@ var Player = /*#__PURE__*/function (_React$Component) {
       duration: 0
     };
     _this.handlePlayPause = _this.handlePlayPause.bind(_assertThisInitialized(_this));
+    _this.changeRange = _this.changeRange.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Player, [{
-    key: "handlePlayPause",
-    value: function handlePlayPause() {
-      this.setState(function (prevState) {
-        return {
-          isPlaying: !prevState.isPlaying
-        };
-      });
-
-      if (this.state.isPlaying) {
-        this.audio.pause();
-      } else {
-        this.audio.play();
-      }
-    }
-  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this2 = this;
@@ -893,13 +884,36 @@ var Player = /*#__PURE__*/function (_React$Component) {
 
       this.slider.onchange = function (e) {
         clearInterval(_this2.currentTimeInterval);
-        _this2.audio.currentTime = e.target.value;
-        setInterval(function () {
-          _this2.setState({
-            currentTime: _this2.audio.currentTime
-          });
-        }, 200);
+        _this2.audio.currentTime = e.target.value; // this.setState({currentTime: this.audio.currentTime})
+        // setInterval( () => {
+        //   this.setState({currentTime: this.audio.currentTime})
+        // }, 200)
       };
+    }
+  }, {
+    key: "handlePlayPause",
+    value: function handlePlayPause() {
+      this.setState(function (prevState) {
+        return {
+          isPlaying: !prevState.isPlaying
+        };
+      });
+
+      if (this.state.isPlaying) {
+        this.audio.pause();
+      } else {
+        this.audio.play();
+      }
+    }
+  }, {
+    key: "changeRange",
+    value: function changeRange(e) {
+      e.preventDefault();
+      clearInterval(this.currentTimeInterval);
+      this.slider.value = e.target.value;
+      this.setState({
+        currentTime: e.target.value
+      });
     }
   }, {
     key: "render",
@@ -938,6 +952,7 @@ var Player = /*#__PURE__*/function (_React$Component) {
           _this3.slider = slider;
         },
         type: "range",
+        onInput: this.changeRange,
         min: "0",
         max: this.state.duration
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {

@@ -16,18 +16,8 @@ class Player extends React.Component {
     }
 
     this.handlePlayPause = this.handlePlayPause.bind(this)
+    this.changeRange = this.changeRange.bind(this)
 	}
-
-  handlePlayPause() {
-    this.setState(prevState => ({
-      isPlaying: !prevState.isPlaying
-    }))
-    if (this.state.isPlaying) {
-      this.audio.pause()
-    } else {
-      this.audio.play()
-    }
-  }
 
   componentDidMount() {
     this.slider.value = 0
@@ -52,11 +42,32 @@ class Player extends React.Component {
     this.slider.onchange = (e) => {
       clearInterval(this.currentTimeInterval)
       this.audio.currentTime = e.target.value
-      setInterval( () => {
-        this.setState({currentTime: this.audio.currentTime})
-      }, 200)
+      // this.setState({currentTime: this.audio.currentTime})
+      // setInterval( () => {
+      //   this.setState({currentTime: this.audio.currentTime})
+      // }, 200)
     }
   }
+
+  handlePlayPause() {
+    this.setState(prevState => ({
+      isPlaying: !prevState.isPlaying
+    }))
+    if (this.state.isPlaying) {
+      this.audio.pause()
+    } else {
+      this.audio.play()
+    }
+  }
+
+  changeRange(e) {
+    e.preventDefault()
+    clearInterval(this.currentTimeInterval)
+    this.slider.value = e.target.value
+    this.setState({currentTime: e.target.value})
+  }
+
+
 
 	render() {
     const normalizeTime = (sec) => {
@@ -95,6 +106,7 @@ class Player extends React.Component {
               <input 
               ref={(slider) => {this.slider = slider}} 
               type="range"
+              onInput={this.changeRange}
               min="0"
               max={this.state.duration} />
             </div>

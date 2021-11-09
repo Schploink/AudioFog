@@ -1,8 +1,13 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import FrontPageSongItem from './frontpage_song_item'
 import {Link} from 'react-router-dom'
 
-const Greeting = ({ currentUser, logout, openModal}) => {
+const Greeting = ({ currentUser, logout, openModal, fetchSounds, sounds}) => {
+
+  useEffect(() => {
+    fetchSounds
+  })
+
   const sessionLinks = () => (
     <div className="splash">
       <div className="splash-nav">
@@ -40,12 +45,13 @@ const Greeting = ({ currentUser, logout, openModal}) => {
           Hear what's creeping in AudioFog
         </p>
         <div className="sounds-container">
-          Sounds here
+          {/* <FrontPageSongItem /> */}
         </div>
         <button className="trending-button">
           Explore trending playlists
         </button>
       </div>
+
       {/* <div className="mobile-app-container">
         <p className="mobile-header">
           Never stop listening
