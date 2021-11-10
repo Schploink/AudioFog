@@ -1,8 +1,138 @@
+@import "./colors";
+
 .player-container {
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 100%;
+  height: 50px;
   position: fixed;
   left: 0;
   bottom: 0;
+  background: $mid-blue;
+}
+
+.player-controls {
+  display:flex;
+
+  width: 960px;
+}
+
+.next-track, .previous-track, .play-pause {
+  background: none;
+  border: none;
+  font-size: larger;
+  width: 44px;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.next-track:hover, .previous-track:hover, .play-pause:hover {
+  cursor: pointer;
+  color: $dark-purp;
+} 
+
+.time-remaining, .current-time {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.progress-bar-container {
+  display: flex;
+  align-items: center;
+  padding-bottom: 2px;
+}
+
+.progress-bar {
+  --seek-before-width: 0px;
+  appearance: none;
+  outline: none;
+  background: white;
+  border-radius: 10px;
+  position: relative;
+  height: 11px;
+}
+
+// for safari
+.progress-bar::-webkit-slider-runnable-track {
+  outline: none;
+  background: white;
+  border-radius: 10px;
+  position: relative;
+  height: 11px;
+}
+
+// for firefox 
+.progress-bar::-moz-range-track {
+  outline: none;
+  background: white;
+  border-radius: 10px;
+  position: relative;
+  height: 11px;
+}
+
+.progress-bar::-moz-focus-outer {
+  border: 0;
+}
+
+.progress-bar::before {
+  content: '';
+  height: 11px;
+  width: var(--seek-before-width);
+  background-color: $light-purp;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+// firefox
+.progress-bar::-moz-range-progress {
+  background-color: $light-purp;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  height: 11px;
+}
+
+.progress-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  border: none;
+  background-color: $light-teal;
+  cursor: pointer;
+  position: relative;
+  margin: -2px 0 0 0;
+  z-index: 3; 
+  box-sizing: border-box
+}
+
+.progress-bar:active::-webkit-slider-thumb {
+  transform: scale(1.1);
+  background: $light-teal;
+}
+
+// firefox
+
+.progress-bar::-moz-range-thumb {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  border: transparent;
+  background-color: $light-teal;
+  cursor: pointer;
+  position: relative;
+  z-index: 3; 
+  box-sizing: border-box
+}
+
+.progress-bar:active::-moz-range-thumb {
+  transform: scale(1.1);
+  background: $light-teal;
 }

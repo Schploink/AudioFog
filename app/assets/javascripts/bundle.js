@@ -917,6 +917,7 @@ var Player = /*#__PURE__*/function (_React$Component) {
       this.setState({
         currentTime: e.target.value
       });
+      this.slider.style.setProperty('--seek-before-width', "".concat(this.slider.value / this.state.duration * 100, "%"));
     }
   }, {
     key: "render",
@@ -933,6 +934,8 @@ var Player = /*#__PURE__*/function (_React$Component) {
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "player-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "player-controls"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("audio", {
         ref: function ref(audio) {
           _this3.audio = audio;
@@ -943,24 +946,25 @@ var Player = /*#__PURE__*/function (_React$Component) {
         className: "previous-track"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_1__.IoPlaySkipBack, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: this.handlePlayPause,
-        className: "play/pause"
+        className: "play-pause"
       }, this.state.isPlaying ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_1__.IoPause, null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_1__.IoPlay, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "next-track"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_1__.IoPlaySkipForward, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "current-time"
       }, normalizeTime(this.state.currentTime)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "progress-bar"
+        className: "progress-bar-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         ref: function ref(slider) {
           _this3.slider = slider;
         },
         type: "range",
+        className: "progress-bar",
         onInput: this.changeRange,
         min: "0",
         max: this.state.duration
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "time-remaining"
-      }, normalizeTime(this.state.duration)));
+      }, normalizeTime(this.state.duration))));
     }
   }]);
 

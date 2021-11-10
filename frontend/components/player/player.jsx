@@ -65,6 +65,7 @@ class Player extends React.Component {
     clearInterval(this.currentTimeInterval)
     this.slider.value = e.target.value
     this.setState({currentTime: e.target.value})
+    this.slider.style.setProperty('--seek-before-width', `${this.slider.value / this.state.duration * 100}%`)
   }
 
 
@@ -81,7 +82,7 @@ class Player extends React.Component {
 
 		return (
 				<div className="player-container">
-          
+          <div className="player-controls">
             <audio ref={(audio) => {this.audio = audio}} src="https://active-storage-audiofog-dev.s3.us-west-1.amazonaws.com/01+Body+Electric.mp3" preload="metadata">
 
             </audio>
@@ -90,7 +91,7 @@ class Player extends React.Component {
               <IoPlaySkipBack />
             </button>
 
-            <button onClick={this.handlePlayPause} className="play/pause">
+            <button onClick={this.handlePlayPause} className="play-pause">
               { this.state.isPlaying ? <IoPause /> : <IoPlay />}
             </button>
 
@@ -102,10 +103,11 @@ class Player extends React.Component {
               {normalizeTime(this.state.currentTime)}
             </div>
 
-            <div className="progress-bar">
+            <div className="progress-bar-container">
               <input 
               ref={(slider) => {this.slider = slider}} 
               type="range"
+              className="progress-bar"
               onInput={this.changeRange}
               min="0"
               max={this.state.duration} />
@@ -117,6 +119,7 @@ class Player extends React.Component {
             {/* <audio controls>
               <source src="https://active-storage-audiofog-dev.s3.us-west-1.amazonaws.com/01+Body+Electric.mp3" type="audio/mpeg" />
             </audio> */}
+          </div>
 				</div>
 		)}
 }
