@@ -1,8 +1,11 @@
+@import './colors';
+
 .splash {
-    background-color: white;
-    background-size: cover;
+    background-image: linear-gradient(to right, $dark-teal , $mid-blue, $light-purp);
+    position: absolute;
     align-items: center;
     height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -14,8 +17,8 @@
     align-items: center;
     height: 450px;
     width: 65%;
-    border-top: solid #ff6708 4px;
-    background-image: url(https://a-v2.sndcdn.com/assets/images/hp_image_creator_slide-db400e2f.jpg);
+    border-top: solid $mid-blue 4px;
+    background-image: url(https://active-storage-audiofog-dev.s3.us-west-1.amazonaws.com/181029161953-olafur-eliasson-032-3-beauty.jpeg);
     background-repeat: no-repeat;
     background-position: center;
     font-family: Lucida Grande,Lucida Sans Unicode,Lucida Sans,Geneva,Verdana,sans-serif; 
@@ -65,8 +68,8 @@
 
 .create-button {
     padding: 2px 15px;
-    color: #fff;
-    background: #ff6708;
+    color: $light-purp;
+    background: $dark-teal;
     border-radius: 3px;
     box-sizing: border-box;
     margin-left: 10px;
@@ -101,8 +104,8 @@
 }
 
 .uploading-button {
-    background-color: #ff6708;
-    color: white;
+    background-color: $dark-teal;
+    color: $light-purp;
     border-radius: 3px;
     padding: 14px 15px 14px 15px; 
     font-size: 18px;

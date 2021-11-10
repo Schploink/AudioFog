@@ -11,9 +11,17 @@ class Discover extends React.Component {
       return (
         <>
           <Navbar />
-          <div className='discover-content'>
-            <div>
-              Trending: New Sounds in AudioFog
+          <div className='discover-background'>
+            <div className='discover-content'>
+              <h2 className='trend-text'>
+                Trending:
+              </h2>
+              <div>
+                New sounds in AudioFog:
+              </div>
+              <div>
+                Sound items
+              </div>
             </div>
           </div>
         </>

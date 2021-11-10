@@ -93,14 +93,14 @@ const Greeting = ({ currentUser, logout, openModal, fetchSounds, sounds}) => {
     </div>
   )
 
-  const personalGreeting = () => (
-    <div className="greeting">
-      <div>Howdy, {currentUser.username}</div>
-      <button className="logout" onClick={logout}>Log Out</button>
-    </div>
-  )
+  // const personalGreeting = () => (
+  //   <div className="greeting">
+  //     <div>Howdy, {currentUser.username}</div>
+  //     <button className="logout" onClick={logout}>Log Out</button>
+  //   </div>
+  // )
 
-  return currentUser ? personalGreeting() : sessionLinks() 
+  return sessionLinks() 
 }
 
 

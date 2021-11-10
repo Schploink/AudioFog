@@ -1,3 +1,5 @@
+@import './colors';
+
 .modal-background {
   position: fixed;
   top: 0;
@@ -15,13 +17,16 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #fff;
+  background-image: linear-gradient(to bottom right, $light-purp, $mid-blue, $light-teal);
   width: 350px;
   max-width: 100%;
   height: auto;
   color: black;
   text-align: center;
   padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 element.style {
@@ -40,15 +45,13 @@ element.style {
   flex-direction: column;
   // justify-content: center;
   align-items: center;
-  width: 100%;
 }
 
 .session-submit {
-  background-color: #ff6708;
+  background-color: $dark-purp;
   color: #FFFFFF;
   padding: 10px 15px;
   font-size: 16px;
-  height: 20px;
   line-height: 12px;
   width: 100%;
   border-radius: 3px;
@@ -56,11 +59,10 @@ element.style {
 }
 
 .login-input {
-  border-radius: 3px;
+  border-radius: 5px;
   border: #ccc 1pt solid;
   color: #1b1b1b;
   text-align: left;
-  width: 100%;
   padding: 0 13px 0 13px;
   margin-top: 2px;
   display: block;
