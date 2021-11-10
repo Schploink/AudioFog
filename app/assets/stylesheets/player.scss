@@ -36,7 +36,11 @@
 .time-remaining, .current-time {
   display: flex;
   align-items: center;
+  width: 64px;
+  font-family: 'Poppins', sans-serif;
   color: white;
+  padding-left: 22px;
+  margin-right: 12px;
 }
 
 .progress-bar-container {
@@ -53,6 +57,7 @@
   border-radius: 10px;
   position: relative;
   height: 11px;
+  width: 300px;
 }
 
 // for safari

@@ -18,19 +18,19 @@ class Upload extends React.Component {
                 Upload
               </div>
               <div className='upload-form'>
-                <label className="upload-sound">
+                <label className="upload-sound-text">
                   Add Audio File
                   <input className="current-sound" type="file" />
                 </label>
-                <label className="upload-photo">
+                <label className="upload-photo-text">
                   Add Photo Art
                   <input className="current-photo" type="file" />
                 </label>
-                <label>
+                <label className="title-text">
                   Sound Title:
                   <input type="text" />
                 </label>
-                <button>
+                <button className="upload-submit-button">
                   Submit
                 </button>
               </div>

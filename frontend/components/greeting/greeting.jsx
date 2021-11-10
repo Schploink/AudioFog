@@ -2,25 +2,43 @@ import React, {useState, useEffect} from 'react'
 import FrontPageSongItem from './frontpage_song_item'
 import {Link} from 'react-router-dom'
 
-const Greeting = ({ currentUser, logout, openModal, fetchSounds, sounds}) => {
+class Greeting extends React.Component {
+  constructor(props){
+    super(props)
+  }
 
-  useEffect(() => {
-    fetchSounds
+componentDidMount (){
+  this.props.fetchSounds()
+}
+
+render () {
+
+  debugger
+  const allSounds = this.props.sounds.map((sound, i) => {
+    return (
+      <FrontPageSongItem 
+        key={sound.id}
+        sound={sound}
+        idx={i}
+        openModal={this.props.openModal}
+      />
+    )
   })
+  debugger
 
-  const sessionLinks = () => (
+  return (
     <div className="splash">
       <div className="splash-nav">
         <img className="main-logo" src={window.audioFogLogo} alt="Audiofog logo" />
         <nav className="signup-login">
           <button 
             className="signin-button"
-            onClick={() => openModal('login')}>
+            onClick={() => this.props.openModal('login')}>
             Sign in
           </button>
           <button 
             className="create-button"
-            onClick={() => openModal('signup')}>
+            onClick={() => this.props.openModal('signup')}>
             Create account
           </button>
           <button
@@ -45,62 +63,17 @@ const Greeting = ({ currentUser, logout, openModal, fetchSounds, sounds}) => {
           Hear what's creeping in AudioFog
         </p>
         <div className="sounds-container">
-          {/* <FrontPageSongItem /> */}
+          {allSounds[1]}
         </div>
-        <img src={sounds.photo} />
+        {/* <img src={sounds.photo} /> */}
         <button className="trending-button">
           Explore trending playlists
         </button>
       </div>
-
-      {/* <div className="mobile-app-container">
-        <p className="mobile-header">
-          Never stop listening
-        </p>
-        <p className="mobile-text">
-          AudioFog is available on Web, iOS, Android, Sonos, Chromecast, and Xbox One
-        </p>
-      </div> */}
-      {/* <div className="creators-container">
-        <p className="creators-header">
-          Calling all creators
-        </p>
-        <p className="creators-text">
-          Get on AudioFog to connect with fans, share your sounds, and murk in fog. Whatcha waitin' for, hmmmm?
-        </p>
-        <button onClick={() => openModal('signup')} className="find-out">
-          Find out more
-        </button>
-      </div> */}
-      {/* <div className="join-container">
-        <p className="join-header">
-          Thanks for listening. Now join in.
-        </p>
-        <p className="join-text">
-          Save tracks, follow artists and build playlists. All for free.
-        </p>
-        <button onClick={() => openModal('signup')} className="bottom-create-button">
-          Create account
-        </button>
-      </div> */}
-      {/* <footer className="footer">
-        <ul className="footer-links">
-          <li><a href=""> 
-          LinkedIn 
-          </a></li>
-        </ul>
-      </footer> */}
-    </div>
+    </div>  
   )
-
-  // const personalGreeting = () => (
-  //   <div className="greeting">
-  //     <div>Howdy, {currentUser.username}</div>
-  //     <button className="logout" onClick={logout}>Log Out</button>
-  //   </div>
-  // )
-
-  return sessionLinks() 
+  
+}
 }
 
 

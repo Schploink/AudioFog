@@ -10,11 +10,17 @@
 }
 
 .upload-text{
-
+  font-size: 30px;
+  color: $dark-purp;
+  width: 110px;
+  font-family: 'Poppins', sans-serif;
+  padding: 0 0 10px 0;
+  margin-bottom: 10px;
+  border-bottom: 3px solid white;
 }
 
 .upload-content{
-  margin-top: 55px;
+  margin-top: 20px;
   padding: 60px;
   width: 840px;
   display: flex;
@@ -26,10 +32,18 @@
 }
 
 .upload-form{
+  display: flex;
+  flex-direction: column;
   height: 800px;
   background-image: linear-gradient(to bottom right, $dark-teal , $mid-blue, $light-purp);
 }
 
-.upload-sound, .current-sound, .upload-photo, .current-photo{
-  opacity: 1.0;
+.upload-sound-text, .upload-photo-text, .title-text, .upload-submit-button{
+  font-family: 'Poppins', sans-serif;
+}
+
+.upload-submit-button{
+  background: none;
+  width: 50%;
+
 }

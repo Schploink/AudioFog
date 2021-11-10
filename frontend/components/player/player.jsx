@@ -119,6 +119,10 @@ class Player extends React.Component {
             {/* <audio controls>
               <source src="https://active-storage-audiofog-dev.s3.us-west-1.amazonaws.com/01+Body+Electric.mp3" type="audio/mpeg" />
             </audio> */}
+            <div>
+              Song/Artist info
+            </div>
+            
           </div>
 				</div>
 		)}
