@@ -13,7 +13,7 @@ componentDidMount (){
 
 render () {
 
-  debugger
+
   const allSounds = this.props.sounds.map((sound, i) => {
     return (
       <FrontPageSongItem 
@@ -24,7 +24,7 @@ render () {
       />
     )
   })
-  debugger
+
 
   return (
     <div className="splash">
@@ -63,9 +63,8 @@ render () {
           Hear what's creeping in AudioFog
         </p>
         <div className="sounds-container">
-          {allSounds[1]}
+          {allSounds}
         </div>
-        {/* <img src={sounds.photo} /> */}
         <button className="trending-button">
           Explore trending playlists
         </button>

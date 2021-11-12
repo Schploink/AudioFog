@@ -1,6 +1,7 @@
 class Api::SoundsController < ApplicationController
   def index
     @sounds = Sound.all
+    # render json: @sounds
   end
 
   def show

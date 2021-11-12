@@ -6,21 +6,19 @@ class FrontPageSongItem extends React.Component {
 
         let coverArt = (<img className="front-page-item-art"
                     onClick={() => this.props.openModal('login')} 
-                    src={currentSound.photo} />)
+                    src={currentSound.photoUrl} />)
         
-        
+        console.log(currentSound)
         return (
             <div className="front-page-song-item">
                 {coverArt}
 
                 <div onClick={() => this.props.openModal('login')}>
-                    <div>Titletest</div>
-                    {/* <p className="front-page-sound-title">{currentSound.description}</p> */}
+                    <div className="front-page-sound-title">{currentSound.description}</div>
                 </div>
 
                 <div onClick={() => this.props.openModal('login')}>
-                    <div>Nametest</div>
-                    {/* <div className="front-page-artist-name">{currentSound.artist}</div> */}
+                    <div className="front-page-artist-name">{currentSound.artist}</div>
                 </div>
             </div>
         )

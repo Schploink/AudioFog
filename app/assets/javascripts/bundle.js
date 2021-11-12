@@ -421,19 +421,24 @@ var FrontPageSongItem = /*#__PURE__*/function (_React$Component) {
         onClick: function onClick() {
           return _this.props.openModal('login');
         },
-        src: currentSound.photo
+        src: currentSound.photoUrl
       });
+      console.log(currentSound);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "front-page-song-item"
       }, coverArt, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         onClick: function onClick() {
           return _this.props.openModal('login');
         }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Titletest")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "front-page-sound-title"
+      }, currentSound.description)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         onClick: function onClick() {
           return _this.props.openModal('login');
         }
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Nametest")));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "front-page-artist-name"
+      }, currentSound.artist)));
     }
   }]);
 
@@ -504,7 +509,6 @@ var Greeting = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this = this;
 
-      debugger;
       var allSounds = this.props.sounds.map(function (sound, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_frontpage_song_item__WEBPACK_IMPORTED_MODULE_1__.default, {
           key: sound.id,
@@ -513,7 +517,6 @@ var Greeting = /*#__PURE__*/function (_React$Component) {
           openModal: _this.props.openModal
         });
       });
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "splash"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -550,7 +553,7 @@ var Greeting = /*#__PURE__*/function (_React$Component) {
         className: "trending-text"
       }, "Hear what's creeping in AudioFog"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "sounds-container"
-      }, allSounds[1]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      }, allSounds), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "trending-button"
       }, "Explore trending playlists")));
     }
@@ -1676,7 +1679,8 @@ var soundsReducer = function soundsReducer() {
 
   switch (action.type) {
     case _actions_sound_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ALL_SOUNDS:
-      return Object.assign({}, state, action.sounds);
+      // return Object.assign({}, state, action.sounds)
+      return action.sounds;
 
     case _actions_sound_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_SOUND:
       return Object.assign({}, state, _defineProperty({}, action.sound.id, action.sound));
