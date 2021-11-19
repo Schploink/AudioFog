@@ -13,6 +13,10 @@ class User < ApplicationRecord
   foreign_key: :uploader_id,
   class_name: :Sound
 
+  has_many :comments,
+  foreign_key: :author_id,
+  class_name: :Comment
+
   has_one_attached :photo
 
   def generate_session_token
