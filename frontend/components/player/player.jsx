@@ -52,11 +52,11 @@ class Player extends React.Component {
   handlePlayPause() {
     if (this.props.isPlaying) {
       console.log(this.props.isPlaying)
-      this.props.pauseSound
+      this.props.pauseSound()
       this.audio.pause()
     } else {
       console.log(this.props.isPlaying)
-      this.props.playSound
+      this.props.playSound()
       this.audio.play()
     }
   }
