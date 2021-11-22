@@ -39,13 +39,13 @@
 }
 
 .main-image-text {
-  // display: flex;
-  // justify-content: space-between;
-  padding: 60px;
-  text-align: center;
-  font-family: 'Poppins', sans-serif;
-  // background: #1abc9c;
-  color: white;
+    // display: flex;
+    // justify-content: space-between;
+    padding: 60px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    // background: #1abc9c;
+    color: white;
 
   
 }
@@ -118,3 +118,55 @@
     margin-top: 50px;;
 }
 
+.trending-container {
+    width: 1080px;
+}
+
+.sounds-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    width: 100%;
+    padding-top: 10px;
+}
+
+.front-page-sound-title {
+    font-size: 16px;
+    color: white;
+    width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.front-page-artist-name {
+    font-size: 14px;
+    color: whitesmoke;
+    width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.first-six-sounds, .last-six-sounds {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.front-page-item-art {
+    height: 140px;
+    width: 140px;
+}
+
+.front-page-sound-title:hover, 
+.front-page-item-art:hover,
+.front-page-artist-name:hover {
+    cursor: pointer;
+}
+
+.front-page-artist-name:hover,
+.front-page-sound-title:hover {
+    color: $light-purp
+}

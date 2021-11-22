@@ -25,6 +25,8 @@ render () {
     )
   })
 
+  const displayFirstSounds = allSounds.filter((sound, i) => i < 6)
+  const displayNextSounds = allSounds.filter((sound, i) => i >= 6 && i < 12)
 
   return (
     <div className="splash">
@@ -63,7 +65,12 @@ render () {
           Hear what's creeping in AudioFog
         </p>
         <div className="sounds-container">
-          {allSounds}
+          <div className="first-six-sounds">
+            {displayFirstSounds}
+          </div>
+          <div className="last-six-sounds">
+            {displayNextSounds}
+          </div>
         </div>
         <button className="trending-button">
           Explore trending playlists

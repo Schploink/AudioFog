@@ -11,19 +11,19 @@ Sound.destroy_all
 User.destroy_all
 
 #users
-u1 = User.create(email: "demolovato@they.com", username: "Wonderful Person", password: "secretdemo")
+u1 = User.create(email: "demolovato@they.com", username: "Kerri Chandler", password: "secretdemo")
 u2 = User.create(email: "bezier@they.com", username: "Bezier", password: "password")
-u3 = User.create(email: "dtiffany@they.com", username: "Dtiff", password: "password")
-u4 = User.create(email: "danielavery@they.com", username: "Daniel", password: "password")
+u3 = User.create(email: "dtiffany@they.com", username: "D tiffany", password: "password")
+u4 = User.create(email: "danielavery@they.com", username: "Daniel Avery", password: "password")
 u5 = User.create(email: "deetron@they.com", username: "Deetron", password: "password")
-u6 = User.create(email: "johnroberts@they.com", username: "John", password: "password")
-u7 = User.create(email: "pauljohnson@they.com", username: "Paul", password: "password")
+u6 = User.create(email: "johnroberts@they.com", username: "John Roberts", password: "password")
+u7 = User.create(email: "pauljohnson@they.com", username: "Paul Johnson", password: "password")
 u8 = User.create(email: "lauer@they.com", username: "Lauer", password: "password")
-u9 = User.create(email: "axelboman@they.com", username: "Axel", password: "password")
-u10 = User.create(email: "prinsthomas@they.com", username: "Prins", password: "password")
+u9 = User.create(email: "axelboman@they.com", username: "Axel Boman", password: "password")
+u10 = User.create(email: "prinsthomas@they.com", username: "Prins Thomas", password: "password")
 u11 = User.create(email: "echonomist@they.com", username: "Echonomist", password: "password")
 u12 = User.create(email: "barker@they.com", username: "Barker", password: "password")
-u13 = User.create(email: "arthurrussell@they.com", username: "Arthur", password: "password")
+u13 = User.create(email: "arthurrussell@they.com", username: "Arthur Russell", password: "password")
 
 
 

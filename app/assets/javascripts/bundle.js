@@ -517,6 +517,12 @@ var Greeting = /*#__PURE__*/function (_React$Component) {
           openModal: _this.props.openModal
         });
       });
+      var displayFirstSounds = allSounds.filter(function (sound, i) {
+        return i < 6;
+      });
+      var displayNextSounds = allSounds.filter(function (sound, i) {
+        return i >= 6 && i < 12;
+      });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "splash"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -553,7 +559,11 @@ var Greeting = /*#__PURE__*/function (_React$Component) {
         className: "trending-text"
       }, "Hear what's creeping in AudioFog"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "sounds-container"
-      }, allSounds), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "first-six-sounds"
+      }, displayFirstSounds), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "last-six-sounds"
+      }, displayNextSounds)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "trending-button"
       }, "Explore trending playlists")));
     }
