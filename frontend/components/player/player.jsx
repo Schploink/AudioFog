@@ -50,12 +50,13 @@ class Player extends React.Component {
   }
 
   handlePlayPause() {
-    this.setState(prevState => ({
-      isPlaying: !prevState.isPlaying
-    }))
-    if (this.state.isPlaying) {
+    if (this.props.isPlaying) {
+      console.log(this.props.isPlaying)
+      this.props.pauseSound
       this.audio.pause()
     } else {
+      console.log(this.props.isPlaying)
+      this.props.playSound
       this.audio.play()
     }
   }
@@ -92,7 +93,7 @@ class Player extends React.Component {
             </button>
 
             <button onClick={this.handlePlayPause} className="play-pause">
-              { this.state.isPlaying ? <IoPause /> : <IoPlay />}
+              { this.props.isPlaying ? <IoPause /> : <IoPlay />}
             </button>
 
             <button className="next-track">

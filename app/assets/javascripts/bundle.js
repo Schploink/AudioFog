@@ -1023,15 +1023,13 @@ var Player = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handlePlayPause",
     value: function handlePlayPause() {
-      this.setState(function (prevState) {
-        return {
-          isPlaying: !prevState.isPlaying
-        };
-      });
-
-      if (this.state.isPlaying) {
+      if (this.props.isPlaying) {
+        console.log(this.props.isPlaying);
+        this.props.pauseSound;
         this.audio.pause();
       } else {
+        console.log(this.props.isPlaying);
+        this.props.playSound;
         this.audio.play();
       }
     }
@@ -1074,7 +1072,7 @@ var Player = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_1__.IoPlaySkipBack, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: this.handlePlayPause,
         className: "play-pause"
-      }, this.state.isPlaying ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_1__.IoPause, null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_1__.IoPlay, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      }, this.props.isPlaying ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_1__.IoPause, null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_1__.IoPlay, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "next-track"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_1__.IoPlaySkipForward, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "current-time"
@@ -1117,6 +1115,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _player__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./player */ "./frontend/components/player/player.jsx");
 /* harmony import */ var _actions_sound_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/sound_actions */ "./frontend/actions/sound_actions.js");
+/* harmony import */ var _actions_playstate_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/playstate_actions */ "./frontend/actions/playstate_actions.js");
+
 
 
 
@@ -1125,7 +1125,8 @@ __webpack_require__.r(__webpack_exports__);
 var mSTP = function mSTP(state) {
   return {
     currentUser: state.entities.users[state.session.id],
-    sounds: Object.values(state.entities.sounds)
+    sounds: Object.values(state.entities.sounds),
+    isPlaying: state.ui.isPlaying
   };
 };
 
@@ -1136,6 +1137,15 @@ var mDTP = function mDTP(dispatch) {
     },
     fetchSounds: function fetchSounds() {
       return dispatch((0,_actions_sound_actions__WEBPACK_IMPORTED_MODULE_3__.fetchAllSounds)());
+    },
+    playSound: function playSound() {
+      return dispatch((0,_actions_playstate_actions__WEBPACK_IMPORTED_MODULE_4__.playSound)());
+    },
+    pauseSound: function pauseSound() {
+      return dispatch((0,_actions_playstate_actions__WEBPACK_IMPORTED_MODULE_4__.pauseSound)());
+    },
+    receiveCurrentSound: function receiveCurrentSound(soundID) {
+      return dispatch((0,_actions_playstate_actions__WEBPACK_IMPORTED_MODULE_4__.receiveCurrentSound)(soundID));
     }
   };
 };
@@ -2053,10 +2063,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
-Object(function webpackMissingModule() { var e = new Error("Cannot find module '../actions/track_actions'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/user_actions */ "./frontend/actions/user_actions.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -2070,11 +2078,7 @@ var usersReducer = function usersReducer() {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_CURRENT_USER:
       return Object.assign({}, oldState, _defineProperty({}, action.currentUser.id, action.currentUser));
 
-    case Object(function webpackMissingModule() { var e = new Error("Cannot find module '../actions/track_actions'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()):
-      var nextState = Object.assign({}, action.payload.users, oldState);
-      return nextState;
-
-    case _actions_user_actions__WEBPACK_IMPORTED_MODULE_2__.RECEIVE_USER:
+    case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__.RECEIVE_USER:
       var newState = Object.assign({}, oldState);
       newState[action.user.id] = action.user;
       return newState;

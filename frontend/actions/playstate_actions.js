@@ -1,4 +1,3 @@
-
 export const RECEIVE_CURRENT_SOUND = "RECEIVE_CURRENT_SOUND"
 export const PLAY_SOUND = "PLAY_SOUND";
 export const PAUSE_SOUND = "PAUSE_SOUND";
