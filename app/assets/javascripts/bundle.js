@@ -31,6 +31,44 @@ var closeModal = function closeModal() {
 
 /***/ }),
 
+/***/ "./frontend/actions/playstate_actions.js":
+/*!***********************************************!*\
+  !*** ./frontend/actions/playstate_actions.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RECEIVE_CURRENT_SOUND": () => (/* binding */ RECEIVE_CURRENT_SOUND),
+/* harmony export */   "PLAY_SOUND": () => (/* binding */ PLAY_SOUND),
+/* harmony export */   "PAUSE_SOUND": () => (/* binding */ PAUSE_SOUND),
+/* harmony export */   "receiveCurrentSound": () => (/* binding */ receiveCurrentSound),
+/* harmony export */   "playSound": () => (/* binding */ playSound),
+/* harmony export */   "pauseSound": () => (/* binding */ pauseSound)
+/* harmony export */ });
+var RECEIVE_CURRENT_SOUND = "RECEIVE_CURRENT_SOUND";
+var PLAY_SOUND = "PLAY_SOUND";
+var PAUSE_SOUND = "PAUSE_SOUND";
+var receiveCurrentSound = function receiveCurrentSound(currentSoundId) {
+  return {
+    type: RECEIVE_CURRENT_SOUND,
+    currentSoundId: currentSoundId
+  };
+};
+var playSound = function playSound() {
+  return {
+    type: PLAY_SOUND
+  };
+};
+var pauseSound = function pauseSound() {
+  return {
+    type: PAUSE_SOUND
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/session_actions.js":
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
@@ -423,7 +461,6 @@ var FrontPageSongItem = /*#__PURE__*/function (_React$Component) {
         },
         src: currentSound.photoUrl
       });
-      console.log(currentSound);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "front-page-song-item"
       }, coverArt, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -1746,12 +1783,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _ui_reducers_modal_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ui_reducers/modal_reducer */ "./frontend/reducers/ui_reducers/modal_reducer.js");
+/* harmony import */ var _ui_reducers_playstate_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ui_reducers/playstate_reducer */ "./frontend/reducers/ui_reducers/playstate_reducer.js");
 
 
-var uiReducer = (0,redux__WEBPACK_IMPORTED_MODULE_1__.combineReducers)({
-  modal: _ui_reducers_modal_reducer__WEBPACK_IMPORTED_MODULE_0__.default
+
+var uiReducer = (0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
+  modal: _ui_reducers_modal_reducer__WEBPACK_IMPORTED_MODULE_0__.default,
+  isPlaying: _ui_reducers_playstate_reducer__WEBPACK_IMPORTED_MODULE_1__.default
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (uiReducer);
 
@@ -1789,6 +1829,42 @@ var modalReducer = function modalReducer() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (modalReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/ui_reducers/playstate_reducer.js":
+/*!************************************************************!*\
+  !*** ./frontend/reducers/ui_reducers/playstate_reducer.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_playstate_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/playstate_actions */ "./frontend/actions/playstate_actions.js");
+
+var defaultState = false;
+
+var playbarReducer = function playbarReducer() {
+  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(oldState);
+
+  switch (action.type) {
+    case _actions_playstate_actions__WEBPACK_IMPORTED_MODULE_0__.PLAY_SOUND:
+      return true;
+
+    case _actions_playstate_actions__WEBPACK_IMPORTED_MODULE_0__.PAUSE_SOUND:
+      return false;
+
+    default:
+      return oldState;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (playstateReducer);
 
 /***/ }),
 

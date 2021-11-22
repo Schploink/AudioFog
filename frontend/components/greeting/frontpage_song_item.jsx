@@ -8,7 +8,6 @@ class FrontPageSongItem extends React.Component {
                     onClick={() => this.props.openModal('login')} 
                     src={currentSound.photoUrl} />)
         
-        console.log(currentSound)
         return (
             <div className="front-page-song-item">
                 {coverArt}
