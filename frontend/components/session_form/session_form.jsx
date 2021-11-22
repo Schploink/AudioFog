@@ -13,6 +13,7 @@ class SessionForm extends React.Component {
     this.processUser = this.processUser.bind(this)
     this.demoUser = this.demoUser.bind(this)
     this.displayErrors = this.displayErrors.bind(this)
+    // this.switchForm = this.switchForm.bind(this)
   }
   
   update(field) {
@@ -40,12 +41,20 @@ class SessionForm extends React.Component {
     const demoUser = Object.assign({
       email: "demolovato@they.com",
       password: "secretdemo",
-      username: "Wonderful Person"
+      username: "Kerri Chandler"
     })
     this.props.processDemo(demoUser)
       // .then(() => this.props.history.push('/discover'))
       .then(this.props.closeModal())
   }
+
+  // switchForm() {
+  //   if (this.props.formType === 'signup') {
+  //     this.props.formType = 'login'
+  //   } else {
+  //     this.props.formType = 'signup'
+  //   }
+  // }
 
   displayErrors() {
     return (
@@ -62,7 +71,7 @@ class SessionForm extends React.Component {
     
     const modalSignup = (
       <div className="login-form-container">
-        <h2>Step into Audiofog</h2>
+        <h2 className="modal-title">Step into Audiofog</h2>
         <button className="demo-user" onClick={this.demoUser}> 
           Continue With Demo User
         </button>
@@ -91,6 +100,10 @@ class SessionForm extends React.Component {
           </label>
           <br />
             <button className="session-submit" type="submit">{this.props.formType}</button>
+            <div className="switch-text">
+            Already an Audiofog user? Click 
+            <span className="switch-form" onClick={this.props.otherForm}>here</span>
+            </div>
         </div>
       </form>
     </div>
@@ -98,7 +111,7 @@ class SessionForm extends React.Component {
   
   const modalLogin = (
     <div className="login-form-container">
-        <h2>Step into Audiofog</h2>
+        <h2 className="modal-title">Step into Audiofog</h2>
         <button className="demo-user" onClick={this.demoUser}>
           Continue With Demo User
         </button>
@@ -127,6 +140,10 @@ class SessionForm extends React.Component {
           </label>
           <br />
           <button className="session-submit" type="submit">{this.props.formType}</button>
+          <div className="switch-text">
+            New to Audiofog? Create an account 
+            <span className="switch-form" onClick={this.props.otherForm}>here</span>
+          </div>
         </div>
       </form>
     </div>

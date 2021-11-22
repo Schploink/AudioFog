@@ -12,6 +12,7 @@ const mSTP = ({ errors }) => ({
 })
 
 const mDTP = (dispatch, ownProps) => ({
+  otherForm: () => dispatch(openModal('login')),
   processForm: (user) => dispatch(signup(user)),
   processDemo: (user) => dispatch(login(user)),
   closeModal: () => dispatch(closeModal()),

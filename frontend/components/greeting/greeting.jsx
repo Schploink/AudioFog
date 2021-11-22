@@ -72,9 +72,6 @@ render () {
             {displayNextSounds}
           </div>
         </div>
-        <button className="trending-button">
-          Explore trending playlists
-        </button>
       </div>
     </div>  
   )

@@ -13,11 +13,13 @@ const mSTP = ({errors}) => ({
 })
 
 const mDTP = (dispatch, ownProps) => ({
+
+    otherForm: () => dispatch(openModal('signup')),
     processForm: (user) => dispatch(login(user)),
     processDemo: (user) => dispatch(login(user)),
     closeModal: () => dispatch(closeModal()),
     resetSessionErrors: () => dispatch(resetSessionErrors())
-    })
+})
 
 // export default connect(mSTP, mDTP)(LoginForm);
 export default connect(mSTP, mDTP)(SessionForm);

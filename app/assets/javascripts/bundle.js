@@ -563,9 +563,7 @@ var Greeting = /*#__PURE__*/function (_React$Component) {
         className: "first-six-sounds"
       }, displayFirstSounds), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "last-six-sounds"
-      }, displayNextSounds)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        className: "trending-button"
-      }, "Explore trending playlists")));
+      }, displayNextSounds))));
     }
   }]);
 
@@ -1126,6 +1124,9 @@ var mSTP = function mSTP(_ref) {
 
 var mDTP = function mDTP(dispatch, ownProps) {
   return {
+    otherForm: function otherForm() {
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__.openModal)('signup'));
+    },
     processForm: function processForm(user) {
       return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__.login)(user));
     },
@@ -1203,7 +1204,8 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.processUser = _this.processUser.bind(_assertThisInitialized(_this));
     _this.demoUser = _this.demoUser.bind(_assertThisInitialized(_this));
-    _this.displayErrors = _this.displayErrors.bind(_assertThisInitialized(_this));
+    _this.displayErrors = _this.displayErrors.bind(_assertThisInitialized(_this)); // this.switchForm = this.switchForm.bind(this)
+
     return _this;
   }
 
@@ -1240,11 +1242,18 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       var demoUser = Object.assign({
         email: "demolovato@they.com",
         password: "secretdemo",
-        username: "Wonderful Person"
+        username: "Kerri Chandler"
       });
       this.props.processDemo(demoUser) // .then(() => this.props.history.push('/discover'))
       .then(this.props.closeModal());
-    }
+    } // switchForm() {
+    //   if (this.props.formType === 'signup') {
+    //     this.props.formType = 'login'
+    //   } else {
+    //     this.props.formType = 'signup'
+    //   }
+    // }
+
   }, {
     key: "displayErrors",
     value: function displayErrors() {
@@ -1261,7 +1270,9 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var modalSignup = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "login-form-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Step into Audiofog"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
+        className: "modal-title"
+      }, "Step into Audiofog"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "demo-user",
         onClick: this.demoUser
       }, "Continue With Demo User"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
@@ -1284,10 +1295,17 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "session-submit",
         type: "submit"
-      }, this.props.formType))));
+      }, this.props.formType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "switch-text"
+      }, "Already an Audiofog user? Click", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+        className: "switch-form",
+        onClick: this.props.otherForm
+      }, "here")))));
       var modalLogin = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "login-form-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null, "Step into Audiofog"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
+        className: "modal-title"
+      }, "Step into Audiofog"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "demo-user",
         onClick: this.demoUser
       }, "Continue With Demo User"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
@@ -1310,7 +1328,12 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         className: "session-submit",
         type: "submit"
-      }, this.props.formType))));
+      }, this.props.formType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "switch-text"
+      }, "New to Audiofog? Create an account", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+        className: "switch-form",
+        onClick: this.props.otherForm
+      }, "here")))));
       var modal;
 
       if (this.props.formType === 'signup') {
@@ -1362,6 +1385,9 @@ var mSTP = function mSTP(_ref) {
 
 var mDTP = function mDTP(dispatch, ownProps) {
   return {
+    otherForm: function otherForm() {
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__.openModal)('login'));
+    },
     processForm: function processForm(user) {
       return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__.signup)(user));
     },

@@ -20,10 +20,12 @@
   background-image: linear-gradient(to bottom right, $light-purp, $mid-blue, $light-teal);
   width: 350px;
   max-width: 100%;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 4px;
   height: auto;
   color: black;
   text-align: center;
-  padding: 20px;
+  padding: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,11 +38,27 @@ element.style {
     height: auto;
 }
 
+.login-form-box {
+  width: 176px;
+}
+
+.modal-title {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.render-errors {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  color: $dark-purp;
+}
+
 .login-form-container {
   position: inherit;
-  color: black;
+  color: white;
   justify-content: center;
-  padding: 30px;
+  padding: 25px;
   display: flex;
   flex-direction: column;
   // justify-content: center;
@@ -48,20 +66,39 @@ element.style {
 }
 
 .session-submit {
-  background-color: $dark-purp;
-  color: #FFFFFF;
+  background-color: $light-purp;
+  color: white;
   padding: 10px 15px;
   font-size: 16px;
   line-height: 12px;
   width: 100%;
   border-radius: 3px;
-  border: #ccc 1pt solid;
+  transition-duration: 0.4s;
+  // border: $light-teal 1pt solid;
+}
+
+.demo-user {
+  background-color: $dark-purp;
+  color: white;
+  padding: 10px 15px;
+  font-size: 16px;
+  line-height: 12px;
+  width: 100%;
+  border-radius: 3px;
+  transition-duration: 0.4s;
+  // border: $light-teal 1pt solid;
+}
+
+.session-submit:hover,
+.demo-user:hover {
+  color: $light-teal;
+  cursor: pointer;
 }
 
 .login-input {
   border-radius: 5px;
-  border: #ccc 1pt solid;
-  color: #1b1b1b;
+  border: $light-purp 1pt solid;
+  color: $light-purp;
   text-align: left;
   padding: 0 13px 0 13px;
   margin-top: 2px;
@@ -69,6 +106,27 @@ element.style {
   align-items: center;
   margin-left: 2px;
   line-height: 36px;
+}
+
+.switch-text {
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.switch-form {
+  font-size: 12px;
+  margin-left: 5px;
+  color: $light-purp;
+  transition-duration: 0.4s;
+}
+
+.switch-form:hover {
+  color: $dark-purp;
+  cursor: pointer;
+}
+
+.login-input::placeholder {
+  color: $mid-blue;
 }
 
 @keyframes modal-animation {

@@ -57,6 +57,16 @@
     cursor: pointer;
 }
 
+.signin-button:hover,
+.creators-button:hover {
+    color: $mid-blue;
+}
+
+.create-button:hover,
+.uploading-button:hover {
+    color: white;
+}
+
 .signin-button {
     padding: 2px 15px;
     border: 1px solid #fff;
@@ -66,6 +76,7 @@
     border-radius: 3px;
     margin-left: 10px;
     line-height: 26px;
+    transition-duration: 0.4s;
 }
 
 .create-button {
@@ -77,6 +88,7 @@
     box-sizing: border-box;
     margin-left: 10px;
     line-height: 26px;
+    transition-duration: 0.4s;
 }
 
 .creators-button {
@@ -86,6 +98,7 @@
     font-family: 'Poppins', sans-serif;
     margin-left: 10px;
     line-height: 26px;
+    transition-duration: 0.4s;
 }
 
 .image-text-header {
@@ -115,11 +128,22 @@
     padding: 14px 15px 14px 15px; 
     font-size: 18px;
     margin-left: 20px;
-    margin-top: 50px;;
+    margin-top: 50px;
+    transition-duration: 0.4s;
 }
 
 .trending-container {
     width: 1080px;
+}
+
+.trending-text {
+    font-family: 'Poppins', sans-serif;
+    color: $dark-purp;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    margin-top: 10px;
+    font-size: 24px;
 }
 
 .sounds-container {
@@ -134,19 +158,23 @@
 .front-page-sound-title {
     font-size: 16px;
     color: white;
+    font-family: 'Poppins', sans-serif;
     width: 140px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    transition-duration: 0.4s;
 }
 
 .front-page-artist-name {
     font-size: 14px;
     color: whitesmoke;
+    font-family: 'Poppins', sans-serif;
     width: 140px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    transition-duration: 0.4s;
 }
 
 .first-six-sounds, .last-six-sounds {
@@ -155,6 +183,9 @@
     width: 100%;
 }
 
+.last-six-sounds {
+    border-bottom: 50px;
+}
 .front-page-item-art {
     height: 140px;
     width: 140px;
