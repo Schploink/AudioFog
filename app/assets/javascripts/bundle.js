@@ -232,6 +232,47 @@ var destroySound = function destroySound(soundId) {
 
 /***/ }),
 
+/***/ "./frontend/actions/user_actions.js":
+/*!******************************************!*\
+  !*** ./frontend/actions/user_actions.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RECEIVE_USER": () => (/* binding */ RECEIVE_USER),
+/* harmony export */   "fetchUser": () => (/* binding */ fetchUser),
+/* harmony export */   "updateUser": () => (/* binding */ updateUser)
+/* harmony export */ });
+/* harmony import */ var _util_user_api_util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/user_api_util.js */ "./frontend/util/user_api_util.js");
+
+var RECEIVE_USER = 'RECEIVE_USER';
+
+var receiveUser = function receiveUser(user) {
+  return {
+    type: RECEIVE_USER,
+    user: user
+  };
+};
+
+var fetchUser = function fetchUser(userId) {
+  return function (dispatch) {
+    return _util_user_api_util_js__WEBPACK_IMPORTED_MODULE_0__.fetchUser(userId).then(function (user) {
+      return dispatch(receiveUser(user));
+    });
+  };
+};
+var updateUser = function updateUser(user) {
+  return function (dispatch) {
+    return _util_user_api_util_js__WEBPACK_IMPORTED_MODULE_0__.updateUser(user).then(function (user) {
+      return dispatch(receiveUser(user));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/components/App.jsx":
 /*!*************************************!*\
   !*** ./frontend/components/App.jsx ***!
@@ -250,7 +291,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _discover_discover_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./discover/discover_container */ "./frontend/components/discover/discover_container.jsx");
 /* harmony import */ var _sound_upload_upload_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./sound/upload/upload_container */ "./frontend/components/sound/upload/upload_container.jsx");
 /* harmony import */ var _player_player_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./player/player_container */ "./frontend/components/player/player_container.jsx");
-/* harmony import */ var _navbar_navbar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./navbar/navbar */ "./frontend/components/navbar/navbar.jsx");
+/* harmony import */ var _sound_sound_show_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./sound/sound_show_container */ "./frontend/components/sound/sound_show_container.jsx");
 /* harmony import */ var _session_form_login_form_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./session_form/login_form_container */ "./frontend/components/session_form/login_form_container.jsx");
 /* harmony import */ var _session_form_signup_form_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./session_form/signup_form_container */ "./frontend/components/session_form/signup_form_container.jsx");
 
@@ -260,6 +301,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ // import User from "./user/user_container"
 
 
 
@@ -273,6 +315,10 @@ var App = function App() {
     exact: true,
     path: "/upload",
     component: _sound_upload_upload_container__WEBPACK_IMPORTED_MODULE_5__.default
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__.ProtectedRoute, {
+    exact: true,
+    path: "/sounds/:soundId",
+    component: _sound_sound_show_container__WEBPACK_IMPORTED_MODULE_7__.default
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_1__.AuthRoute, {
     exact: true,
     path: "/",
@@ -1444,6 +1490,133 @@ var mDTP = function mDTP(dispatch, ownProps) {
 
 /***/ }),
 
+/***/ "./frontend/components/sound/sound_show.jsx":
+/*!**************************************************!*\
+  !*** ./frontend/components/sound/sound_show.jsx ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var ShowSound = /*#__PURE__*/function (_React$Component) {
+  _inherits(ShowSound, _React$Component);
+
+  var _super = _createSuper(ShowSound);
+
+  function ShowSound(props) {
+    _classCallCheck(this, ShowSound);
+
+    return _super.call(this, props); // this.updateCurrentTrack = this.updateCurrentTrack.bind(this)
+  } // componentDidMount() {
+  //     this.props.fetchTrack(this.props.match.params.trackId)
+  //         .fail(() => this.props.history.push("/discover"))
+  // }
+  // updateCurrentTrack(e) {
+  //     e.preventDefault()
+  //     this.props.receiveCurrentTrack(this.props.track.id)
+  //     this.props.playTrack()
+  // }
+
+
+  _createClass(ShowSound, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "This is a track!");
+    }
+  }]);
+
+  return ShowSound;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ShowSound);
+
+/***/ }),
+
+/***/ "./frontend/components/sound/sound_show_container.jsx":
+/*!************************************************************!*\
+  !*** ./frontend/components/sound/sound_show_container.jsx ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _sound_show__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sound_show */ "./frontend/components/sound/sound_show.jsx");
+/* harmony import */ var _actions_sound_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/sound_actions */ "./frontend/actions/sound_actions.js");
+/* harmony import */ var _actions_playstate_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/playstate_actions */ "./frontend/actions/playstate_actions.js");
+
+
+
+
+
+var mSTP = function mSTP(state, ownProps) {
+  return {
+    pageSound: state.entities.sounds[ownProps.match.params.soundId],
+    // currentUser: state.entities.users[state.session.id],
+    // currentSound: state.entities.sounds[state.ui.currentSound.id],
+    isPlaying: state.ui.isPlaying
+  };
+};
+
+var mDTP = function mDTP(dispatch) {
+  return {
+    fetchSound: function fetchSound(soundId) {
+      return dispatch((0,_actions_sound_actions__WEBPACK_IMPORTED_MODULE_2__.fetchSound)(soundId));
+    },
+    fetchSounds: function fetchSounds() {
+      return dispatch((0,_actions_sound_actions__WEBPACK_IMPORTED_MODULE_2__.fetchAllSounds)());
+    },
+    receiveCurrentSound: function receiveCurrentSound(soundId) {
+      return dispatch((0,_actions_playstate_actions__WEBPACK_IMPORTED_MODULE_3__.receiveCurrentSound)(soundId));
+    },
+    playSound: function playSound() {
+      return dispatch((0,_actions_playstate_actions__WEBPACK_IMPORTED_MODULE_3__.playSound)());
+    },
+    pauseSound: function pauseSound() {
+      return dispatch((0,_actions_playstate_actions__WEBPACK_IMPORTED_MODULE_3__.pauseSound)());
+    },
+    deleteSound: function deleteSound(soundId) {
+      return dispatch((0,_actions_sound_actions__WEBPACK_IMPORTED_MODULE_2__.deleteSound)(soundId));
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mSTP, mDTP)(_sound_show__WEBPACK_IMPORTED_MODULE_1__.default));
+
+/***/ }),
+
 /***/ "./frontend/components/sound/upload/upload.jsx":
 /*!*****************************************************!*\
   !*** ./frontend/components/sound/upload/upload.jsx ***!
@@ -1847,7 +2020,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var defaultState = false;
 
-var playbarReducer = function playbarReducer() {
+var playstateReducer = function playstateReducer() {
   var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(oldState);
@@ -1880,21 +2053,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+Object(function webpackMissingModule() { var e = new Error("Cannot find module '../actions/track_actions'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/user_actions */ "./frontend/actions/user_actions.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
+
+
 var usersReducer = function usersReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  Object.freeze(state);
+  Object.freeze(oldState);
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_CURRENT_USER:
-      return Object.assign({}, state, _defineProperty({}, action.currentUser.id, action.currentUser));
+      return Object.assign({}, oldState, _defineProperty({}, action.currentUser.id, action.currentUser));
+
+    case Object(function webpackMissingModule() { var e = new Error("Cannot find module '../actions/track_actions'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()):
+      var nextState = Object.assign({}, action.payload.users, oldState);
+      return nextState;
+
+    case _actions_user_actions__WEBPACK_IMPORTED_MODULE_2__.RECEIVE_USER:
+      var newState = Object.assign({}, oldState);
+      newState[action.user.id] = action.user;
+      return newState;
 
     default:
-      return state;
+      return oldState;
   }
 };
 
@@ -2086,6 +2272,36 @@ var destroySound = function destroySound(soundId) {
   return $.ajax({
     url: "api/sounds/".concat(soundId),
     method: 'DELETE'
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/user_api_util.js":
+/*!****************************************!*\
+  !*** ./frontend/util/user_api_util.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "fetchUser": () => (/* binding */ fetchUser),
+/* harmony export */   "updateUser": () => (/* binding */ updateUser)
+/* harmony export */ });
+var fetchUser = function fetchUser(userId) {
+  return $.ajax({
+    url: "/api/users/".concat(userId),
+    method: "GET"
+  });
+};
+var updateUser = function updateUser(user) {
+  return $.ajax({
+    url: "/api/users/".concat(user.get['user[id]']),
+    method: "PATCH",
+    data: user,
+    contentType: false,
+    processData: false
   });
 };
 

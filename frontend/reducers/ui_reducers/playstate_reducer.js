@@ -2,7 +2,7 @@ import { PLAY_SOUND, PAUSE_SOUND } from '../../actions/playstate_actions'
 
 const defaultState = false
 
-const playbarReducer = (oldState = defaultState, action) => {
+const playstateReducer = (oldState = defaultState, action) => {
 
     Object.freeze(oldState);
 
