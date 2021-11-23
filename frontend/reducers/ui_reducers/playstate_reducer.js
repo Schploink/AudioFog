@@ -1,4 +1,4 @@
-import { PLAY_SOUND, PAUSE_SOUND } from '../../actions/playstate_actions'
+import { PLAY_SOUND, PAUSE_SOUND, RECEIVE_CURRENT_SOUND } from '../../actions/playstate_actions'
 
 const defaultState = false
 

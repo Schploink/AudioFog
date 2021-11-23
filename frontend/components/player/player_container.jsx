@@ -1,5 +1,4 @@
 import { connect } from "react-redux"
-import {logout} from "../../actions/session_actions"
 import Player from "./player"
 import {fetchAllSounds} from '../../actions/sound_actions'
 import {receiveCurrentSound, playSound, pauseSound} from "../../actions/playstate_actions"
@@ -11,7 +10,6 @@ const mSTP = (state) => ({
 })
 
 const mDTP = dispatch => ({
-  logout: () => dispatch(logout()),
   fetchSounds: () => dispatch(fetchAllSounds()),
   playSound: () => dispatch(playSound()),
   pauseSound: () => dispatch(pauseSound()),
