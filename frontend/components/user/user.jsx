@@ -9,7 +9,7 @@ class User extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchSounds()
+    // this.props.fetchSounds()
     this.props.fetchUser(this.props.match.params.userId)
     //   .fail(() => this.props.history.push("/discover"))
   }

@@ -1,6 +1,13 @@
 class Api::UsersController < ApplicationController
 
-
+  def show
+      @user = User.find(params[:id])
+      if @user
+          render :show
+      else
+          render json: ['User does not exist'], status: 422
+      end
+  end
 
   def new
     @user = User.new

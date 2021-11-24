@@ -4,6 +4,7 @@
   height: 340px;
   width: 100%;
   background-color: $mid-blue;
+  font-family: 'Poppins', sans-serif;
   display: flex;
   justify-content: space-between;
 }
@@ -14,9 +15,31 @@
 }
 
 .title-artist {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   margin-left: 10px;
 }
 
+.show-sound-artist:visited { text-decoration: none; color:white; }
+.show-sound-artist:hover { text-decoration: none; color:white; }
+.show-sound-artist:focus { text-decoration: none; color:white; }
+.show-sound-artist:active { text-decoration: none; color:white; }
+
+.show-sound-artist {
+  font-size:16px;
+  display: inline;
+}
+
+.show-song-title {
+  color: white;
+  background-color: $dark-purp;
+  font-size: 28px;
+}
+
+.artist-name {
+  background-color: $dark-purp;
+}
 
 .show-page-item-art {
   height: 280px;
