@@ -6,6 +6,7 @@ import Discover from "./discover/discover_container"
 import Upload from "./sound/upload/upload_container"
 import Player from "./player/player_container"
 import Sound from './sound/sound_show_container'
+import User from './user/user_container'
 // import User from "./user/user_container"
 
 import LoginFormContainer from './session_form/login_form_container'
@@ -18,7 +19,7 @@ const App = () => {
       <ProtectedRoute exact path="/discover" component={Discover} />
       <ProtectedRoute exact path="/upload" component={Upload} />
       <ProtectedRoute exact path="/sounds/:soundId"  component={Sound} />
-      {/* <ProtectedRoute exact path="/users/:userId" component={User} /> */}
+      <ProtectedRoute exact path="/users/:userId" component={User} />
       <AuthRoute exact path="/" component={GreetingContainer} />
       <Player />
     </div>

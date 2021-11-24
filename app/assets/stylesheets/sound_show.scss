@@ -1,0 +1,37 @@
+@import "./colors";
+
+.show-sound-top {
+  height: 340px;
+  width: 100%;
+  background-color: $mid-blue;
+  display: flex;
+  justify-content: space-between;
+}
+
+.top-left-box {
+  display: flex;
+  margin: 30px 0 0 30px;
+}
+
+.title-artist {
+  margin-left: 10px;
+}
+
+
+.show-page-item-art {
+  height: 280px;
+  width: 280px;
+  margin: 30px 30px 0 0
+}
+
+.show-play-background {
+  height: 70px;
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color: $light-teal;
+  background-color: $light-purp;
+  border-radius: 50%;
+}
