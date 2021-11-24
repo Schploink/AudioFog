@@ -4,6 +4,8 @@ import {IoPause} from "react-icons/io5"
 import { Link } from 'react-router-dom';
 import CommentForm from '../comment/comment_form';
 import Navbar from "../navbar/navbar_container"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub, faLinkedin, faAngellist } from '@fortawesome/free-brands-svg-icons'
 
 class ShowSound extends React.Component {
     constructor(props) {
@@ -65,7 +67,15 @@ class ShowSound extends React.Component {
                 <div>comment list</div>
               </div>
               <div className="show-sound-bottom-right">
-                <div>githublinkedinangellist</div>
+                <a className="navbar-gh-icon-parent" href="https://github.com/Schploink/AudioFog" target="_blank">
+                  <FontAwesomeIcon className="navbar-icon" icon={faGithub}/>
+                </a>
+                <a className="navbar-gh-icon-parent" href="https://angel.co/u/kevin-oconnor-7" target="_blank">
+                  <FontAwesomeIcon className="navbar-icon" icon={faAngellist}/>
+                </a>
+                <a className="navbar-gh-icon-parent" href="https://www.linkedin.com/in/kevin-oconnor-933561216/" target="_blank">
+                  <FontAwesomeIcon className="navbar-icon" icon={faLinkedin}/>
+                </a>
               </div>
             </div>
           </div>
