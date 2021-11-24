@@ -49,13 +49,19 @@ class Player extends React.Component {
     }
   }
 
+  restartSound() {
+
+  }
+
+  nextSound() {
+
+  }
+  
   handlePlayPause() {
     if (this.props.isPlaying) {
-      console.log(this.props.isPlaying)
       this.props.pauseSound()
       this.audio.pause()
     } else {
-      console.log(this.props.isPlaying)
       this.props.playSound()
       this.audio.play()
     }
@@ -84,11 +90,11 @@ class Player extends React.Component {
 		return (
 				<div className="player-container">
           <div className="player-controls">
-            <audio ref={(audio) => {this.audio = audio}} src="https://active-storage-audiofog-dev.s3.us-west-1.amazonaws.com/01+Body+Electric.mp3" preload="metadata">
+            <audio id="audio" ref={(audio) => {this.audio = audio}} src="https://active-storage-audiofog-dev.s3.us-west-1.amazonaws.com/01+Body+Electric.mp3" preload="metadata">
 
             </audio>
 
-            <button className="previous-track">
+            <button className="previous-track" onClick={this.restartSound()}>
               <IoPlaySkipBack />
             </button>
 
@@ -96,7 +102,7 @@ class Player extends React.Component {
               { this.props.isPlaying ? <IoPause /> : <IoPlay />}
             </button>
 
-            <button className="next-track">
+            <button className="next-track" onClick={this.nextSound()}>
               <IoPlaySkipForward />
             </button>
             
@@ -120,6 +126,9 @@ class Player extends React.Component {
             {/* <audio controls>
               <source src="https://active-storage-audiofog-dev.s3.us-west-1.amazonaws.com/01+Body+Electric.mp3" type="audio/mpeg" />
             </audio> */}
+            <div>
+              volume control
+            </div>
             <div>
               Song/Artist info
             </div>

@@ -400,11 +400,11 @@ var Discover = /*#__PURE__*/function (_React$Component) {
           key: sound.id,
           sound: sound,
           idx: i,
-          fetchAllSounds: _this.props.fetchAllSounds,
           playSound: _this.props.playSound,
           pauseSound: _this.props.pauseSound,
           currentSound: _this.props.currentSound,
-          isPlaying: _this.props.isPlaying
+          isPlaying: _this.props.isPlaying,
+          receiveCurrentSound: _this.props.receiveCurrentSound
         });
       });
       var displayFirstSounds = allSounds.filter(function (sound, i) {
@@ -494,8 +494,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_icons_io5__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-icons/io5 */ "./node_modules/react-icons/io5/index.esm.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -521,6 +522,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+
 var DiscoverSongItem = /*#__PURE__*/function (_React$Component) {
   _inherits(DiscoverSongItem, _React$Component);
 
@@ -532,14 +535,27 @@ var DiscoverSongItem = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, DiscoverSongItem);
 
     _this = _super.call(this, props);
-    _this.updateCurrentTrack = _this.updateCurrentTrack.bind(_assertThisInitialized(_this));
+    _this.updateCurrentSound = _this.updateCurrentSound.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(DiscoverSongItem, [{
-    key: "updateCurrentTrack",
-    value: function updateCurrentTrack(e) {
+    key: "updateCurrentSound",
+    value: function updateCurrentSound(e) {
       e.preventDefault();
+
+      if (this.props.currentSound === this.props.sound) {
+        if (this.props.isPlaying) {
+          // this.audio.pause()
+          this.props.pauseSound();
+        } else {
+          // this.audio.play()
+          this.props.playSound();
+        }
+      } else {
+        this.props.receiveCurrentSound(this.props.sound.id);
+        this.props.playSound();
+      }
     }
   }, {
     key: "render",
@@ -551,11 +567,14 @@ var DiscoverSongItem = /*#__PURE__*/function (_React$Component) {
       });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "discover-song-item"
-      }, coverArt, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+      }, coverArt, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "discover-play-pause",
+        onClick: this.updateCurrentSound
+      }, this.props.currentSound === this.props.sound && this.props.isPlaying ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_1__.IoPause, null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_1__.IoPlay, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: "/sounds/".concat(currentSound.id)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "discover-sound-title"
-      }, currentSound.description)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+      }, currentSound.description)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: "/users/".concat(currentSound.uploader_id)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "discover-artist-name"
@@ -1144,14 +1163,18 @@ var Player = /*#__PURE__*/function (_React$Component) {
       };
     }
   }, {
+    key: "restartSound",
+    value: function restartSound() {}
+  }, {
+    key: "nextSound",
+    value: function nextSound() {}
+  }, {
     key: "handlePlayPause",
     value: function handlePlayPause() {
       if (this.props.isPlaying) {
-        console.log(this.props.isPlaying);
         this.props.pauseSound();
         this.audio.pause();
       } else {
-        console.log(this.props.isPlaying);
         this.props.playSound();
         this.audio.play();
       }
@@ -1185,18 +1208,21 @@ var Player = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "player-controls"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("audio", {
+        id: "audio",
         ref: function ref(audio) {
           _this3.audio = audio;
         },
         src: "https://active-storage-audiofog-dev.s3.us-west-1.amazonaws.com/01+Body+Electric.mp3",
         preload: "metadata"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        className: "previous-track"
+        className: "previous-track",
+        onClick: this.restartSound()
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_1__.IoPlaySkipBack, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         onClick: this.handlePlayPause,
         className: "play-pause"
       }, this.props.isPlaying ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_1__.IoPause, null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_1__.IoPlay, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        className: "next-track"
+        className: "next-track",
+        onClick: this.nextSound()
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_1__.IoPlaySkipForward, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "current-time"
       }, normalizeTime(this.state.currentTime)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -1212,7 +1238,7 @@ var Player = /*#__PURE__*/function (_React$Component) {
         max: this.state.duration
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "time-remaining"
-      }, normalizeTime(this.state.duration)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Song/Artist info")));
+      }, normalizeTime(this.state.duration)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "volume control"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Song/Artist info")));
     }
   }]);
 
@@ -1246,6 +1272,7 @@ __webpack_require__.r(__webpack_exports__);
 var mSTP = function mSTP(state) {
   return {
     currentUser: state.entities.users[state.session.id],
+    currentSound: state.entities.sounds[state.ui.currentSound.id],
     sounds: Object.values(state.entities.sounds),
     isPlaying: state.ui.isPlaying
   };
@@ -1712,8 +1739,8 @@ __webpack_require__.r(__webpack_exports__);
 var mSTP = function mSTP(state, ownProps) {
   return {
     pageSound: state.entities.sounds[ownProps.match.params.soundId],
-    // currentUser: state.entities.users[state.session.id],
-    // currentSound: state.entities.sounds[state.ui.currentSound.id],
+    currentUser: state.entities.users[state.session.id],
+    currentSound: state.entities.sounds[state.ui.currentSound.id],
     isPlaying: state.ui.isPlaying
   };
 };

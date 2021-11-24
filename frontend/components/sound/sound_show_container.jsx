@@ -6,8 +6,8 @@ import { receiveCurrentSound, playSound, pauseSound } from '../../actions/playst
 const mSTP = (state, ownProps) => {
     return {
         pageSound: state.entities.sounds[ownProps.match.params.soundId],
-        // currentUser: state.entities.users[state.session.id],
-        // currentSound: state.entities.sounds[state.ui.currentSound.id],
+        currentUser: state.entities.users[state.session.id],
+        currentSound: state.entities.sounds[state.ui.currentSound.id],
         isPlaying: state.ui.isPlaying,
     }
 }

@@ -20,11 +20,11 @@ class Discover extends React.Component {
           key={sound.id}
           sound={sound}
           idx={i}
-          fetchAllSounds={this.props.fetchAllSounds}
           playSound={this.props.playSound}
           pauseSound={this.props.pauseSound}
           currentSound={this.props.currentSound}
           isPlaying={this.props.isPlaying}
+          receiveCurrentSound={this.props.receiveCurrentSound}
         />
       )
     })

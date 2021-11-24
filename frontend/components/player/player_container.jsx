@@ -5,6 +5,7 @@ import {receiveCurrentSound, playSound, pauseSound} from "../../actions/playstat
 
 const mSTP = (state) => ({
   currentUser: state.entities.users[state.session.id],
+  currentSound: state.entities.sounds[state.ui.currentSound.id],
   sounds: Object.values(state.entities.sounds),
   isPlaying: state.ui.isPlaying
 })
