@@ -30,7 +30,8 @@ class Discover extends React.Component {
     })
 
     const displayFirstSounds = allSounds.filter((sound, i) => i > 9)
-    const displayNewSounds = allSounds.filter((sound, i) => i < 8)
+    const displayNewSounds = allSounds.filter((sound, i) => i > 5 && i < 10)
+    const displayMoreNewSounds = allSounds.filter((sound, i) => i < 4)
 
       return (
         <>
@@ -40,14 +41,17 @@ class Discover extends React.Component {
               <div className='trend-text'>
                 Trending
               </div>
-              <div>
+              <div className="trending-sounds">
                 {displayFirstSounds}
               </div>
               <div className='new-sounds-text'>
                 New Sounds
               </div>
-              <div>
+              <div className="new-sounds">
                 {displayNewSounds}
+              </div>
+              <div className="more-new-sounds">
+                {displayMoreNewSounds}
               </div>
             </div>
           </div>

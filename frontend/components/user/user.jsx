@@ -16,7 +16,7 @@ class User extends React.Component {
   
   render () {
     let user = this.props.showUser
-    let userSounds = this.props.sounds
+    // let userSounds = this.props.sounds
 
     return (
       <div>

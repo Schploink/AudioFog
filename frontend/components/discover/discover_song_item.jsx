@@ -36,10 +36,15 @@ class DiscoverSongItem extends React.Component {
         
         return (
             <div className="discover-song-item">
-                {coverArt}
-                <div className="discover-play-pause" onClick={this.updateCurrentSound}>
-                { this.props.currentSound === this.props.sound && this.props.isPlaying ? <IoPause /> : <IoPlay />}
-
+                <div className="discover-art-button">
+                    <div className="discover-art">
+                        {coverArt}
+                    </div>
+                    <div className="discover-play-pause" onClick={this.updateCurrentSound}>
+                        <div className="discover-icon">
+                            { this.props.currentSound === this.props.sound && this.props.isPlaying ? <IoPause /> : <IoPlay />}
+                        </div>
+                    </div>
                 </div>
 
                 <Link to={`/sounds/${currentSound.id}`}>

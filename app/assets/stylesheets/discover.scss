@@ -26,6 +26,91 @@
   border-bottom: 3px solid white;
 }
 
+.discover-art-button {
+  position: relative;
+  display: inline-block;
+  z-index: 0;
+  font-size: 35px;
+}
+
+.discover-art-button:hover {
+  .discover-play-pause {
+    display: block;
+  }
+}
+
+.discover-play-pause {
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  background-color: $mid-blue;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  transition-duration: 0.4s;
+}
+
+.discover-play-pause:hover {
+  cursor: pointer;
+  background-color: $light-purp;
+}
+
+.discover-icon {
+  position: absolute;
+  top: 54%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+}
+
+.trending-sounds, .new-sounds, .more-new-sounds {
+  display: flex;
+  margin-top: 15px;
+  width: 100%;
+  justify-content: space-evenly;
+  font-family: 'Poppins', sans-serif;
+}
+
+.discover-sound-title {
+  font-size: 18px;
+  color: $dark-purp;
+  width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition-duration: 0.4s;
+}
+
+.discover-artist-name {
+  font-size: 14px;
+  color: $light-purp;
+  width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition-duration: 0.4s;
+}
+
+.discover-sound-title:visited { text-decoration: none; color:white; }
+.discover-sound-title:hover { text-decoration: none; color:white; }
+.discover-sound-title:focus { text-decoration: none; color:white; }
+.discover-sound-title:active { text-decoration: none; color:white; }
+
+.discover-artist-name:visited { text-decoration: none; color:white; }
+.discover-artist-name:hover { text-decoration: none; color:white; }
+.discover-artist-name:focus { text-decoration: none; color:white; }
+.discover-artist-name:active { text-decoration: none; color:white; }
+
+.discover-item-art {
+  height: 180px;
+  width: 180px;
+}
+
 .new-sounds-text {
   font-size: 26px;
   color: $dark-purp;
