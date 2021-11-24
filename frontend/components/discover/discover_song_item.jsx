@@ -16,10 +16,10 @@ class DiscoverSongItem extends React.Component {
 
         if (this.props.currentSound === this.props.sound) {
             if (this.props.isPlaying) {
-                // this.audio.pause()
+                document.getElementById('audio').pause()
                 this.props.pauseSound()
             } else {
-                // this.audio.play()
+                document.getElementById('audio').play()
                 this.props.playSound()
             }
         } else {

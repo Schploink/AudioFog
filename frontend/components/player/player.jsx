@@ -90,7 +90,10 @@ class Player extends React.Component {
 		return (
 				<div className="player-container">
           <div className="player-controls">
-            <audio id="audio" ref={(audio) => {this.audio = audio}} src="https://active-storage-audiofog-dev.s3.us-west-1.amazonaws.com/01+Body+Electric.mp3" preload="metadata">
+            <audio id="audio" 
+              ref={(audio) => {this.audio = audio}} 
+              src={this.props.currentSound ? this.props.currentSound.soundUrl : ""} 
+              preload="metadata">
 
             </audio>
 

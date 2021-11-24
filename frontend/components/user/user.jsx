@@ -23,8 +23,28 @@ class User extends React.Component {
         <Navbar />
         <div className="discover-background">
           <div className="discover-content">
-            {user.username}
-
+            <div className="user-top">
+              <img className="user-pic" src={user.profilePicURL} />
+              <div className="user-name">
+                <span className="name-text">
+                  {user.username}
+                </span>
+              </div>
+            </div>
+            <div className="user-bottom">
+              <div className="user-bottom-left">
+                <div className="spotlight-text">
+                Spotlight
+                </div>
+                Song image
+                play/pause button
+                song name/artist
+                waveform
+              </div>
+              <div className="user-bottom-right">
+                links/language
+              </div>
+            </div>
           </div>
         </div>
       </div>

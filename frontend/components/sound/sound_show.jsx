@@ -2,6 +2,7 @@ import React from 'react';
 import {IoPlay} from "react-icons/io5"
 import {IoPause} from "react-icons/io5"
 import { Link } from 'react-router-dom';
+import CommentForm from '../comment/comment_form';
 import Navbar from "../navbar/navbar_container"
 
 class ShowSound extends React.Component {
@@ -13,6 +14,7 @@ class ShowSound extends React.Component {
 
     componentDidMount() {
         this.props.fetchSounds()
+        console.log(this.props)
         // this.props.fetchSound(this.props.match.params.soundId)
         //     .fail(() => this.props.history.push("/discover"))
     }
@@ -56,7 +58,7 @@ class ShowSound extends React.Component {
             </div> 
             <div className="show-sound-bottom">
               <div className="show-sound-bottom-left">
-                <div>Comment input</div>
+                <div><CommentForm /></div>
                 <div>User profile pic</div>
                 <div>Username</div>
                 <div>number of comments</div>
