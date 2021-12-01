@@ -8408,6 +8408,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user */ "./frontend/components/user/user.jsx");
 /* harmony import */ var _actions_sound_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/sound_actions */ "./frontend/actions/sound_actions.js");
 /* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var _actions_playstate_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/playstate_actions */ "./frontend/actions/playstate_actions.js");
+
 
 
 
@@ -8417,7 +8419,8 @@ var mSTP = function mSTP(state, ownProps) {
   return {
     currentUser: state.entities.users[state.session.id],
     showUser: state.entities.users[ownProps.match.params.userId],
-    sounds: Object.values(state.entities.sounds)
+    sounds: Object.values(state.entities.sounds),
+    isPlaying: state.ui.isPlaying
   };
 };
 
@@ -8428,6 +8431,15 @@ var mDTP = function mDTP(dispatch) {
     },
     fetchUser: function fetchUser(userId) {
       return dispatch((0,_actions_user_actions__WEBPACK_IMPORTED_MODULE_3__.fetchUser)(userId));
+    },
+    playSound: function playSound() {
+      return dispatch((0,_actions_playstate_actions__WEBPACK_IMPORTED_MODULE_4__.playSound)());
+    },
+    pauseSound: function pauseSound() {
+      return dispatch((0,_actions_playstate_actions__WEBPACK_IMPORTED_MODULE_4__.pauseSound)());
+    },
+    receiveCurrentSound: function receiveCurrentSound(soundID) {
+      return dispatch((0,_actions_playstate_actions__WEBPACK_IMPORTED_MODULE_4__.receiveCurrentSound)(soundID));
     }
   };
 };
