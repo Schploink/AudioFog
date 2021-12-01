@@ -12,12 +12,16 @@ class User extends React.Component {
 
   componentDidMount() {
     // this.props.fetchSounds()
+    // debugger
+    console.log("hello")
     this.props.fetchUser(this.props.match.params.userId)
+    
     //   .fail(() => this.props.history.push("/discover"))
   }
   
   render () {
     let user = this.props.showUser
+    // debugger
     // let userSounds = this.props.sounds
 
     return (
@@ -26,7 +30,7 @@ class User extends React.Component {
         <div className="discover-background">
           <div className="discover-content">
             <div className="user-top">
-              <img className="user-pic" src={user.profilePicURL} />
+              <img className="user-pic" src={user.profilePicUrl} />
               <div className="user-name">
                 <span className="name-text">
                   {user.username}

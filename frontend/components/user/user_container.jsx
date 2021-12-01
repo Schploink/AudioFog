@@ -4,7 +4,6 @@ import { fetchAllSounds } from '../../actions/sound_actions';
 import { fetchUser } from '../../actions/user_actions'
 
 const mSTP = (state, ownProps) => {
-
     return {
         currentUser: state.entities.users[state.session.id],
         showUser: state.entities.users[ownProps.match.params.userId],

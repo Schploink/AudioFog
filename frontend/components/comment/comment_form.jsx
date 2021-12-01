@@ -37,7 +37,7 @@ class CommentForm extends React.Component {
     render() {
       let submit = this.handleSubmit
       document.onkeydown = function(e) {
-        if (e.keyCode === 13) {
+        if (e.code === 13) {
           submit(e)
         }
       }

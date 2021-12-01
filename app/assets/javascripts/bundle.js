@@ -6574,7 +6574,7 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
       var submit = this.handleSubmit;
 
       document.onkeydown = function (e) {
-        if (e.keyCode === 13) {
+        if (e.code === 13) {
           submit(e);
         }
       };
@@ -8330,12 +8330,15 @@ var User = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       // this.props.fetchSounds()
+      // debugger
+      console.log("hello");
       this.props.fetchUser(this.props.match.params.userId); //   .fail(() => this.props.history.push("/discover"))
     }
   }, {
     key: "render",
     value: function render() {
-      var user = this.props.showUser; // let userSounds = this.props.sounds
+      var user = this.props.showUser; // debugger
+      // let userSounds = this.props.sounds
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "discover-background"
@@ -8345,7 +8348,7 @@ var User = /*#__PURE__*/function (_React$Component) {
         className: "user-top"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         className: "user-pic",
-        src: user.profilePicURL
+        src: user.profilePicUrl
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "user-name"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
