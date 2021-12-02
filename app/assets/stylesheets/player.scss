@@ -141,3 +141,18 @@
   transform: scale(1.1);
   background: $light-teal;
 }
+
+.player-song-art {
+  height: 45px;
+  width: 45px;
+}
+
+.volume-container {
+  display: flex;
+  align-items: center;
+}
+
+.player-track-container{
+  display: flex;
+  align-items: center;
+}

@@ -4,6 +4,7 @@ import {IoPlaySkipForward} from "react-icons/io5"
 import {IoPlay} from "react-icons/io5"
 import {IoPause} from "react-icons/io5"
 import {IoVolumeHigh} from "react-icons/io5"
+import { Link } from "react-router-dom"
 
 class Player extends React.Component {
 	constructor(props) {
@@ -19,6 +20,7 @@ class Player extends React.Component {
     this.handlePlayPause = this.handlePlayPause.bind(this)
     this.changeRange = this.changeRange.bind(this)
     this.volumeChange = this.volumeChange.bind(this)
+    this.photoError = this.photoError.bind(this)
 	}
 
   componentDidMount() {
@@ -83,7 +85,9 @@ class Player extends React.Component {
     this.slider.style.setProperty('--seek-before-width', `${this.slider.value / this.state.duration * 100}%`)
   }
 
-
+  photoError() {
+    return "this.style.display='none'"
+  }
 
 	render() {
     const normalizeTime = (sec) => {
@@ -94,6 +98,12 @@ class Player extends React.Component {
 
       return `${displayMinutes}:${displaySeconds}`
     }
+
+    const albumArt = this.props.currentSound ? this.props.currentSound.photoUrl : ""
+    const artistName = this.props.currentSound ? this.props.currentSound.artist : ""
+    const soundName = this.props.currentSound ? this.props.currentSound.description : ""
+    const soundId = this.props.currentSound ? this.props.currentSound.id : "1"
+    const artistId = this.props.currentSound ? this.props.currentSound.uploader_id : "1"
 
 		return (
 				<div className="player-container">
@@ -137,8 +147,8 @@ class Player extends React.Component {
             {/* <audio controls>
               <source src="https://active-storage-audiofog-dev.s3.us-west-1.amazonaws.com/01+Body+Electric.mp3" type="audio/mpeg" />
             </audio> */}
-            <div>
-              <IoVolumeHigh />
+            <div className="volume-container">
+              <IoVolumeHigh className="volume-icon"/>
               <input 
                 type="range"
                 className="volume-bar"
@@ -148,8 +158,21 @@ class Player extends React.Component {
                 onChange={this.volumeChange}
               />
             </div>
-            <div>
-              Song/Artist info
+            <div className="player-track-container">
+              <div className="player-art-container">
+                  {/* <object data={window.audioFogLogo} className="player-song-art" type="image/jpg">
+                    <img src={albumArt} className="player-song-art"/>
+                  </object> */}
+                  <img src={albumArt} className="player-song-art" onError={this.photoError()} />
+              </div>
+              <div className="song-artist-title">
+                <Link to={`/users/${artistId}`}>
+                  <div className="player-artist">{artistName}</div>
+                </Link>
+                <Link to={`/sounds/${soundId}`}>
+                  <div className="player-song-title">{soundName}</div>
+                </Link>
+              </div>
             </div>
             
           </div>
