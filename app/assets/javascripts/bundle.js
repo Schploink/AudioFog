@@ -7577,8 +7577,7 @@ var Player = /*#__PURE__*/function (_React$Component) {
         className: "player-art-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         src: albumArt,
-        className: "player-song-art",
-        onError: this.photoError()
+        className: "player-song-art"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "song-artist-title"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {

@@ -163,7 +163,7 @@ class Player extends React.Component {
                   {/* <object data={window.audioFogLogo} className="player-song-art" type="image/jpg">
                     <img src={albumArt} className="player-song-art"/>
                   </object> */}
-                  <img src={albumArt} className="player-song-art" onError={this.photoError()} />
+                  <img src={albumArt} className="player-song-art" />
               </div>
               <div className="song-artist-title">
                 <Link to={`/users/${artistId}`}>

@@ -39,8 +39,10 @@
   width: 64px;
   font-family: 'Poppins', sans-serif;
   color: white;
+}
+
+.time-remaining{
   padding-left: 22px;
-  margin-right: 12px;
 }
 
 .progress-bar-container {
@@ -147,6 +149,12 @@
   width: 45px;
 }
 
+.volume-icon {
+  color: white;
+  font-size: 28px;
+  margin-right: 5px;
+}
+
 .volume-container {
   display: flex;
   align-items: center;
@@ -155,4 +163,28 @@
 .player-track-container{
   display: flex;
   align-items: center;
+  margin-left: 10px;
+  width: 160px;
+}
+
+.player-artist{
+  color: white;
+  font-size: 18px;
+  transition-duration: 0.4s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-artist:hover, .player-song-title:hover {
+  color: $light-teal
+}
+
+.player-song-title {
+  color: white;
+  font-size: 14px;
+  transition-duration: 0.4s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
