@@ -3,7 +3,7 @@ import {IoPlaySkipBack} from "react-icons/io5"
 import {IoPlaySkipForward} from "react-icons/io5"
 import {IoPlay} from "react-icons/io5"
 import {IoPause} from "react-icons/io5"
-
+import {IoVolumeHigh} from "react-icons/io5"
 
 class Player extends React.Component {
 	constructor(props) {
@@ -12,16 +12,19 @@ class Player extends React.Component {
     this.state = {
       isPlaying : false,
       currentTime : 0,
-      duration: 0
+      duration: 0,
+      volume: 0.1,
     }
 
     this.handlePlayPause = this.handlePlayPause.bind(this)
     this.changeRange = this.changeRange.bind(this)
+    this.volumeChange = this.volumeChange.bind(this)
 	}
 
   componentDidMount() {
     this.slider.value = 0
     this.currentTimeInterval = null
+    
     
 
     this.audio.onloadedmetadata = function() {
@@ -55,6 +58,11 @@ class Player extends React.Component {
 
   nextSound() {
 
+  }
+
+  volumeChange(e) {
+    this.audio.volume = e.target.value / 1000.0
+    this.setState({ volume: e.target.value / 1000.0 })
   }
   
   handlePlayPause() {
@@ -130,7 +138,15 @@ class Player extends React.Component {
               <source src="https://active-storage-audiofog-dev.s3.us-west-1.amazonaws.com/01+Body+Electric.mp3" type="audio/mpeg" />
             </audio> */}
             <div>
-              volume control
+              <IoVolumeHigh />
+              <input 
+                type="range"
+                className="volume-bar"
+                min="0.0"
+                max="1000.0"
+                defaultValue={this.state.volume * 1000}
+                onChange={this.volumeChange}
+              />
             </div>
             <div>
               Song/Artist info

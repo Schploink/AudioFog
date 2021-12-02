@@ -7403,6 +7403,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Player = /*#__PURE__*/function (_React$Component) {
   _inherits(Player, _React$Component);
 
@@ -7417,10 +7418,12 @@ var Player = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       isPlaying: false,
       currentTime: 0,
-      duration: 0
+      duration: 0,
+      volume: 0.1
     };
     _this.handlePlayPause = _this.handlePlayPause.bind(_assertThisInitialized(_this));
     _this.changeRange = _this.changeRange.bind(_assertThisInitialized(_this));
+    _this.volumeChange = _this.volumeChange.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -7466,6 +7469,14 @@ var Player = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "nextSound",
     value: function nextSound() {}
+  }, {
+    key: "volumeChange",
+    value: function volumeChange(e) {
+      this.audio.volume = e.target.value / 1000.0;
+      this.setState({
+        volume: e.target.value / 1000.0
+      });
+    }
   }, {
     key: "handlePlayPause",
     value: function handlePlayPause() {
@@ -7536,7 +7547,14 @@ var Player = /*#__PURE__*/function (_React$Component) {
         max: this.state.duration
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "time-remaining"
-      }, normalizeTime(this.state.duration)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "volume control"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Song/Artist info")));
+      }, normalizeTime(this.state.duration)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_1__.IoVolumeHigh, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        type: "range",
+        className: "volume-bar",
+        min: "0.0",
+        max: "1000.0",
+        defaultValue: this.state.volume * 1000,
+        onChange: this.volumeChange
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Song/Artist info")));
     }
   }]);
 
