@@ -20,11 +20,11 @@ class NavBar extends React.Component {
 								<img className="nav-logo" src={window.audioFogLogo} alt="Audiofog logo" />
 							</div>
 									<Link to="/discover" className='nav-home'> Home </Link>
-									<a className='nav-stream'> Stream </a>
+									<Link to="/discover" className='nav-stream'> Stream </Link>
 						</div>
 						<div className="navbar-right">
 									<Link to="/upload" className='nav-upload'> Upload </Link>
-									<a className='nav-user'> User Profile </a>
+									<Link to={`/users/${this.props.user.id}`} className='nav-user'> Greetings, {this.props.user.username} </Link>
 									<a className="navbar-gh-icon-parent" href="https://github.com/Schploink/AudioFog" target="_blank">
                     <FontAwesomeIcon className="navbar-icon" icon={faGithub}/>
                   </a>
