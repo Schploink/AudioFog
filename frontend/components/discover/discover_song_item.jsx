@@ -25,6 +25,7 @@ class DiscoverSongItem extends React.Component {
         } else {
             this.props.receiveCurrentSound(this.props.sound.id)
             this.props.playSound()
+            // document.getElementById('audio').play()
         }
     }
 
@@ -46,11 +47,9 @@ class DiscoverSongItem extends React.Component {
                         </div>
                     </div>
                 </div>
-
                 <Link to={`/sounds/${currentSound.id}`}>
                     <div className="discover-sound-title">{currentSound.description}</div>
                 </Link>
-
                 <Link to={`/users/${currentSound.uploader_id}`}>
                     <div className="discover-artist-name">{currentSound.artist}</div>
                 </Link>

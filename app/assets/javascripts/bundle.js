@@ -6827,7 +6827,7 @@ var DiscoverSongItem = /*#__PURE__*/function (_React$Component) {
         }
       } else {
         this.props.receiveCurrentSound(this.props.sound.id);
-        this.props.playSound();
+        this.props.playSound(); // document.getElementById('audio').play()
       }
     }
   }, {
@@ -7048,7 +7048,10 @@ var Greeting = /*#__PURE__*/function (_React$Component) {
           return _this.props.openModal('signup');
         }
       }, "Create account"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        className: "creators-button"
+        className: "creators-button",
+        onClick: function onClick() {
+          return _this.props.openModal('login');
+        }
       }, "For Creators")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "main-image-text"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
@@ -7056,7 +7059,10 @@ var Greeting = /*#__PURE__*/function (_React$Component) {
       }, "What's next in music poured out of AudioFog"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
         className: "image-text"
       }, "Upload your first sound and begin your journey into the fog. AudioFog gives you space to create, find your fans, and connect with other artists."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        className: "uploading-button"
+        className: "uploading-button",
+        onClick: function onClick() {
+          return _this.props.openModal('login');
+        }
       }, "Start uploading today"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "trending-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
@@ -7426,7 +7432,6 @@ var Player = /*#__PURE__*/function (_React$Component) {
     _this.handlePlayPause = _this.handlePlayPause.bind(_assertThisInitialized(_this));
     _this.changeRange = _this.changeRange.bind(_assertThisInitialized(_this));
     _this.volumeChange = _this.volumeChange.bind(_assertThisInitialized(_this));
-    _this.photoError = _this.photoError.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -7447,6 +7452,8 @@ var Player = /*#__PURE__*/function (_React$Component) {
       this.audio.onplay = function () {
         _this2.currentTimeInterval = setInterval(function () {
           _this2.slider.value = _this2.audio.currentTime;
+
+          _this2.slider.style.setProperty('--seek-before-width', "".concat(_this2.slider.value / _this2.state.duration * 100, "%"));
 
           _this2.setState({
             currentTime: _this2.audio.currentTime
@@ -7503,11 +7510,6 @@ var Player = /*#__PURE__*/function (_React$Component) {
       this.slider.style.setProperty('--seek-before-width', "".concat(this.slider.value / this.state.duration * 100, "%"));
     }
   }, {
-    key: "photoError",
-    value: function photoError() {
-      return "this.style.display='none'";
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
@@ -7525,6 +7527,12 @@ var Player = /*#__PURE__*/function (_React$Component) {
       var soundName = this.props.currentSound ? this.props.currentSound.description : "";
       var soundId = this.props.currentSound ? this.props.currentSound.id : "1";
       var artistId = this.props.currentSound ? this.props.currentSound.uploader_id : "1";
+      var artDiv = this.props.currentSound ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        src: albumArt,
+        className: "player-song-art"
+      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "player-artist"
+      }, " No Sound Selected ");
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "player-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -7575,20 +7583,17 @@ var Player = /*#__PURE__*/function (_React$Component) {
         className: "player-track-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "player-art-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        src: albumArt,
-        className: "player-song-art"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, artDiv), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "song-artist-title"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-        to: "/users/".concat(artistId)
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "player-artist"
-      }, artistName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: "/sounds/".concat(soundId)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "player-song-title"
-      }, soundName))))));
+      }, soundName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+        to: "/users/".concat(artistId)
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "player-artist"
+      }, artistName))))));
     }
   }]);
 
@@ -8373,10 +8378,19 @@ var User = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(User);
 
   function User(props) {
+    var _this;
+
     _classCallCheck(this, User);
 
-    return _super.call(this, props);
-  }
+    _this = _super.call(this, props);
+
+    _this.props.fetchUser(_this.props.match.params.userId);
+
+    return _this;
+  } // static getDerivedStateFromProps(props, state) {
+  //   props.showUser
+  // }
+
 
   _createClass(User, [{
     key: "componentDidMount",
@@ -8384,11 +8398,13 @@ var User = /*#__PURE__*/function (_React$Component) {
       // this.props.fetchSounds()
       // debugger
       console.log("hello");
-      this.props.fetchUser(this.props.match.params.userId); //   .fail(() => this.props.history.push("/discover"))
+      this.props.fetchUser(this.props.match.params.userId).then(console.log(this.props)); // .fail(() => this.props.history.push("/discover"))
     }
   }, {
     key: "render",
     value: function render() {
+      // const grabUser = this.props.fetchUser(this.props.match.params.userId)
+      // console.log(grabUser)
       var user = this.props.showUser; // debugger
       // let userSounds = this.props.sounds
 

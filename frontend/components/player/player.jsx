@@ -20,7 +20,6 @@ class Player extends React.Component {
     this.handlePlayPause = this.handlePlayPause.bind(this)
     this.changeRange = this.changeRange.bind(this)
     this.volumeChange = this.volumeChange.bind(this)
-    this.photoError = this.photoError.bind(this)
 	}
 
   componentDidMount() {
@@ -36,6 +35,7 @@ class Player extends React.Component {
     this.audio.onplay = () => {
       this.currentTimeInterval = setInterval( () => {
         this.slider.value = this.audio.currentTime
+        this.slider.style.setProperty('--seek-before-width', `${this.slider.value / this.state.duration * 100}%`)
         this.setState({currentTime: this.audio.currentTime})
       }, 200)
     }
@@ -83,10 +83,7 @@ class Player extends React.Component {
     this.slider.value = e.target.value
     this.setState({currentTime: e.target.value})
     this.slider.style.setProperty('--seek-before-width', `${this.slider.value / this.state.duration * 100}%`)
-  }
-
-  photoError() {
-    return "this.style.display='none'"
+    
   }
 
 	render() {
@@ -104,11 +101,14 @@ class Player extends React.Component {
     const soundName = this.props.currentSound ? this.props.currentSound.description : ""
     const soundId = this.props.currentSound ? this.props.currentSound.id : "1"
     const artistId = this.props.currentSound ? this.props.currentSound.uploader_id : "1"
+    const artDiv = this.props.currentSound ? <img src={albumArt} className="player-song-art" /> : <div className="player-artist"> No Sound Selected </div>
+    
 
 		return (
 				<div className="player-container">
           <div className="player-controls">
-            <audio id="audio" 
+            <audio 
+              id="audio" 
               ref={(audio) => {this.audio = audio}} 
               src={this.props.currentSound ? this.props.currentSound.soundUrl : ""} 
               preload="metadata">
@@ -163,14 +163,15 @@ class Player extends React.Component {
                   {/* <object data={window.audioFogLogo} className="player-song-art" type="image/jpg">
                     <img src={albumArt} className="player-song-art"/>
                   </object> */}
-                  <img src={albumArt} className="player-song-art" />
+                  {/* <img src={albumArt} className="player-song-art" /> */}
+                  {artDiv}
               </div>
               <div className="song-artist-title">
-                <Link to={`/users/${artistId}`}>
-                  <div className="player-artist">{artistName}</div>
-                </Link>
                 <Link to={`/sounds/${soundId}`}>
                   <div className="player-song-title">{soundName}</div>
+                </Link>
+                <Link to={`/users/${artistId}`}>
+                  <div className="player-artist">{artistName}</div>
                 </Link>
               </div>
             </div>

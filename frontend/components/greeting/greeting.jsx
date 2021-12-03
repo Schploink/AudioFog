@@ -44,7 +44,8 @@ render () {
             Create account
           </button>
           <button
-            className="creators-button">
+            className="creators-button"
+            onClick={() => this.props.openModal('login')}>
             For Creators
           </button>
         </nav>
@@ -55,7 +56,8 @@ render () {
           <p className="image-text">
             Upload your first sound and begin your journey into the fog. AudioFog gives you space to create, find your fans, and connect with other artists.
           </p>
-          <button className="uploading-button">
+          <button className="uploading-button"
+          onClick={() => this.props.openModal('login')}>
             Start uploading today
           </button>
         </div>

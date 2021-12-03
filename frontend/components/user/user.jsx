@@ -8,18 +8,25 @@ class User extends React.Component {
 
   constructor (props) {
     super(props)
+    this.props.fetchUser(this.props.match.params.userId)
   }
+
+  // static getDerivedStateFromProps(props, state) {
+  //   props.showUser
+  // }
 
   componentDidMount() {
     // this.props.fetchSounds()
     // debugger
     console.log("hello")
     this.props.fetchUser(this.props.match.params.userId)
-    
-    //   .fail(() => this.props.history.push("/discover"))
+      .then(console.log(this.props))
+      // .fail(() => this.props.history.push("/discover"))
   }
   
   render () {
+    // const grabUser = this.props.fetchUser(this.props.match.params.userId)
+    // console.log(grabUser)
     let user = this.props.showUser
     // debugger
     // let userSounds = this.props.sounds
