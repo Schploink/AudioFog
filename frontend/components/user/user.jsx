@@ -8,26 +8,29 @@ class User extends React.Component {
 
   constructor (props) {
     super(props)
-    this.props.fetchUser(this.props.match.params.userId)
-  }
 
-  // static getDerivedStateFromProps(props, state) {
-  //   props.showUser
-  // }
+    this.state = {
+      user: this.props.fetchUser(this.props.match.params.userId)
+    }
+  }
 
   componentDidMount() {
     // this.props.fetchSounds()
-    // debugger
-    console.log("hello")
     this.props.fetchUser(this.props.match.params.userId)
-      .then(console.log(this.props))
-      // .fail(() => this.props.history.push("/discover"))
+      .fail(() => this.props.history.push("/discover"))
   }
+
+  // componentDidUpdate() {
+  //   this.props.fetchUser(this.props.match.params.userId)
+  //     .then(console.log(this.props))
+  // }
   
   render () {
-    // const grabUser = this.props.fetchUser(this.props.match.params.userId)
     // console.log(grabUser)
     let user = this.props.showUser
+    // let userPic = user ? user.profilePicUrl : ""
+    let userPic = user ? this.props.sounds[0].photoUrl : ""
+    let userName = user ? user.username : ""
     // debugger
     // let userSounds = this.props.sounds
 
@@ -37,10 +40,10 @@ class User extends React.Component {
         <div className="discover-background">
           <div className="discover-content">
             <div className="user-top">
-              <img className="user-pic" src={user.profilePicUrl} />
+              <img className="user-pic" src={userPic} />
               <div className="user-name">
                 <span className="name-text">
-                  {user.username}
+                  {userName}
                 </span>
               </div>
             </div>

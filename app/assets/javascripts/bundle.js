@@ -8385,29 +8385,34 @@ var User = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, User);
 
     _this = _super.call(this, props);
-
-    _this.props.fetchUser(_this.props.match.params.userId);
-
+    _this.state = {
+      user: _this.props.fetchUser(_this.props.match.params.userId)
+    };
     return _this;
-  } // static getDerivedStateFromProps(props, state) {
-  //   props.showUser
-  // }
-
+  }
 
   _createClass(User, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this2 = this;
+
       // this.props.fetchSounds()
-      // debugger
-      console.log("hello");
-      this.props.fetchUser(this.props.match.params.userId).then(console.log(this.props)); // .fail(() => this.props.history.push("/discover"))
-    }
+      this.props.fetchUser(this.props.match.params.userId).fail(function () {
+        return _this2.props.history.push("/discover");
+      });
+    } // componentDidUpdate() {
+    //   this.props.fetchUser(this.props.match.params.userId)
+    //     .then(console.log(this.props))
+    // }
+
   }, {
     key: "render",
     value: function render() {
-      // const grabUser = this.props.fetchUser(this.props.match.params.userId)
       // console.log(grabUser)
-      var user = this.props.showUser; // debugger
+      var user = this.props.showUser; // let userPic = user ? user.profilePicUrl : ""
+
+      var userPic = user ? this.props.sounds[0].photoUrl : "";
+      var userName = user ? user.username : ""; // debugger
       // let userSounds = this.props.sounds
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -8418,12 +8423,12 @@ var User = /*#__PURE__*/function (_React$Component) {
         className: "user-top"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         className: "user-pic",
-        src: user.profilePicUrl
+        src: userPic
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "user-name"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
         className: "name-text"
-      }, user.username))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, userName))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "user-bottom"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "user-bottom-left"
