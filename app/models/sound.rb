@@ -11,4 +11,5 @@ class Sound < ApplicationRecord
   
   has_one_attached :photo
   has_one_attached :sound
+  has_one_attached :wave
 end
