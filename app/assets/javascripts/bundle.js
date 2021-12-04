@@ -8105,7 +8105,10 @@ var ShowSound = /*#__PURE__*/function (_React$Component) {
         className: "artist-name"
       }, sound.artist)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "show-song-title"
-      }, sound.description))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Playbar tracker w/waveform")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+      }, sound.description))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        className: "waveform",
+        src: sound.waveUrl
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
         className: "show-page-item-art",
         src: sound.photoUrl
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -8412,8 +8415,7 @@ var User = /*#__PURE__*/function (_React$Component) {
       var user = this.props.showUser; // let userPic = user ? user.profilePicUrl : ""
 
       var userPic = user ? user.profilePicURL : "https://active-storage-audiofog-dev.s3.us-west-1.amazonaws.com/tumblr_o12glwV45e1qagjnzo1_640.jpg";
-      var userName = user ? user.username : "";
-      debugger; // let userSounds = this.props.sounds
+      var userName = user ? user.username : ""; // let userSounds = this.props.sounds
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "discover-background"

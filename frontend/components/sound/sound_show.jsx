@@ -53,10 +53,13 @@ class ShowSound extends React.Component {
                     </div>
                   </div>
                 </div>
-                <div>Playbar tracker w/waveform</div>
+                <img className="waveform"
+                  src={sound.waveUrl} 
+                />
               </div>
               <img className="show-page-item-art"
-                src={sound.photoUrl} />
+                src={sound.photoUrl} 
+              />
             </div> 
             <div className="show-sound-bottom">
               <div className="show-sound-bottom-left">
