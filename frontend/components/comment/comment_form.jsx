@@ -20,8 +20,8 @@ class CommentForm extends React.Component {
     }
 
     handleSubmit(e) {
-      e.preventDefault()
       console.log(this.props)
+      e.preventDefault()
       if (this.state.body.length > 0) {
         this.props.createComment(this.state)
           .then(() => this.props.fetchSound(this.props.soundId))
@@ -37,7 +37,7 @@ class CommentForm extends React.Component {
     render() {
       let submit = this.handleSubmit
       document.onkeydown = function(e) {
-        if (e.code === 13) {
+        if (e.keyCode === 13) {
           submit(e)
         }
       }
@@ -51,6 +51,10 @@ class CommentForm extends React.Component {
             value={this.state.body}
             onChange={this.update('body')}
           />
+          {/* <button
+          onClick={this.handleSubmit(this.state)}>
+            Submit
+          </button> */}
         </div>
       )
     }

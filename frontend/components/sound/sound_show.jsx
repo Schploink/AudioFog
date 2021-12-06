@@ -16,7 +16,6 @@ class ShowSound extends React.Component {
 
     componentDidMount() {
         this.props.fetchSounds()
-        console.log(this.props)
         // this.props.fetchSound(this.props.match.params.soundId)
         //     .fail(() => this.props.history.push("/discover"))
     }
@@ -29,6 +28,8 @@ class ShowSound extends React.Component {
 
     render() {
       let sound = this.props.pageSound
+
+      
 
       return (
       <div>

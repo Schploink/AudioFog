@@ -40,8 +40,8 @@ class SessionForm extends React.Component {
     e.preventDefault();
     const demoUser = Object.assign({
       email: "demolovato@they.com",
-      password: "secretdemo",
-      username: "Kerri Chandler"
+      password: "password",
+      username: "Arthur Russell"
     })
     this.props.processDemo(demoUser)
       // .then(() => this.props.history.push('/discover'))

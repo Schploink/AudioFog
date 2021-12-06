@@ -6554,8 +6554,8 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
     value: function handleSubmit(e) {
       var _this3 = this;
 
-      e.preventDefault();
       console.log(this.props);
+      e.preventDefault();
 
       if (this.state.body.length > 0) {
         this.props.createComment(this.state).then(function () {
@@ -6574,7 +6574,7 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
       var submit = this.handleSubmit;
 
       document.onkeydown = function (e) {
-        if (e.code === 13) {
+        if (e.keyCode === 13) {
           submit(e);
         }
       };
@@ -7836,8 +7836,8 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       e.preventDefault();
       var demoUser = Object.assign({
         email: "demolovato@they.com",
-        password: "secretdemo",
-        username: "Kerri Chandler"
+        password: "password",
+        username: "Arthur Russell"
       });
       this.props.processDemo(demoUser) // .then(() => this.props.history.push('/discover'))
       .then(this.props.closeModal());
@@ -8069,8 +8069,7 @@ var ShowSound = /*#__PURE__*/function (_React$Component) {
   _createClass(ShowSound, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchSounds();
-      console.log(this.props); // this.props.fetchSound(this.props.match.params.soundId)
+      this.props.fetchSounds(); // this.props.fetchSound(this.props.match.params.soundId)
       //     .fail(() => this.props.history.push("/discover"))
     }
   }, {
