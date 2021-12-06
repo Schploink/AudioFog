@@ -8248,12 +8248,57 @@ var Upload = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(Upload);
 
   function Upload(props) {
+    var _this;
+
     _classCallCheck(this, Upload);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.state = {
+      title: "",
+      albumArt: null,
+      audioFile: null,
+      imagePreview: null
+    };
+    _this.handleAlbumArtFile = _this.handleAlbumArtFile.bind(_assertThisInitialized(_this));
+    _this.handleMusicFile = _this.handleMusicFile.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Upload, [{
+    key: "handleAlbumArtFile",
+    value: function handleAlbumArtFile(e) {
+      e.preventDefault();
+      var imageFile = e.currentTarget.files[0];
+      this.setState({
+        albumArt: imageFile,
+        imagePreview: URL.createObjectURL(imageFile)
+      });
+    }
+  }, {
+    key: "handleMusicFile",
+    value: function handleMusicFile(e) {
+      e.preventDefault();
+      this.setState({
+        audioFile: e.currentTarget.files[0]
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      var _this2 = this;
+
+      e.preventDefault();
+      var formData = new FormData();
+      formData.append('sound[description]', this.state.title);
+      formData.append('sound[photo]', this.state.albumArt);
+      formData.append('sound[sound]', this.state.audioFile);
+      formData.append('sound[uploader_id]', this.props.currentUserId);
+      this.props.createSound(formData).then(function () {
+        return _this2.props.history.push("/discover");
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_1__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -8313,18 +8358,16 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    sounds: state.entities.sounds,
-    currentUser: state.entities.users[state.session.id]
+    currentUserId: state.session.id,
+    currentUser: state.entities.users[state.session.id],
+    sounds: state.entities.sounds
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    fetchAllSounds: function fetchAllSounds() {
-      return dispatch((0,_actions_sound_actions__WEBPACK_IMPORTED_MODULE_2__.fetchAllSounds)());
-    },
-    logout: function logout() {
-      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__.logout)());
+    createSound: function createSound(sound) {
+      return dispatch((0,_actions_sound_actions__WEBPACK_IMPORTED_MODULE_2__.createSound)(sound));
     }
   };
 };

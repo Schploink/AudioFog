@@ -1,17 +1,17 @@
 
 import { connect } from 'react-redux';
 import Upload from './upload'
-import { fetchAllSounds } from '../../../actions/sound_actions';
+import { createSound } from '../../../actions/sound_actions';
 import { logout } from "../../../actions/session_actions"
 
 const mapStateToProps = (state) => ({
-  sounds: state.entities.sounds,
+  currentUserId: state.session.id,
   currentUser: state.entities.users[state.session.id],
+  sounds: state.entities.sounds,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchAllSounds: () => dispatch(fetchAllSounds()),
-  logout: () => dispatch(logout()),
+  createSound: (sound) => dispatch(createSound(sound))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Upload);
