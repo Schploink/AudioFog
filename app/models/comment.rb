@@ -1,5 +1,5 @@
 class Comment < ApplicationRecord
-  validates :body, :track_id, :author, presence: true
+  validates :body, :sound_id, :author, presence: true
 
   validates :body, length: {minimum: 1}
 

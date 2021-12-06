@@ -43,6 +43,12 @@ class Upload extends React.Component {
     }
 
     render () {
+
+      const imagePreview = this.state.imagePreview 
+      ? <img className="image-preview" src={this.state.imagePreview}/> 
+      : <div></div>
+
+
       return (
         <>
           <Navbar />
@@ -52,6 +58,7 @@ class Upload extends React.Component {
                 Upload
               </div>
               <div className='upload-form'>
+                {imagePreview}
                 <label className="upload-sound-text">
                   Add Audio File
                   <input className="current-sound" type="file" />
@@ -64,7 +71,9 @@ class Upload extends React.Component {
                   Sound Title:
                   <input type="text" />
                 </label>
-                <button className="upload-submit-button">
+                <button 
+                  className="upload-submit-button"
+                  onClick={this.handleSubmit}>
                   Submit
                 </button>
               </div>

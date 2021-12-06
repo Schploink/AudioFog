@@ -2,7 +2,7 @@ import React from 'react';
 import {IoPlay} from "react-icons/io5"
 import {IoPause} from "react-icons/io5"
 import { Link } from 'react-router-dom';
-import CommentForm from '../comment/comment_form';
+import CommentForm from '../comment/comment_form_container';
 import Navbar from "../navbar/navbar_container"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin, faAngellist } from '@fortawesome/free-brands-svg-icons'
