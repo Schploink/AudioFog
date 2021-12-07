@@ -6,12 +6,15 @@ class CommentForm extends React.Component {
 
         this.state = {
             body: '',
-            soundId: this.props.soundId
+            sound_id: this.props.soundId
         }
 
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
+    componentDidMount(){
+      this.props.fetchComments()
+    }
 
     update(field) {
       return e => {
@@ -20,15 +23,14 @@ class CommentForm extends React.Component {
     }
 
     handleSubmit(e) {
-      console.log(this.props)
+      console.log(this.state)
       e.preventDefault()
       if (this.state.body.length > 0) {
         this.props.createComment(this.state)
-          .then(() => this.props.fetchSound(this.props.soundId))
           .then(() => {
             this.setState({
               body: '',
-              soundId: this.props.soundId
+              sound_id: this.props.soundId
             })
           })
       }

@@ -35,7 +35,7 @@ class Player extends React.Component {
     this.audio.onplay = () => {
       this.currentTimeInterval = setInterval( () => {
         this.slider.value = this.audio.currentTime
-        this.slider.style.setProperty('--seek-before-width', `${this.slider.value / this.state.duration * 100}%`)
+        this.slider.style.setProperty('--seek-before-width', `${(this.slider.value / this.state.duration * 100)+0.2}%`)
         this.setState({currentTime: this.audio.currentTime})
       }, 200)
     }
@@ -108,6 +108,7 @@ class Player extends React.Component {
 				<div className="player-container">
           <div className="player-controls">
             <audio 
+              autoPlay
               id="audio" 
               ref={(audio) => {this.audio = audio}} 
               src={this.props.currentSound ? this.props.currentSound.soundUrl : ""} 

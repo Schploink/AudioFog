@@ -1,5 +1,10 @@
 class Api::CommentsController < ApplicationController
 
+    def index 
+        @comments = Comment.where(sound_id: params[:sound_id]);
+        render :index
+    end
+
     def create
         @comment = Comment.new(comment_params)
         @comment.author_id = current_user.id

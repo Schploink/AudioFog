@@ -1,5 +1,5 @@
 
-import { RECEIVE_COMMENT, REMOVE_COMMENT, CLEAR_COMMENTS } from '../actions/comment_actions'
+import { RECEIVE_COMMENT, REMOVE_COMMENT, RECEIVE_ALL_COMMENTS} from '../actions/comment_actions'
 
 import { RECEIVE_SOUND } from '../actions/sound_actions'
 
@@ -10,8 +10,12 @@ const CommentsReducer = (oldState = {}, action) => {
 
     switch (action.type) {
         
+        case RECEIVE_ALL_COMMENTS:
+            debugger
+            return action.comments
+
         case RECEIVE_COMMENT:
-            nextState[action.comment.comment.id] = action.comment.comment;
+            nextState[action.comment.id] = action.comment;
             return nextState;
 
         case REMOVE_COMMENT:

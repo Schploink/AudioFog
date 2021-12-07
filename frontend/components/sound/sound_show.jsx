@@ -16,14 +16,28 @@ class ShowSound extends React.Component {
 
     componentDidMount() {
         this.props.fetchSounds()
+        this.props.fetchComments(this.props.pageSound.id)
         // this.props.fetchSound(this.props.match.params.soundId)
         //     .fail(() => this.props.history.push("/discover"))
     }
 
     updateCurrentSound(e) {
         e.preventDefault()
-        this.props.receiveCurrentSound(this.props.sound.id)
-        this.props.playSound()
+
+        if (this.props.currentSound === this.props.pageSound) {
+            if (this.props.isPlaying) {
+                document.getElementById('audio').pause()
+                this.props.pauseSound()
+            } else {
+                document.getElementById('audio').play()
+                this.props.playSound()
+            }
+        } else {
+            this.props.receiveCurrentSound(this.props.pageSound.id)
+            this.props.playSound()
+            setTimeout( () => 
+            document.getElementById('audio').play(), 200)
+        }
     }
 
     render() {
@@ -39,8 +53,9 @@ class ShowSound extends React.Component {
             <div className="show-sound-top">
               <div className="show-left-box">
                 <div className="top-left-box">
-                  <div className="show-play-background">
-                      { this.props.currentSound === this.props.sound && this.props.isPlaying ? <IoPause /> : <IoPlay />}
+                  <div className="show-play-background"
+                    onClick={this.updateCurrentSound}>
+                      { this.props.currentSound === this.props.pageSound && this.props.isPlaying ? <IoPause /> : <IoPlay />}
                   </div>
                   <div className="title-artist">
                     <Link to={`/users/${sound.uploader_id}`}
@@ -64,7 +79,8 @@ class ShowSound extends React.Component {
             </div> 
             <div className="show-sound-bottom">
               <div className="show-sound-bottom-left">
-                <div><CommentForm /></div>
+                <div><CommentForm 
+                soundId={this.props.pageSound.id}/></div>
                 <div>User profile pic</div>
                 <div>Username</div>
                 <div>number of comments</div>

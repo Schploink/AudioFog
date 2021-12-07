@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :jason} do
     resources :users, only: [ :create, :show ]
-    resources :sounds, only: [:create, :update, :index, :show, :destroy]
+    resources :sounds, only: [:create, :update, :index, :show, :destroy] do
+      resources :comments, only: [ :index ]
+    end
     resources :comments, only: [ :create, :destroy ]
     resource :session, only: [:create, :destroy]
   end

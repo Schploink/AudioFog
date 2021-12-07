@@ -25,8 +25,8 @@ class DiscoverSongItem extends React.Component {
         } else {
             this.props.receiveCurrentSound(this.props.sound.id)
             this.props.playSound()
-            setTimeout( () => 
-            document.getElementById('audio').play(), 200)
+            // setTimeout( () => 
+            // document.getElementById('audio').play(), 200)
         }
     }
 

@@ -1,3 +1,10 @@
+export const fetchComments = (soundId) => {
+    return $.ajax({
+        method: "GET",
+        url: `/api/sounds/${soundId}/comments`,
+    })
+}
+
 export const createComment = comment => {
     return $.ajax({
         url: '/api/comments',

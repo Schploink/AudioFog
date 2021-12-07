@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import ShowSound from "./sound_show";
 import { fetchSound, fetchAllSounds, destroySound } from '../../actions/sound_actions';
 import { receiveCurrentSound, playSound, pauseSound } from '../../actions/playstate_actions';
+import { fetchComments } from '../../actions/comment_actions';
 
 const mSTP = (state, ownProps) => {
     return {
@@ -19,7 +20,8 @@ const mDTP = dispatch => {
         receiveCurrentSound: soundId => dispatch(receiveCurrentSound(soundId)),
         playSound: () => dispatch(playSound()),
         pauseSound: () => dispatch(pauseSound()),
-        deleteSound: soundId => dispatch(destroySound(soundId))
+        deleteSound: soundId => dispatch(destroySound(soundId)),
+        fetchComments: soundId => dispatch(fetchComments(soundId))
     }
 }
 

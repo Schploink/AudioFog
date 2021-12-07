@@ -6103,15 +6103,25 @@ var convertCurry = convert.bind(null, react__WEBPACK_IMPORTED_MODULE_2__.createE
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RECEIVE_ALL_COMMENTS": () => (/* binding */ RECEIVE_ALL_COMMENTS),
 /* harmony export */   "RECEIVE_COMMENT": () => (/* binding */ RECEIVE_COMMENT),
 /* harmony export */   "REMOVE_COMMENT": () => (/* binding */ REMOVE_COMMENT),
+/* harmony export */   "fetchComments": () => (/* binding */ fetchComments),
 /* harmony export */   "createComment": () => (/* binding */ createComment),
 /* harmony export */   "deleteComment": () => (/* binding */ deleteComment)
 /* harmony export */ });
 /* harmony import */ var _util_comment_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/comment_api_util */ "./frontend/util/comment_api_util.js");
 
+var RECEIVE_ALL_COMMENTS = 'RECEIVE_ALL_COMMENTS';
 var RECEIVE_COMMENT = 'RECEIVE_COMMENT';
 var REMOVE_COMMENT = 'REMOVE_COMMENT';
+
+var receiveAllComments = function receiveAllComments(comments) {
+  return {
+    type: RECEIVE_ALL_COMMENTS,
+    comments: comments
+  };
+};
 
 var receiveComment = function receiveComment(comment) {
   return {
@@ -6127,6 +6137,13 @@ var removeComment = function removeComment(commentId) {
   };
 };
 
+var fetchComments = function fetchComments(soundId) {
+  return function (dispatch) {
+    return _util_comment_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchComments(soundId).then(function (comments) {
+      return dispatch(receiveAllComments(comments));
+    });
+  };
+};
 var createComment = function createComment(comment) {
   return function (dispatch) {
     return _util_comment_api_util__WEBPACK_IMPORTED_MODULE_0__.createComment(comment).then(function (comment) {
@@ -6534,13 +6551,18 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       body: '',
-      soundId: _this.props.soundId
+      sound_id: _this.props.soundId
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(CommentForm, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchComments();
+    }
+  }, {
     key: "update",
     value: function update(field) {
       var _this2 = this;
@@ -6554,16 +6576,14 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
     value: function handleSubmit(e) {
       var _this3 = this;
 
-      console.log(this.props);
+      console.log(this.state);
       e.preventDefault();
 
       if (this.state.body.length > 0) {
         this.props.createComment(this.state).then(function () {
-          return _this3.props.fetchSound(_this3.props.soundId);
-        }).then(function () {
           _this3.setState({
             body: '',
-            soundId: _this3.props.soundId
+            sound_id: _this3.props.soundId
           });
         });
       }
@@ -6622,8 +6642,8 @@ var mSTP = function mSTP(state, ownProps) {
   return {
     currentUserId: state.session.id,
     currentUser: state.entities.users[state.session.id],
-    comments: state.entities.comments,
-    soundId: ownProps.soundId
+    comments: state.entities.comments // soundId: ownProps.soundId,
+
   };
 };
 
@@ -6634,6 +6654,9 @@ var mDTP = function mDTP(dispatch) {
     },
     fetchSound: function fetchSound(soundId) {
       return dispatch((0,_actions_sound_actions__WEBPACK_IMPORTED_MODULE_3__.fetchSound)(soundId));
+    },
+    fetchComments: function fetchComments() {
+      return dispatch(_actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__.fetchComments);
     }
   };
 };
@@ -6871,10 +6894,8 @@ var DiscoverSongItem = /*#__PURE__*/function (_React$Component) {
         }
       } else {
         this.props.receiveCurrentSound(this.props.sound.id);
-        this.props.playSound();
-        setTimeout(function () {
-          return document.getElementById('audio').play();
-        }, 200);
+        this.props.playSound(); // setTimeout( () => 
+        // document.getElementById('audio').play(), 200)
       }
     }
   }, {
@@ -7502,7 +7523,7 @@ var Player = /*#__PURE__*/function (_React$Component) {
         _this2.currentTimeInterval = setInterval(function () {
           _this2.slider.value = _this2.audio.currentTime;
 
-          _this2.slider.style.setProperty('--seek-before-width', "".concat(_this2.slider.value / _this2.state.duration * 100, "%"));
+          _this2.slider.style.setProperty('--seek-before-width', "".concat(_this2.slider.value / _this2.state.duration * 100 + 0.2, "%"));
 
           _this2.setState({
             currentTime: _this2.audio.currentTime
@@ -7587,6 +7608,7 @@ var Player = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "player-controls"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("audio", {
+        autoPlay: true,
         id: "audio",
         ref: function ref(audio) {
           _this3.audio = audio;
@@ -8116,15 +8138,30 @@ var ShowSound = /*#__PURE__*/function (_React$Component) {
   _createClass(ShowSound, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchSounds(); // this.props.fetchSound(this.props.match.params.soundId)
+      this.props.fetchSounds();
+      this.props.fetchComments(this.props.pageSound.id); // this.props.fetchSound(this.props.match.params.soundId)
       //     .fail(() => this.props.history.push("/discover"))
     }
   }, {
     key: "updateCurrentSound",
     value: function updateCurrentSound(e) {
       e.preventDefault();
-      this.props.receiveCurrentSound(this.props.sound.id);
-      this.props.playSound();
+
+      if (this.props.currentSound === this.props.pageSound) {
+        if (this.props.isPlaying) {
+          document.getElementById('audio').pause();
+          this.props.pauseSound();
+        } else {
+          document.getElementById('audio').play();
+          this.props.playSound();
+        }
+      } else {
+        this.props.receiveCurrentSound(this.props.pageSound.id);
+        this.props.playSound();
+        setTimeout(function () {
+          return document.getElementById('audio').play();
+        }, 200);
+      }
     }
   }, {
     key: "render",
@@ -8141,8 +8178,9 @@ var ShowSound = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "top-left-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "show-play-background"
-      }, this.props.currentSound === this.props.sound && this.props.isPlaying ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_4__.IoPause, null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_4__.IoPlay, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "show-play-background",
+        onClick: this.updateCurrentSound
+      }, this.props.currentSound === this.props.pageSound && this.props.isPlaying ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_4__.IoPause, null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io5__WEBPACK_IMPORTED_MODULE_4__.IoPlay, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "title-artist"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
         to: "/users/".concat(sound.uploader_id),
@@ -8161,7 +8199,9 @@ var ShowSound = /*#__PURE__*/function (_React$Component) {
         className: "show-sound-bottom"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "show-sound-bottom-left"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comment_comment_form_container__WEBPACK_IMPORTED_MODULE_1__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "User profile pic"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Username"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "number of comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "comment list")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comment_comment_form_container__WEBPACK_IMPORTED_MODULE_1__.default, {
+        soundId: this.props.pageSound.id
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "User profile pic"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Username"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "number of comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "comment list")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "show-sound-bottom-right"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
         className: "navbar-gh-icon-parent",
@@ -8210,6 +8250,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sound_show__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sound_show */ "./frontend/components/sound/sound_show.jsx");
 /* harmony import */ var _actions_sound_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/sound_actions */ "./frontend/actions/sound_actions.js");
 /* harmony import */ var _actions_playstate_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/playstate_actions */ "./frontend/actions/playstate_actions.js");
+/* harmony import */ var _actions_comment_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/comment_actions */ "./frontend/actions/comment_actions.js");
+
 
 
 
@@ -8243,6 +8285,9 @@ var mDTP = function mDTP(dispatch) {
     },
     deleteSound: function deleteSound(soundId) {
       return dispatch((0,_actions_sound_actions__WEBPACK_IMPORTED_MODULE_2__.destroySound)(soundId));
+    },
+    fetchComments: function fetchComments(soundId) {
+      return dispatch((0,_actions_comment_actions__WEBPACK_IMPORTED_MODULE_4__.fetchComments)(soundId));
     }
   };
 };
@@ -8642,8 +8687,12 @@ var CommentsReducer = function CommentsReducer() {
   var nextState = Object.assign({}, oldState);
 
   switch (action.type) {
+    case _actions_comment_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ALL_COMMENTS:
+      debugger;
+      return action.comments;
+
     case _actions_comment_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_COMMENT:
-      nextState[action.comment.comment.id] = action.comment.comment;
+      nextState[action.comment.id] = action.comment;
       return nextState;
 
     case _actions_comment_actions__WEBPACK_IMPORTED_MODULE_0__.REMOVE_COMMENT:
@@ -9080,9 +9129,16 @@ var configureStore = function configureStore() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "fetchComments": () => (/* binding */ fetchComments),
 /* harmony export */   "createComment": () => (/* binding */ createComment),
 /* harmony export */   "deleteComment": () => (/* binding */ deleteComment)
 /* harmony export */ });
+var fetchComments = function fetchComments(soundId) {
+  return $.ajax({
+    method: "GET",
+    url: "/api/sounds/".concat(soundId, "/comments")
+  });
+};
 var createComment = function createComment(comment) {
   return $.ajax({
     url: '/api/comments',
