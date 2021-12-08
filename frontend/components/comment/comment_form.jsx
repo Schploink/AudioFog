@@ -12,9 +12,9 @@ class CommentForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    componentDidMount(){
-      this.props.fetchComments()
-    }
+    // componentDidMount(){
+    //   this.props.fetchComments()
+    // }
 
     update(field) {
       return e => {

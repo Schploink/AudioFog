@@ -1,39 +1,62 @@
-import React from 'react'
-import { render } from 'react-dom'
+import { Link } from 'react-router-dom'
+import React from 'react';
 import {IoPlay} from "react-icons/io5"
 import {IoPause} from "react-icons/io5"
 
-class UserItem extends React.Component {
-  constructor(props) {
-    super(props)
+class UserSongItem extends React.Component {
 
-  }
-  
-  render() {
-    return (
-      <div className="user-song-item">
-    
-        <div className="user-song-photo">
-            <Link to={`/sounds/${sound.id}`}>
-                <img className="user-song-art" src={sound.photoUrl}/>
-            </Link>
-        </div>
+    constructor(props) {
+        super(props)
 
-        <div className="user-song-body">
-            <div className="user-">
-                {playPauseButton}
+        this.updateCurrentSound = this.updateCurrentSound.bind(this)
+    }
 
-                <div className="indiv-track-right-top-rightside">
+    updateCurrentSound(e) {
+        e.preventDefault()
 
-                    <Link to={`/tracks/${track.id}`}>
-                        <div className="track-rightside-track-title">
-                            {sound.description}
+        if (this.props.currentSound === this.props.sound) {
+            if (this.props.isPlaying) {
+                document.getElementById('audio').pause()
+                this.props.pauseSound()
+            } else {
+                document.getElementById('audio').play()
+                this.props.playSound()
+            }
+        } else {
+            this.props.receiveCurrentSound(this.props.sound.id)
+            this.props.playSound()
+            // setTimeout( () => 
+            // document.getElementById('audio').play(), 200)
+        }
+    }
+
+    render() {
+        let currentSound = this.props.sound;
+
+        let coverArt = (<img className="discover-item-art"
+                    src={currentSound.photoUrl} />)
+        
+        return (
+            <div className="discover-song-item">
+                <div className="discover-art-button">
+                    <div className="discover-art">
+                        {coverArt}
+                    </div>
+                    <div className="discover-play-pause" onClick={this.updateCurrentSound}>
+                        <div className="discover-icon">
+                            { this.props.currentSound === this.props.sound && this.props.isPlaying ? <IoPause /> : <IoPlay />}
                         </div>
-                    </Link>
+                    </div>
                 </div>
+                <Link to={`/sounds/${currentSound.id}`}>
+                    <div className="discover-sound-title">{currentSound.description}</div>
+                </Link>
+                <Link to={`/users/${currentSound.uploader_id}`}>
+                    <div className="discover-artist-name">{currentSound.artist}</div>
+                </Link>
             </div>
-        </div>    
-    </div>
-  )}
+        )
+    }   
 }
-  
+
+export default UserSongItem;

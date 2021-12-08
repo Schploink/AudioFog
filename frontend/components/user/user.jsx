@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import UserSongItem from './user_item';
 import Navbar from "../navbar/navbar_container"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin, faAngellist } from '@fortawesome/free-brands-svg-icons'
@@ -51,10 +52,7 @@ class User extends React.Component {
                 <div className="spotlight-text">
                 Spotlight
                 </div>
-                Song image
-                play/pause button
-                song name/artist
-                waveform
+                {/* <UserSongItem /> */}
               </div>
               <div className="user-bottom-right">
                 <a className="navbar-gh-icon-parent" href="https://github.com/Schploink/AudioFog" target="_blank">
