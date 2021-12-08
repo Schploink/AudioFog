@@ -4,6 +4,7 @@ import {IoPause} from "react-icons/io5"
 import { Link } from 'react-router-dom';
 import CommentForm from '../comment/comment_form_container';
 import Navbar from "../navbar/navbar_container"
+import CommentShow from '../comment/comment_container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin, faAngellist } from '@fortawesome/free-brands-svg-icons'
 
@@ -85,6 +86,7 @@ class ShowSound extends React.Component {
                 <div>Username</div>
                 <div>number of comments</div>
                 <div>comment list</div>
+                {setTimeout(() => (<CommentShow />, 100))}
               </div>
               <div className="show-sound-bottom-right">
                 <a className="navbar-gh-icon-parent" href="https://github.com/Schploink/AudioFog" target="_blank">
