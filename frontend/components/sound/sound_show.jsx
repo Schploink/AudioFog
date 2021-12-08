@@ -81,12 +81,13 @@ class ShowSound extends React.Component {
             <div className="show-sound-bottom">
               <div className="show-sound-bottom-left">
                 <div><CommentForm 
-                soundId={this.props.pageSound.id}/></div>
+                soundId={this.props.pageSound.id}/>
+                </div>
                 <div>User profile pic</div>
                 <div>Username</div>
                 <div>number of comments</div>
                 <div>comment list</div>
-                {/* <CommentShow /> */}
+                <CommentShow />
               </div>
               <div className="show-sound-bottom-right">
                 <a className="navbar-gh-icon-parent" href="https://github.com/Schploink/AudioFog" target="_blank">

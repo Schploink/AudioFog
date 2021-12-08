@@ -14,7 +14,8 @@ class CommentShow extends React.Component {
     }
 
     render() {
-      
+      debugger
+      if (this.props.soundComments) {
       let allComments = this.props.soundComments.map((comment, idx) => {
 
         return (
@@ -35,9 +36,9 @@ class CommentShow extends React.Component {
                 {comment.body}
               </div>
             </div>
-            <button onClick={this.handleDelete(e)}>
+            {/* <button onClick={this.handleDelete(e)}>
                 delete
-            </button>
+            </button> */}
           </div>
         )
       })
@@ -48,6 +49,13 @@ class CommentShow extends React.Component {
           {reverseOrder}
         </div>
       )
+      } else {
+        return (
+          <div>
+            
+          </div>
+        )
+      }
     }
     }
 
