@@ -14,8 +14,6 @@ class CommentShow extends React.Component {
     }
 
     render() {
-      debugger
-      if (this.props.soundComments) {
       let allComments = this.props.soundComments.map((comment, idx) => {
 
         return (
@@ -46,16 +44,9 @@ class CommentShow extends React.Component {
 
       return (
         <div>
-          {reverseOrder}
+          Hello
         </div>
       )
-      } else {
-        return (
-          <div>
-            
-          </div>
-        )
-      }
     }
     }
 

@@ -6562,29 +6562,23 @@ var CommentShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
-
-      if (this.props.soundComments) {
-        var allComments = this.props.soundComments.map(function (comment, idx) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-            key: comment.id,
-            className: "comment-box"
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.default, {
-            to: "/users/".concat(comment.author_id)
-          }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-            className: "name-comment-body"
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.default, {
-            className: "comment-name",
-            to: "/users/".concat(comment.author_id)
-          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "AuthorName")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-            className: "comment-body"
-          }, comment.body)));
-        });
-        var reverseOrder = allComments.reverse();
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, reverseOrder);
-      } else {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null);
-      }
+      var allComments = this.props.soundComments.map(function (comment, idx) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          key: comment.id,
+          className: "comment-box"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.default, {
+          to: "/users/".concat(comment.author_id)
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "name-comment-body"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.default, {
+          className: "comment-name",
+          to: "/users/".concat(comment.author_id)
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "AuthorName")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "comment-body"
+        }, comment.body)));
+      });
+      var reverseOrder = allComments.reverse();
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Hello");
     }
   }]);
 
@@ -8269,6 +8263,7 @@ var ShowSound = /*#__PURE__*/function (_React$Component) {
   _createClass(ShowSound, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      debugger;
       this.props.fetchSounds();
       this.props.fetchComments(this.props.pageSound.id); // this.props.fetchSound(this.props.match.params.soundId)
       //     .fail(() => this.props.history.push("/discover"))
@@ -8332,7 +8327,7 @@ var ShowSound = /*#__PURE__*/function (_React$Component) {
         className: "show-sound-bottom-left"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comment_comment_form_container__WEBPACK_IMPORTED_MODULE_1__.default, {
         soundId: this.props.pageSound.id
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "User profile pic"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Username"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "number of comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "comment list"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_comment_comment_container__WEBPACK_IMPORTED_MODULE_3__.default, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "User profile pic"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Username"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "number of comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "comment list")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "show-sound-bottom-right"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
         className: "navbar-gh-icon-parent",

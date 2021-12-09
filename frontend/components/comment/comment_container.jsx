@@ -8,7 +8,7 @@ import { deleteComment} from '../../actions/comment_actions';
 
 const mSTP = (state) => {
     return {
-      soundComments: Object.values(state.entities.comments)
+        soundComments: Object.values(state.entities.comments)
     }
 }
 
