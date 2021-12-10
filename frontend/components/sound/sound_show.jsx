@@ -16,7 +16,6 @@ class ShowSound extends React.Component {
     }
 
     componentDidMount() {
-      debugger
         this.props.fetchSounds()
         this.props.fetchComments(this.props.pageSound.id)
         // this.props.fetchSound(this.props.match.params.soundId)

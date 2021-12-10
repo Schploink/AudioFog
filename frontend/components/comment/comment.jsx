@@ -28,7 +28,7 @@ class CommentShow extends React.Component {
               <Link 
               className="comment-name"
               to={`/users/${comment.author_id}`}>
-                <div>AuthorName</div>
+                <div>Author</div>
               </Link>
               <div className="comment-body">
                 {comment.body}
