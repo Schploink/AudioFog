@@ -47,12 +47,17 @@ class CommentShow extends React.Component {
           <div className="comment-profile-pic">
             Photo
           </div>
-          <div className="comment-name-body">
-            <div className="comment-name">
-
+          <div className="comment-name-body-delete">
+            <div>
+              <div className="comment-name">
+                Author name
+              </div>
+              <div className="comment-body">
+                comment body
+              </div>
             </div>
-            <div className="comment-body">
-
+            <div>
+              Delete Button
             </div>
           </div>
           Hello
