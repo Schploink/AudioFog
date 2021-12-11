@@ -43,7 +43,18 @@ class CommentShow extends React.Component {
       let reverseOrder = allComments.reverse()
 
       return (
-        <div>
+        <div className="comment-container">
+          <div className="comment-profile-pic">
+            Photo
+          </div>
+          <div className="comment-name-body">
+            <div className="comment-name">
+
+            </div>
+            <div className="comment-body">
+
+            </div>
+          </div>
           Hello
         </div>
       )
