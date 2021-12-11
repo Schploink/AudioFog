@@ -56,7 +56,7 @@ class CommentShow extends React.Component {
                 comment body
               </div>
             </div>
-            <div>
+            <div className="delete-button">
               Delete Button
             </div>
           </div>
