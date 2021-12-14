@@ -2,10 +2,79 @@
 
 .comment-container {
   display: flex;
+  flex-direction: column;
+}
+
+.comment-bar, .comment-container {
+  margin-left: 10px;
+}
+
+.comment-bar {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.comment-input {
+  width: 275px;
+  border-radius: 6px;
+}
+
+.comment-box {
+  display: flex;
   flex-direction: row;
+  align-items: center;
+  height: 50px;
+  margin-top: 3px;
+  margin-bottom: 2px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .comment-name-body-delete {
   display: flex;
   align-items: center;
+  height: 50px;
+  margin-left: 5px;
+}
+
+.comment-name-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 50px;
+}
+
+.comment-name, .comment-body {
+  width: fit-content;
+}
+
+.comment-delete-button {
+  margin-left: 5px;
+  transition-duration: 0.4s;
+  color: $dark-purp
+}
+
+.comment-delete-button:hover {
+  cursor: pointer;
+  color: white;
+}
+
+.comment-body {
+  color: $light-purp;
+  max-width: 350px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-family: 'Poppins', sans-serif;
+}
+
+.no-comments {
+  font-size: 24px;
+  font-family: 'Poppins', sans-serif;
+  color: $light-purp;
+  margin-top: 25px;
+}
+
+.comment-user-photo {
+  height: 50px;
+  width: 50px;
 }

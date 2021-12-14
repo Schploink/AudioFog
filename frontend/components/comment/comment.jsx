@@ -11,33 +11,39 @@ class CommentShow extends React.Component {
 
     handleDelete() {
 
-      this.props.deleteComment()
+      this.props.deleteComment(this.props.comments[comment.id])
     }
 
     render() {
       let allComments = this.props.soundComments.map((comment, idx) => {
+        
+        const deleteButton = comment.author_id === this.props.currentUser 
+        ? <RiDeleteBin7Line 
+        className="comment-delete-button"
+        onClick={() => this.props.deleteComment(comment.id)}/>
+        : <div></div>
 
         return (
           <div key={comment.id} className="comment-box">
               <Link to={`/users/${comment.author_id}`}>
                 <img 
                   className="comment-user-photo"
-                  src={comment.profilePicUrl}
+                  src={this.props.users[comment.author_id].profilePicURL}
                 />
               </Link>
-            <div className="name-comment-body">
-              <Link 
-              className="comment-name"
-              to={`/users/${comment.author_id}`}>
-                <div>Author</div>
-              </Link>
-              <div className="comment-body">
-                {comment.body}
+            <div className="name-comment-body-delete">
+              <div className="comment-name-body">
+                <Link 
+                className="comment-name"
+                to={`/users/${comment.author_id}`}>
+                  <div>{this.props.users[comment.author_id].username}</div>
+                </Link>
+                <div className="comment-body">
+                  {comment.body}
+                </div>
               </div>
             </div>
-            {/* <button onClick={this.handleDelete()}>
-                delete
-            </button> */}
+            {deleteButton}
           </div>
         )
       })
@@ -45,23 +51,9 @@ class CommentShow extends React.Component {
 
       return (
         <div className="comment-container">
-          {reverseOrder}
-          {/* <div className="comment-profile-pic">
-            Photo
-          </div>
-          <div className="comment-name-body-delete">
-            <div>
-              <div className="comment-name">
-                Author name
-              </div>
-              <div className="comment-body">
-                comment body
-              </div>
-            </div>
-            <div className="delete-button">
-              <RiDeleteBin7Line />
-            </div>
-          </div> */}
+          {this.props.soundComments.length < 1 
+          ? <div className="no-comments"> Be the first to comment on this sound </div> 
+          : reverseOrder}
         </div>
       )
     }

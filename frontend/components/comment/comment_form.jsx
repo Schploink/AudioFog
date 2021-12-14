@@ -49,7 +49,7 @@ class CommentForm extends React.Component {
           <input 
             className="comment-input"
             type="text" 
-            placeholder="Condense your thoughts"
+            placeholder="Condense your thoughts on this sound"
             value={this.state.body}
             onChange={this.update('body')}
           />

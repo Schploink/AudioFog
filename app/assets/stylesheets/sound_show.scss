@@ -69,3 +69,27 @@
   background-color: $light-purp;
   border-radius: 50%;
 }
+
+.show-sound-bottom-left {
+  width: 70%;
+
+}
+
+.show-sound-bottom-right {
+  height: 100%;
+  border-left: 1px solid whitesmoke;
+}
+
+.self-links {
+  margin: 5px 0 0 5px;
+}
+
+.language-select {
+  color: $mid-blue;
+  margin: 10px 0 0 5px;
+}
+
+.show-sound-bottom {
+  display: flex;
+  height: 100%;
+}

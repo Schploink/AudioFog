@@ -8,6 +8,9 @@ import { deleteComment} from '../../actions/comment_actions';
 
 const mSTP = (state) => {
     return {
+        users: state.entities.users,
+        comments: state.entities.comments,
+        currentUser: state.session.id,
         soundComments: Object.values(state.entities.comments)
     }
 }

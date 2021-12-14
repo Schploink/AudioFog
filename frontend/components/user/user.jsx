@@ -55,16 +55,20 @@ class User extends React.Component {
                 <UserSongItem />
               </div>
               <div className="user-bottom-right">
-                <a className="navbar-gh-icon-parent" href="https://github.com/Schploink/AudioFog" target="_blank">
+                <div className="self-links">
+                  <a className="navbar-gh-icon-parent" href="https://github.com/Schploink/AudioFog" target="_blank">
                     <FontAwesomeIcon className="navbar-icon" icon={faGithub}/>
                   </a>
-									<a className="navbar-gh-icon-parent" href="https://angel.co/u/kevin-oconnor-7" target="_blank">
+                  <a className="navbar-gh-icon-parent" href="https://angel.co/u/kevin-oconnor-7" target="_blank">
                     <FontAwesomeIcon className="navbar-icon" icon={faAngellist}/>
                   </a>
-									<a className="navbar-gh-icon-parent" href="https://www.linkedin.com/in/kevin-oconnor-933561216/" target="_blank">
+                  <a className="navbar-gh-icon-parent" href="https://www.linkedin.com/in/kevin-oconnor-933561216/" target="_blank">
                     <FontAwesomeIcon className="navbar-icon" icon={faLinkedin}/>
                   </a>
-                  language
+                </div>
+                <div className="language-select">
+                  Language: English (US)
+                </div>
               </div>
             </div>
           </div>
