@@ -1,5 +1,5 @@
 import React from 'react'
-import Link from "react-router-dom"
+import { Link } from "react-router-dom"
 
 class CommentShow extends React.Component {
     constructor(props) {
@@ -60,7 +60,6 @@ class CommentShow extends React.Component {
               Delete Button
             </div>
           </div>
-          Hello
         </div>
       )
     }

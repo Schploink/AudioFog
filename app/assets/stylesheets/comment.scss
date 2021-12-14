@@ -1,0 +1,11 @@
+@import "./colors";
+
+.comment-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.comment-name-body-delete {
+  display: flex;
+  align-items: center;
+}
