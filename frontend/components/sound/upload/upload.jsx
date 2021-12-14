@@ -74,7 +74,7 @@ class Upload extends React.Component {
                 <button 
                   className="upload-submit-button"
                   onClick={this.handleSubmit}>
-                  Submit
+                  Upload Sound
                 </button>
               </div>
             </div>
