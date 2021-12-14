@@ -83,10 +83,6 @@ class ShowSound extends React.Component {
                 <div><CommentForm 
                 soundId={this.props.pageSound.id}/>
                 </div>
-                <div>User profile pic</div>
-                <div>Username</div>
-                <div>number of comments</div>
-                <div>comment list</div>
                 <CommentShow />
               </div>
               <div className="show-sound-bottom-right">

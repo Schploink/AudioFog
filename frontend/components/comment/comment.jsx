@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom"
+import {RiDeleteBin7Line} from "react-icons/ri"
 
 class CommentShow extends React.Component {
     constructor(props) {
@@ -57,7 +58,7 @@ class CommentShow extends React.Component {
               </div>
             </div>
             <div className="delete-button">
-              Delete Button
+              <RiDeleteBin7Line />
             </div>
           </div>
         </div>

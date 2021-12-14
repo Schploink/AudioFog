@@ -31,29 +31,30 @@ class UserSongItem extends React.Component {
     }
 
     render() {
-        let currentSound = this.props.sound;
-
-        let coverArt = (<img className="discover-item-art"
-                    src={currentSound.photoUrl} />)
         
         return (
-            <div className="discover-song-item">
-                <div className="discover-art-button">
-                    <div className="discover-art">
-                        {coverArt}
-                    </div>
-                    <div className="discover-play-pause" onClick={this.updateCurrentSound}>
-                        <div className="discover-icon">
-                            { this.props.currentSound === this.props.sound && this.props.isPlaying ? <IoPause /> : <IoPlay />}
+            <div className="user-song-item">
+                <div className="user-song-art">
+
+                </div>
+                <div className="info-waveform">
+                    <div className="play-button-title">
+                        <div className="play-button">
+
+                        </div>
+                        <div className="song-artist-title">
+                            <div className="user-item-artist-name">
+                                Artist name
+                            </div>
+                            <div className="user-item-sound-title">
+                                Sound title
+                            </div>
                         </div>
                     </div>
+                    <div className="waveform">
+                        Waveform image
+                    </div>
                 </div>
-                <Link to={`/sounds/${currentSound.id}`}>
-                    <div className="discover-sound-title">{currentSound.description}</div>
-                </Link>
-                <Link to={`/users/${currentSound.uploader_id}`}>
-                    <div className="discover-artist-name">{currentSound.artist}</div>
-                </Link>
             </div>
         )
     }   
