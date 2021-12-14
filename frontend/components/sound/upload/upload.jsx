@@ -59,21 +59,22 @@ class Upload extends React.Component {
               </div>
               <div className='upload-form'>
                 <label className="upload-sound-text">
-                  Add Audio File
                   <input 
+                  className="current-sound"
                   onChange={this.handleAudioFile}
                   type="file" 
                   accept=".mp3"
                   />
+                  Add Audio File
                 </label>
                 <label className="upload-photo-text">
-                  Add Photo Art
                   <input 
                   className="current-photo" 
                   onChange={this.handleAlbumArtFile}
                   type="file" 
                   accept=".jpeg, .jpg, .png"
                   />
+                  Add Sound Art
                 </label>
                 {imagePreview}
                 <label className="title-text">
@@ -84,7 +85,7 @@ class Upload extends React.Component {
                 </label>
                 <button 
                   className="upload-submit-button"
-                  // disable upload for production to prevent hosting issues
+                  // disable upload for production to prevent hosting payment issues
                   // onClick={this.handleSubmit}
                   >
                   Upload Sound

@@ -10,8 +10,8 @@ class CommentShow extends React.Component {
     }
 
     handleDelete() {
-      e.preventDefault()
-      this.props.deleteComment(comment.id)
+
+      this.props.deleteComment()
     }
 
     render() {
@@ -20,10 +20,10 @@ class CommentShow extends React.Component {
         return (
           <div key={comment.id} className="comment-box">
               <Link to={`/users/${comment.author_id}`}>
-                {/* <img 
+                <img 
                   className="comment-user-photo"
                   src={comment.profilePicUrl}
-                /> */}
+                />
               </Link>
             <div className="name-comment-body">
               <Link 
@@ -35,7 +35,7 @@ class CommentShow extends React.Component {
                 {comment.body}
               </div>
             </div>
-            {/* <button onClick={this.handleDelete(e)}>
+            {/* <button onClick={this.handleDelete()}>
                 delete
             </button> */}
           </div>
@@ -45,7 +45,8 @@ class CommentShow extends React.Component {
 
       return (
         <div className="comment-container">
-          <div className="comment-profile-pic">
+          {reverseOrder}
+          {/* <div className="comment-profile-pic">
             Photo
           </div>
           <div className="comment-name-body-delete">
@@ -60,7 +61,7 @@ class CommentShow extends React.Component {
             <div className="delete-button">
               <RiDeleteBin7Line />
             </div>
-          </div>
+          </div> */}
         </div>
       )
     }

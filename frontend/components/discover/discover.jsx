@@ -10,6 +10,7 @@ class Discover extends React.Component {
 
     componentDidMount() {
         this.props.fetchAllSounds()
+        this.props.fetchAllUsers()
     }
 
     render () {

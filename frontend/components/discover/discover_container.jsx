@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import Discover from './discover'
+import {fetchAllUsers} from "../../actions/user_actions"
 import { fetchAllSounds } from '../../actions/sound_actions';
 import {receiveCurrentSound, playSound, pauseSound} from "../../actions/playstate_actions"
 
@@ -13,6 +14,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchAllSounds: () => dispatch(fetchAllSounds()),
+  fetchAllUsers: () => dispatch(fetchAllUsers()),
   playSound: () => dispatch(playSound()),
   pauseSound: () => dispatch(pauseSound()),
   receiveCurrentSound: (soundID) => dispatch(receiveCurrentSound(soundID))
