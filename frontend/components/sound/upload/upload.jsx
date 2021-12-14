@@ -14,7 +14,7 @@ class Upload extends React.Component {
       }
 
       this.handleAlbumArtFile = this.handleAlbumArtFile.bind(this);
-      this.handleMusicFile = this.handleMusicFile.bind(this);
+      this.handleAudioFile = this.handleAudioFile.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
     }
     
@@ -26,7 +26,7 @@ class Upload extends React.Component {
       imagePreview: URL.createObjectURL(imageFile)})
     }
   
-    handleMusicFile(e) {
+    handleAudioFile(e) {
       e.preventDefault();
       this.setState({audioFile: e.currentTarget.files[0]})
     }
@@ -58,22 +58,35 @@ class Upload extends React.Component {
                 Upload
               </div>
               <div className='upload-form'>
-                {imagePreview}
                 <label className="upload-sound-text">
                   Add Audio File
-                  <input className="current-sound" type="file" />
+                  <input 
+                  onChange={this.handleAudioFile}
+                  type="file" 
+                  accept=".mp3"
+                  />
                 </label>
                 <label className="upload-photo-text">
                   Add Photo Art
-                  <input className="current-photo" type="file" />
+                  <input 
+                  className="current-photo" 
+                  onChange={this.handleAlbumArtFile}
+                  type="file" 
+                  accept=".jpeg, .jpg, .png"
+                  />
                 </label>
+                {imagePreview}
                 <label className="title-text">
                   Sound Title:
-                  <input type="text" />
+                  <input 
+                  type="text"                   
+                  />
                 </label>
                 <button 
                   className="upload-submit-button"
-                  onClick={this.handleSubmit}>
+                  // disable upload for production to prevent hosting issues
+                  // onClick={this.handleSubmit}
+                  >
                   Upload Sound
                 </button>
               </div>
