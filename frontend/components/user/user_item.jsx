@@ -32,28 +32,27 @@ class UserSongItem extends React.Component {
 
     render() {
         
+        let sound = this.props.sound
+        
         return (
             <div className="user-song-item">
-                <div className="user-song-art">
-
-                </div>
+                <img src={sound.photoUrl} />
                 <div className="info-waveform">
                     <div className="play-button-title">
-                        <div className="play-button">
-
+                        <div className="play-button"
+                        onClick={this.updateCurrentSound}>
+                            {this.props.currentSound && this.props.isPlaying ? <IoPause /> : <IoPlay />}
                         </div>
                         <div className="song-artist-title">
                             <div className="user-item-artist-name">
-                                Artist name
+                                {sound.artist}
                             </div>
                             <div className="user-item-sound-title">
-                                Sound title
+                                {sound.description}
                             </div>
                         </div>
                     </div>
-                    <div className="waveform">
-                        Waveform image
-                    </div>
+                    <img className="waveform" src={sound.waveUrl}/>
                 </div>
             </div>
         )

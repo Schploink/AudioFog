@@ -16,7 +16,7 @@ class User extends React.Component {
   }
 
   componentDidMount() {
-    // this.props.fetchSounds()
+    this.props.fetchSounds()
     this.props.fetchUser(this.props.match.params.userId)
       .fail(() => this.props.history.push("/discover"))
   }
@@ -33,8 +33,17 @@ class User extends React.Component {
     let userPic = user ? user.profilePicURL : "https://active-storage-audiofog-dev.s3.us-west-1.amazonaws.com/tumblr_o12glwV45e1qagjnzo1_640.jpg"
     let userName = user ? user.username : ""
     // let userSounds = this.props.sounds
+    const userSounds = this.props.sounds
+    .filter(sound => sound.uploader_id === this.props.showUser.id)
+    .map((sound, i) => {
+        return <UserSongItem 
+          key={sound.id}
+          sound={sound}
+          idx={i}
+        />
+    })
 
-    return (
+    return (      
       <div>
         <Navbar />
         <div className="discover-background">
@@ -52,7 +61,9 @@ class User extends React.Component {
                 <div className="spotlight-text">
                 Spotlight
                 </div>
-                <UserSongItem />
+                <div>
+                  {userSounds}
+                </div>
               </div>
               <div className="user-bottom-right">
                 <div className="self-links">
