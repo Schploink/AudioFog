@@ -91,6 +91,10 @@
   margin-top: 3px;
 }
 
+.user-item-artist-name {
+  font-size: 24px;
+}
+
 .info-waveform {
   display: flex;
   flex-direction: column;
@@ -106,5 +110,5 @@
 
 .user-waveform {
   height: 95px;
-  width: 260px;
+  width: 360px;
 }
