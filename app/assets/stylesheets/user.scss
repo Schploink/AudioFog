@@ -1,5 +1,11 @@
 @import './colors';
 
+
+.user-song-item {
+  margin: 15px 0 0 20px;
+
+}
+
 .user-top {
   height: 400px;
   display: flex;
@@ -49,4 +55,56 @@
   height: 100%;
   color: $mid-blue;
   border-left: 1px solid whitesmoke;
+}
+
+.user-song-item {
+  display: flex;
+  align-items: center;
+}
+
+.play-button-title {
+  display: flex;
+}
+
+.play-button-background {
+  height: 55px;
+  width: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color: $light-teal;
+  background-color: $light-purp;
+  border-radius: 50%;
+}
+
+.play-button-background:hover {
+  cursor: pointer;
+}
+
+.user-item-artist-title {
+  color: $light-purp;
+  margin-left: 5px;
+}
+
+.play-button {
+  margin-top: 3px;
+}
+
+.info-waveform {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 160px;
+  margin-left: 5px;
+}
+
+.user-song-art {
+  height: 160px;
+  width: 160px;
+}
+
+.user-waveform {
+  height: 95px;
+  width: 260px;
 }

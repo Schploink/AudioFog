@@ -36,14 +36,19 @@ class UserSongItem extends React.Component {
         
         return (
             <div className="user-song-item">
-                <img src={sound.photoUrl} />
+                <img 
+                className="user-song-art"
+                src={sound.photoUrl} 
+                />
                 <div className="info-waveform">
                     <div className="play-button-title">
-                        <div className="play-button"
+                        <div className="play-button-background"
                         onClick={this.updateCurrentSound}>
-                            {this.props.currentSound && this.props.isPlaying ? <IoPause /> : <IoPlay />}
+                            <div className="play-button">
+                                {this.props.currentSound && this.props.isPlaying ? <IoPause /> : <IoPlay />}
+                            </div>
                         </div>
-                        <div className="song-artist-title">
+                        <div className="user-item-artist-title">
                             <div className="user-item-artist-name">
                                 {sound.artist}
                             </div>
@@ -52,7 +57,13 @@ class UserSongItem extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <img className="waveform" src={sound.waveUrl}/>
+                    <img 
+                    className="user-waveform" 
+                    src={sound.waveUrl}
+                    />
+                </div>
+                <div>
+                    Delete Button
                 </div>
             </div>
         )
