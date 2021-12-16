@@ -31,7 +31,7 @@ export const fetchSound = (soundId) => dispatch => (
 
 export const createSound = (sound) => dispatch => (
   SoundApiUtil.createSound(sound)
-    .then(sound => dispatch(receiveSound(sound)))
+    // .then(sound => dispatch(receiveSound(sound)))
 );
 
 export const updateSound = (sound) => dispatch => (

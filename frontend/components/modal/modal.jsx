@@ -1,6 +1,7 @@
 import React from 'react';
 import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
 import LoginFormContainer from '../session_form/login_form_container';
 import SignupFormContainer from '../session_form/signup_form_container';
 import {resetSessionErrors} from '../../actions/session_actions'
@@ -17,6 +18,18 @@ function Modal({ modal, closeModal, resetSessionErrors }) {
       break;
     case 'signup':
       component = <SignupFormContainer />;
+      break;
+    case 'upload':
+      component = 
+        <div className="readme-info">
+          <div>
+            Howdy, thank you for checking out my app!
+          </div>
+          <div className="more-info">
+            For the live App, I have disabled the sound upload and delete functions
+            Please check the <a href="https://github.com/Schploink/AudioFog#readme">Readme</a> to see a recorded demonstration of these functions!
+          </div>
+        </div>
       break;
     default:
       return null;

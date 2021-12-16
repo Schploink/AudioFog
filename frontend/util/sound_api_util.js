@@ -2,7 +2,6 @@ export const fetchSounds = () => {
   return $.ajax({
     method: "GET",
       url: "/api/sounds",
-    error: (err) => console.log(err)
   })
 }
 

@@ -23,7 +23,6 @@ class CommentForm extends React.Component {
     }
 
     handleSubmit(e) {
-      console.log(this.state)
       e.preventDefault()
       if (this.state.body.length > 0) {
         this.props.createComment(this.state)

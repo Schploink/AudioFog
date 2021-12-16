@@ -43,7 +43,7 @@ class Upload extends React.Component {
       formData.append('sound[sound]', this.state.audioFile);
       formData.append('sound[uploader_id]',this.props.currentUserId);
       this.props.createSound(formData)
-        .then(() => this.props.history.push(`/discover`));
+        .then(() => this.props.history.push(`/users/${this.props.currentUserId}`));
     }
 
     render () {
@@ -105,6 +105,7 @@ class Upload extends React.Component {
                   className="upload-submit-button"
                   // disable upload for production to prevent hosting payment issues
                   // onClick={this.handleSubmit}
+                  onClick={this.props.openModal}
                   >
                   Upload Sound
                 </button>

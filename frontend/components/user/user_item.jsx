@@ -39,11 +39,11 @@ class UserSongItem extends React.Component {
                 className="comment-delete-button"
                 // Sound delete disabled in production to maintain site integrity
                 // onClick={() => this.props.deleteSound(sound.id)}
+                onClick={this.props.openModal}
                 >
                     <RiDeleteBin7Line />
                 </div>
             : <div></div>
-        
         return (
             <div className="user-song-item">
                 <Link to={`/sounds/${sound.id}`}>
@@ -57,7 +57,7 @@ class UserSongItem extends React.Component {
                         <div className="play-button-background"
                         onClick={this.updateCurrentSound}>
                             <div className="play-button">
-                                {this.props.currentSound && this.props.isPlaying ? <IoPause /> : <IoPlay />}
+                                {this.props.currentSoundId === sound.id && this.props.isPlaying ? <IoPause /> : <IoPlay />}
                             </div>
                         </div>
                         <div className="user-item-artist-title">
