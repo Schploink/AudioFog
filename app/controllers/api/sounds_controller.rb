@@ -14,11 +14,10 @@ class Api::SoundsController < ApplicationController
   end
 
   def create
-    @sound = Sound.new(sound_params)
-    @sound.uploader_id = current_user.id
+    @sound = Sound.new(sounds_params)
+    # @sound.uploader_id = current_user.id
 
     if @sound.save
-      render :show
     else
       render json: @sound.errors.full_messages, status: 400
     end
@@ -39,6 +38,6 @@ class Api::SoundsController < ApplicationController
   end
 
   def sounds_params
-    params.require(:sound).permit(:description, :uploader_id)
+    params.require(:sound).permit(:description, :uploader_id, :photo, :sound)
   end
 end

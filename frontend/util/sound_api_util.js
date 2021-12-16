@@ -17,7 +17,9 @@ export const createSound = sound => (
   $.ajax({
     url: `api/sounds`,
     method: 'POST',
-    data: {sound}
+    data: sound,
+    contentType: false,
+    processData: false
   })
 );
 
@@ -25,7 +27,7 @@ export const updateSound = sound => (
   $.ajax({
     url: `api/sounds`,
     method: 'PATCH',
-    data: {sound}
+    data: sound
   })
 );
 

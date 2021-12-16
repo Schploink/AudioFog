@@ -30,7 +30,7 @@ class Discover extends React.Component {
       )
     })
 
-    const displayFirstSounds = allSounds.filter((sound, i) => i > 9)
+    const displayFirstSounds = allSounds.filter((sound, i) => i > 9 && i < 14 )
     const displayNewSounds = allSounds.filter((sound, i) => i > 5 && i < 10)
     const displayMoreNewSounds = allSounds.filter((sound, i) => i < 4)
 
