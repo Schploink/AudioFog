@@ -61,9 +61,7 @@ class ShowSound extends React.Component {
                   <div className="title-artist">
                     <Link to={`/users/${sound.uploader_id}`}
                       className="show-sound-artist">
-                      <span className="artist-name">
                         {sound.artist}
-                      </span>
                     </ Link>
                     <div className="show-song-title"> 
                       {sound.description}
