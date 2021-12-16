@@ -80,10 +80,14 @@ class Player extends React.Component {
   changeRange(e) {
     e.preventDefault()
     clearInterval(this.currentTimeInterval)
-    this.slider.value = e.target.value
+    this.audio.currentTime = this.slider.value
     this.setState({currentTime: e.target.value})
     this.slider.style.setProperty('--seek-before-width', `${this.slider.value / this.state.duration * 100}%`)
-    
+    setInterval( () => {
+        this.slider.value = this.audio.currentTime
+        this.slider.style.setProperty('--seek-before-width', `${(this.slider.value / this.state.duration * 100)+0.2}%`)
+        this.setState({currentTime: this.audio.currentTime})
+      }, 200)
   }
 
 	render() {
