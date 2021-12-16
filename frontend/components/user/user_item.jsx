@@ -61,14 +61,14 @@ class UserSongItem extends React.Component {
                             </div>
                         </div>
                         <div className="user-item-artist-title">
-                            <div className="user-item-artist-name">
-                                {sound.artist}
-                            </div>
                             <Link to={`/sounds/${sound.id}`}>
                                 <div className="user-item-sound-title">
                                     {sound.description}
                                 </div>
                             </Link>
+                            <div className="user-item-artist-name">
+                                {sound.artist}
+                            </div>
                         </div>
                         {deleteButton}
                     </div>
