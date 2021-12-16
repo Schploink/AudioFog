@@ -17,6 +17,7 @@ class Player extends React.Component {
       volume: 0.1,
     }
 
+    this.restartSound = this.restartSound.bind(this)
     this.handlePlayPause = this.handlePlayPause.bind(this)
     this.changeRange = this.changeRange.bind(this)
     this.volumeChange = this.volumeChange.bind(this)
@@ -55,7 +56,7 @@ class Player extends React.Component {
   }
 
   restartSound() {
-
+    // this.audio.currentTime = 0;
   }
 
   nextSound() {
