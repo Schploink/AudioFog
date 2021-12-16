@@ -42,9 +42,6 @@ class Upload extends React.Component {
       formData.append('sound[photo]', this.state.albumArt);
       formData.append('sound[sound]', this.state.audioFile);
       formData.append('sound[uploader_id]',this.props.currentUserId);
-      for (var pair of formData.entries()) {
-        console.log(pair[0]+ ', ' + pair[1]); 
-        }
       this.props.createSound(formData)
         .then(() => this.props.history.push(`/discover`));
     }
