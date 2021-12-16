@@ -31,6 +31,10 @@ class Upload extends React.Component {
       this.setState({audioFile: e.currentTarget.files[0]})
     }
 
+    update(item) {
+      return e => {this.setState({ [item]: e.currentTarget.value })}
+    }
+
     handleSubmit(e) {
       e.preventDefault();
       const formData = new FormData();
@@ -46,7 +50,11 @@ class Upload extends React.Component {
 
       const imagePreview = this.state.imagePreview 
       ? <img className="image-preview" src={this.state.imagePreview}/> 
-      : <div></div>
+      : <div className="preview-text">No image attached</div>
+
+      const audioPreview = this.state.audioFile
+      ? <div className="audio-preview">Audio file attached!</div>
+      : <div className="preview-text">No audio file attached</div>
 
 
       return (
@@ -58,29 +66,39 @@ class Upload extends React.Component {
                 Upload
               </div>
               <div className='upload-form'>
-                <label className="upload-sound-text">
-                  <input 
-                  className="current-sound"
-                  onChange={this.handleAudioFile}
-                  type="file" 
-                  accept=".mp3"
-                  />
-                  Add Audio File
-                </label>
-                <label className="upload-photo-text">
-                  <input 
-                  className="current-photo" 
-                  onChange={this.handleAlbumArtFile}
-                  type="file" 
-                  accept=".jpeg, .jpg, .png"
-                  />
-                  Add Sound Art
-                </label>
-                {imagePreview}
+                <div className="upload-instruct">
+                  Please choose an .mp3 file and art to upload to the fog
+                </div>
+                <div className="upload-sound-photo">
+                  <label className="upload-sound-text">
+                    <input 
+                    className="current-sound"
+                    onChange={this.handleAudioFile}
+                    type="file" 
+                    accept=".mp3"
+                    />
+                    Add Audio File
+                  </label>
+                  <label className="upload-photo-text">
+                    <input 
+                    className="current-photo" 
+                    onChange={this.handleAlbumArtFile}
+                    type="file" 
+                    accept=".jpeg, .jpg, .png"
+                    />
+                    Add Sound Art
+                  </label>
+                </div>
+                <div className="sound-photo-preview">
+                  {audioPreview}
+                  {imagePreview}
+                </div>
                 <label className="title-text">
                   Sound Title:
-                  <input 
-                  type="text"                   
+                  <input                   
+                  type="text"
+                  value={this.state.title}
+                  onChange={this.update('title')}                   
                   />
                 </label>
                 <button 

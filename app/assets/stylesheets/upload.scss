@@ -51,15 +51,59 @@
 .upload-sound-text, .upload-photo-text {
   width: fit-content;
   padding: 3px;
-  color: white;
+  color: $light-purp;
   border: 1px solid white;
   transition-duration: 0.4s;
 }
 
-.upload-photo-text:hover, .upload-sound-text:hover, .upload-submit-button:hover {
-  color: $light-purp;
+.title-text {
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.preview-text {
+  font-family: 'Poppins', sans-serif;
+  color: $dark-purp;
+  margin-bottom: 30px;
+}
+
+.upload-sound-photo, .sound-photo-preview {
+  width: 70%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.upload-sound-photo {
+  margin-bottom: 30px;
+}
+
+.sound-photo-preview {
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  align-items: center;
+  height: 300px;
+}
+
+.upload-instruct {
+  font-family: 'Poppins', sans-serif;
+  margin: 20px 0 30px 0;
+  padding-bottom: 5px;
+  font-size: 18px;
+  color: white;
+  border-bottom: 3px solid $dark-purp;
+}
+
+.upload-photo-text:hover, 
+.upload-sound-text:hover{
+  color: white;
   cursor: pointer;  
 }
+
+.upload-submit-button:hover{
+  color: $light-teal;
+  cursor: pointer;
+} 
 
 .current-photo, .current-sound {
   display: none;
