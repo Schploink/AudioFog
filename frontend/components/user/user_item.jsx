@@ -38,7 +38,7 @@ class UserSongItem extends React.Component {
             ? <div 
                 className="comment-delete-button"
                 // Sound delete disabled in production to maintain site integrity
-                // onClick={() => this.props.deleteSound(sound.id)}
+                onClick={() => this.props.deleteSound(sound.id)}
                 >
                     <RiDeleteBin7Line />
                 </div>
