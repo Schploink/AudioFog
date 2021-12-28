@@ -21,13 +21,8 @@ class User extends React.Component {
       .fail(() => this.props.history.push("/discover"))
   }
 
-  // componentDidUpdate() {
-  //   this.props.fetchUser(this.props.match.params.userId)
-  //     .then(console.log(this.props))
-  // }
   
   render () {
-    // console.log(grabUser)
     let user = this.props.showUser
     // let userPic = user ? user.profilePicUrl : ""
     let userPic = user ? user.profilePicURL : "https://active-storage-audiofog-dev.s3.us-west-1.amazonaws.com/tumblr_o12glwV45e1qagjnzo1_640.jpg"
