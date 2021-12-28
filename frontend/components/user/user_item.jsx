@@ -26,8 +26,6 @@ class UserSongItem extends React.Component {
         } else {
             this.props.receiveCurrentSound(this.props.sound.id)
             this.props.playSound()
-            // setTimeout( () => 
-            // document.getElementById('audio').play(), 200)
         }
     }
 
