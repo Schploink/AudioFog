@@ -27,7 +27,6 @@ class User extends React.Component {
     // let userPic = user ? user.profilePicUrl : ""
     let userPic = user ? user.profilePicURL : "https://active-storage-audiofog-dev.s3.us-west-1.amazonaws.com/tumblr_o12glwV45e1qagjnzo1_640.jpg"
     let userName = user ? user.username : ""
-    // let userSounds = this.props.sounds
     const userSounds = this.props.sounds
     .filter(sound => sound.uploader_id === this.props.showUser.id)
     .map((sound, i) => {
