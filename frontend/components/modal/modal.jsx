@@ -27,7 +27,7 @@ function Modal({ modal, closeModal, resetSessionErrors }) {
           </div>
           <div className="more-info">
             For the live App, I have disabled the sound upload and delete functions
-            Please check the <a href="https://github.com/Schploink/AudioFog#readme">Readme</a> to see a recorded demonstration of these functions!
+            Please check the <a href="https://github.com/Schploink/AudioFog#readme">Readme</a> to see a demonstration of these functions!
           </div>
         </div>
       break;
