@@ -1,11 +1,11 @@
 # AudioFog
 
-![Live Site](https://github.com/Schploink/AudioFog/blob/main/app/assets/images/AFlogo1_vert_white.png "AudioFog logo white")
-
-![landing page image](https://github.com/Schploink/AudioFog/blob/main/app/assets/images/MainPage at 6.42.30 PM.png)
+![landing page image](https://github.com/Schploink/AudioFog/blob/main/app/assets/images/MainPage.png "Main Page Image")
 
 
 ## Presenting: Audiofog
+
+![Live Site](https://github.com/Schploink/AudioFog/blob/main/app/assets/images/AFlogo1_vert_white.png "AudioFog logo white")
 
 [AudioFog](https://audiofog.herokuapp.com/#/) is a full-stack web application that is a clone of the SoundCloud website with Ruby on Rails utilizing a postgreSQL database as the backend, React / Redux as the frontend, and utilizing AWS cloud-based hosting. The aim was to create a full-stack application from scratch with workable features similar to SoundCloud in user authentication, uploadable sounds, audio playback, the ability to leave comments, and general site structure, with contemporary styling aesthetics.
 
@@ -46,12 +46,82 @@
 
     export const ProtectedRoute = withRouter(connect(mapStateToProps)(Protected));
 ```
-### Sound uploading and playback
+### Sound uploading and deletion
 
-  * Users can create/upload, edit, or delete/destroy sounds
-  * Sounds are able to playback through a playback bar regardless of where they are on the site
-  * The playback bar will allow for tracking when clicked on the playbar or on the player in the show page for the sound
-  * A volume control for the playback bar
+  * Authorized Users can create/upload their own sounds. Only the uploading user can delete/destroy sounds
+
+```
+   const deleteButton = sound.uploader_id === this.props.currentUser
+            ? <div 
+                className="comment-delete-button"
+                onClick={() => this.props.deleteSound(sound.id)}
+                >
+                    <RiDeleteBin7Line />
+                </div>
+            : <div></div>
+```
+  * Scalable sound item components are used to display and give full functionality to all uploaded sounds on the main user splash page
+
+```
+        return (
+            <div className="discover-song-item">
+                <div className="discover-art-button">
+                    <div className="discover-art">
+                        {coverArt}
+                    </div>
+                    <div className="discover-play-pause" onClick={this.updateCurrentSound}>
+                        <div className="discover-icon">
+                            { this.props.currentSound === this.props.sound && this.props.isPlaying ? <IoPause /> : <IoPlay />}
+                        </div>
+                    </div>
+                </div>
+                <Link to={`/sounds/${currentSound.id}`}>
+                    <div className="discover-sound-title">{currentSound.description}</div>
+                </Link>
+                <Link to={`/users/${currentSound.uploader_id}`}>
+                    <div className="discover-artist-name">{currentSound.artist}</div>
+                </Link>
+            </div>
+        )
+
+```
+  
+### Application-wide media player
+
+  * Sounds are able to playback through a playback bar regardless of where the user is on the application
+  * A global state is created to determine if a song is playing, and which one to correctly indicate play/pause buttons across the application
+
+```
+        const playstateReducer = (oldState = defaultState, action) => {
+
+            Object.freeze(oldState);
+
+            switch (action.type) {
+                case PLAY_SOUND:
+                    return true;
+                case PAUSE_SOUND:
+                    return false;
+                default:
+                    return oldState;
+            }
+        }
+
+        if (this.props.currentSound === this.props.sound) {
+            if (this.props.isPlaying) {
+                document.getElementById('audio').pause()
+                this.props.pauseSound()
+            } else {
+                document.getElementById('audio').play()
+                this.props.playSound()
+            }
+        } else {
+            this.props.receiveCurrentSound(this.props.sound.id)
+            this.props.playSound()
+            // setTimeout( () => 
+            // document.getElementById('audio').play(), 200)
+        }
+        }
+```
 
 ### Sound and User show page
 
