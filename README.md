@@ -13,7 +13,7 @@
   * Users can create a secure account and login.
   * Credentials are checked to restrict users from accessing certain pages, redirecting unauthorized users to the main index page.
   * A demo user is available to experience the website and features without needing to create an account for the purposes of previewing the application.
-
+```
     const Auth = ({ component: Component, path, loggedIn, exact }) => (
       <Route path={path} exact={exact} render={(props) => (
         !loggedIn ? (
@@ -34,6 +34,15 @@
       )} />
     );
 
+
+    const mapStateToProps = state => (
+      { loggedIn: Boolean(state.session.id) }
+    );
+
+    export const AuthRoute = withRouter(connect(mapStateToProps)(Auth));
+
+    export const ProtectedRoute = withRouter(connect(mapStateToProps)(Protected));
+```
 ### Sound uploading and playback
 
   * Users can create/upload, edit, or delete/destroy sounds
