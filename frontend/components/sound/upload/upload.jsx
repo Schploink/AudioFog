@@ -104,8 +104,8 @@ class Upload extends React.Component {
                 <button 
                   className="upload-submit-button"
                   // disable upload for production to prevent hosting payment issues
-                  // onClick={this.handleSubmit}
-                  onClick={this.props.openModal}
+                  onClick={this.handleSubmit}
+                  // onClick={this.props.openModal}
                   >
                   Upload Sound
                 </button>
