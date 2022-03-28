@@ -62,6 +62,7 @@
 ```
   * Scalable sound item components are used to display and give full functionality to all uploaded sounds on the main user splash page
 
+![User Items](https://github.com/Schploink/AudioFog/blob/main/app/assets/images/UserItems.png)
 ```
         return (
             <div className="discover-song-item">
@@ -88,42 +89,88 @@
   
 ### Application-wide media player
 
-  * Sounds are able to playback through a playback bar regardless of where the user is on the application
-  * A global state is created to determine if a song is playing, and which one to correctly indicate play/pause buttons across the application
+  * Sounds are able to playback through a custom media player regardless of where the user is on the application
 
 ```
-        const playstateReducer = (oldState = defaultState, action) => {
+return (
+		 		<div className="player-container">
+          <div className="player-controls">
+            <audio 
+              autoPlay
+              id="audio" 
+              ref={(audio) => {this.audio = audio}} 
+              src={this.props.currentSound ? this.props.currentSound.soundUrl : ""} 
+              preload="metadata">
 
-            Object.freeze(oldState);
+            </audio>
 
-            switch (action.type) {
-                case PLAY_SOUND:
-                    return true;
-                case PAUSE_SOUND:
-                    return false;
-                default:
-                    return oldState;
-            }
-        }
+            <button className="previous-track" onClick={this.restartSound()}>
+              <IoPlaySkipBack />
+            </button>
 
-        if (this.props.currentSound === this.props.sound) {
-            if (this.props.isPlaying) {
-                document.getElementById('audio').pause()
-                this.props.pauseSound()
-            } else {
-                document.getElementById('audio').play()
-                this.props.playSound()
-            }
-        } else {
-            this.props.receiveCurrentSound(this.props.sound.id)
-            this.props.playSound()
-            // setTimeout( () => 
-            // document.getElementById('audio').play(), 200)
-        }
-        }
+            <button onClick={this.handlePlayPause} className="play-pause">
+              { this.props.isPlaying ? <IoPause /> : <IoPlay />}
+            </button>
+
+            <button className="next-track" onClick={this.nextSound()}>
+              <IoPlaySkipForward />
+            </button>
+            
+            <div className="current-time">
+              {normalizeTime(this.state.currentTime)}
+            </div>
+
+            <div className="progress-bar-container">
+              <input 
+              ref={(slider) => {this.slider = slider}} 
+              type="range"
+              className="progress-bar"
+              onInput={this.changeRange}
+              min="0"
+              max={this.state.duration} />
+            </div>
+
+            <div className="time-remaining">
+              {normalizeTime(this.state.duration)}
+            </div>
+            <div className="volume-container">
+              <IoVolumeHigh className="volume-icon"/>
+              <input 
+                type="range"
+                className="volume-bar"
+                min="0.0"
+                max="1000.0"
+                defaultValue={this.state.volume * 1000}
+                onChange={this.volumeChange}
+              />
+            </div>
+            <div className="player-track-container">
+              <div className="player-art-container">
+                  {artDiv}
+              </div>
+              <div className="song-artist-title">
+                <Link to={`/sounds/${soundId}`}>
+                  <div className="player-song-title">{soundName}</div>
+                </Link>
+                <Link to={`/users/${artistId}`}>
+                  <div className="player-artist">{artistName}</div>
+                </Link>
+              </div>
+            </div>
+            
+          </div>
+		 		</div>
+		)}
 ```
+  * A global state is created to determine if a song is playing, and if the inspected song is the currently playing song to correctly indicate play/pause buttons across the application
+
 
 ### Sound and User show page
 
-  * A show page for each unique user and sound
-  * Ability for users to leave comments on uploaded sounds
+  * Each individual User and each individual Sound uploaded has a unique page
+  * Ability for users to leave comments on uploaded sounds, only the comment creator can delete a comment
+
+![Song page with comments](https://github.com/Schploink/AudioFog/blob/main/app/assets/images/SongPage.png)
+
+
+## Thank you for checking out my App!
