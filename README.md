@@ -2,6 +2,9 @@
 
 ![Live Site](https://github.com/Schploink/AudioFog/blob/main/app/assets/images/AFlogo1_vert_white.png "AudioFog logo white")
 
+![landing page image](https://github.com/Schploink/AudioFog/blob/main/app/assets/images/MainPage at 6.42.30 PM.png)
+
+
 ## Presenting: Audiofog
 
 [AudioFog](https://audiofog.herokuapp.com/#/) is a full-stack web application that is a clone of the SoundCloud website with Ruby on Rails utilizing a postgreSQL database as the backend, React / Redux as the frontend, and utilizing AWS cloud-based hosting. The aim was to create a full-stack application from scratch with workable features similar to SoundCloud in user authentication, uploadable sounds, audio playback, the ability to leave comments, and general site structure, with contemporary styling aesthetics.
