@@ -16,7 +16,7 @@
   * Users can create a secure account and login.
   * Credentials are checked to restrict users from accessing certain pages, redirecting unauthorized users to the main index page.
   * A demo user is available to experience the website and features without needing to create an account for the purposes of previewing the application.
-```
+```js
     const Auth = ({ component: Component, path, loggedIn, exact }) => (
       <Route path={path} exact={exact} render={(props) => (
         !loggedIn ? (
@@ -50,7 +50,7 @@
 
   * Authorized Users can create/upload their own sounds. Only the uploading user can delete/destroy sounds
 
-```
+```js
    const deleteButton = sound.uploader_id === this.props.currentUser
             ? <div 
                 className="comment-delete-button"
@@ -63,7 +63,7 @@
   * Scalable sound item components are used to display and give full functionality to all uploaded sounds on the main user splash page
 
 ![User Items](https://github.com/Schploink/AudioFog/blob/main/app/assets/images/UserItems.png)
-```
+```js
         return (
             <div className="discover-song-item">
                 <div className="discover-art-button">
@@ -91,9 +91,9 @@
 
   * Sounds are able to playback through a custom media player regardless of where the user is on the application
 
-```
+```js
 return (
-		 		<div className="player-container">
+	<div className="player-container">
           <div className="player-controls">
             <audio 
               autoPlay
@@ -159,7 +159,7 @@ return (
             </div>
             
           </div>
-		 		</div>
+	</div>
 		)}
 ```
   * A global state is created to determine if a song is playing, and if the inspected song is the currently playing song to correctly indicate play/pause buttons across the application
